@@ -46,7 +46,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 
 		</div>
 		<div>
-			Bienvenu  :   <?php echo $login; ?> ! 
+			Bienvenue  :   <?php echo $login; ?> t'es trop beau! 
 		</div>
 		<?php
 
