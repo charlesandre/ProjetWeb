@@ -46,7 +46,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 
 		</div>
 		<div>
-			connecté sous le pseudo de :   <?php echo $login; ?>
+			Bienvenu  :   <?php echo $login; ?> ! 
 		</div>
 		<?php
 
