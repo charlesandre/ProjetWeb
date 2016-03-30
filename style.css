@@ -1,0 +1,348 @@
+h1
+{
+    font-size: 80px;
+    top:0px;
+    text-align: center;
+    color:white;
+}
+
+h2
+{
+     color : #E8BE33;
+     font-weight: bold;
+     font-size: 150%;
+ }
+
+ul#menu {
+    padding: 0;
+    text-align: center;
+}
+
+ul#menu li {
+    display: inline;
+}
+
+ul#menu li a {
+    background-color: #59719A;
+    opacity: .4;
+    color: white;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+ul#menu li a:hover {
+    background-color: #59719A;
+    opacity: 1;
+}
+
+
+body
+{
+	background-color: #e9eaed;
+}
+
+
+header{
+    position:fixed;
+    width: 100%;
+    top:0px;
+    left:0px;
+    height:50px;
+	background-color: #34495e;
+    float:top;
+    z-index: 1;
+} 
+
+#headerConnexion{
+    width:100%;
+    height: 50px;
+}
+#bienvenue{
+    color: white;
+    font-size: 45px;
+    font-family: 'Dancing Script';
+    text-align: center;
+    margin-top:0px;
+    border-top: 0px;
+    padding-top: 0px;
+}
+#accueil{
+    margin-left: 20px;
+    color:black;
+}
+
+#accueil:hover{
+    color:#AFAFAF;
+}
+
+#recherche{
+    position:absolute;
+    left:100px;
+    margin-left: 100px;
+    top:5px;
+}
+
+
+
+#caserecherche{
+    border-radius: 5px;
+    border:solid 1px black;
+    padding:5px;
+    width: 400px;
+    height:40px;
+}
+
+#boutons{
+    position: absolute;
+    top: 10px;
+    left:1000px;
+    margin-left: 50px;
+    color:black;
+}
+
+#boutons:hover{
+    color:#AFAFAF;
+}
+
+.onglet{
+    margin-left: 30px;
+}
+
+#ajouterPhoto{
+    position:fixed;
+    margin-left: 90%;
+    top:90%;
+}
+
+#boutonplus{
+     width:50px;
+    height:50px;
+}
+
+
+a{
+    font-family: 'Dancing Script', cursive;
+    font-size: 18px;
+    color:#AFAFAF;
+}
+
+a:link{ 
+    text-decoration:none; 
+} 
+
+/*
+a:active{
+    color:white;
+}*/
+
+
+
+a:hover{
+    color:black;
+}
+
+
+#container
+{
+	min-height: 70%;
+	margin: 0 auto -50px;
+    color : #4D7FA8;
+
+}
+
+td{
+    width:100%;
+}
+
+
+
+
+
+/*table
+{
+    text-align: center;
+
+}*/
+
+#connexion
+{
+    position: absolute;
+    left:100px;
+    top:150px;
+    width:500px;
+    height:400px;
+    background-color: white;
+    font-family: 'Dancing Script';
+    font-size: 150px;
+}
+
+#formulaire
+{
+    position: absolute;
+    top:0px;
+    width:500px;
+    height:400px;
+}
+
+#texteConnexion
+{
+    text-align: center;
+    font-size: 60px;
+    margin-top:0px;
+}
+
+.caseConnexion
+{
+    padding:5px;
+    width: 200px;
+    height:30px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.champConnexion{
+    font-size: 25px;
+    text-align: left;
+    padding-left: 50px;
+    margin-left: 300px;
+    height: 50px;
+}
+
+#boutonConnexion{
+    border-radius: 10px;
+    border-color: black;
+    height:30px;
+    width:100px;
+    font-size: 12px;
+    text-align: center;
+    background-color: white;
+    margin-top: 20px;
+    outline: none;
+}
+
+#boutonConnexion:hover{
+    color:#AFAFAF;
+    border-color: #AFAFAF;
+}
+
+#tdConnexion{
+    text-align: center;
+}
+
+.boutonAide{
+    margin-top: 20px;
+    text-align: center;
+    color: black;
+}
+
+#ligneAide{
+    margin-top: 50%;    
+    height: 50px;
+}
+
+#imageAccueil{
+    margin-left:500px;
+    top:150px;
+}
+
+#erreur{
+    font-size: 18px;
+    color:red;
+}
+
+
+/*form
+{
+	
+    position:absolute;
+    top: 40%;
+    left: 50%;
+    width:30em;
+    height:21em;
+    margin-top: -9em; 
+    margin-left: -15em; 
+    border: 1px solid #ccc;
+    background-color: #59719A;
+    opacity: .7;
+    text-align: center;
+
+}*/
+
+#button
+{
+	margin-top: 20px;
+	height: 20;
+	color: #59719A;
+	font-style: bold;
+
+}
+
+/*input
+{
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    border:solid 1px black;
+    padding:5px;
+    margin-top: 10px;
+    width: 100px;
+}*/
+
+#bottom
+{
+    background-color:#7a1d1d;
+    border-radius: 0px;
+    line-height: 50px;
+    text-align: center;
+    height: 50px;
+    width: 100%;
+    margin-left: 0;
+}
+
+
+
+#connectbox
+{
+    text-align: center;
+    border: 5px solid navy;
+    border-color: #E8BE33;
+    padding: 15px;
+    border-radius: 20px;
+    color: #E8BE33;
+    font-weight: bold;
+    font-size: 200%;
+    height: 90px;
+    line-height: 0px;
+    margin-top: 30px;
+}
+
+#bttn
+{
+    background-color: #E8BE33;
+    height: 60;
+    width: 150;
+    border-color: #E8BE33;
+    text-align: center;
+    border-radius: 10px;
+    color: #4D7FA8;
+    margin-top: 17px;
+    font-weight: bold;
+    font-size: 100%;
+}
+
+footer
+{
+    color:white;
+    margin-left: 100px;
+    background-color: #34495e;
+    text-align: center;
+    height: 20px;
+    width: 1200px;
+    bottom:0px;
+    margin-bottom:0px; 
+    padding-left: 0px;
+    position: absolute;
+    left:0px;
+}
+
+
