@@ -24,7 +24,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 
 	<body>
 			<header>
-			<p> <div id="accueil"><a href="Home.html">Accueil</a></div> 
+			<p> <div id="accueil"><a class="onglet" href="Home.html">Accueil</a></div> 
 				<div id="recherche"> <input type="text" name="login" id="caserecherche" placeholder="Rechercher"/> </div>
 				<div id="boutons"> <a class="onglet" href="MyAccount.html">Profil</a> 
 								   <a class="onglet" href="Notifications.html">Notifications</a> </div> 

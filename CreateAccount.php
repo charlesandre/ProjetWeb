@@ -62,72 +62,78 @@
 
 
 	<body>
-	
 
-	<div align="center">
-		
-		<br/>
-		<form method="post" action ="" align ="center">
-			<h1>Inscription</h1>
-			<br/>
-			<table align ="center">
-				<tr>
-					<td>
-						<label for "login"> Login : </label>
-					</td>
-					<td>
-						<input id ="login" type="text" name="log" placeholder="Your Login" />
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label for "email"> E-mail : </label>
-					</td>
-					<td>
-						<input id ="email" type="TEXT" name="email" placeholder="Your E-Mail" />
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label for "pass"> Password : </label>
-					</td>
-					<td>
-						<input id ="pass" type="password" name="pass" placeholder="Your Password" />
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label for "pass2"> Repeat Your Password : </label>
-					</td>
-					<td>
-						<input id ="pass2" type="password" name="pass2" placeholder="Your Password" />
-					</td>
-				</tr>
-			</table>
-				<br/>
-				<input type = "submit" name="formregister" value="Register !"> </input> 
-				<br/><br/>
-				<?php
-			if(isset($erreur))
-			{
-				echo '<font color = "red">'.$erreur. "</font>";
-			}
-		?>
-
-		</form>
+		<header>
+				
+				<div id="headerConnexion">
+					<p  id="bienvenue">Nom du site</p>
+				</div>
+			</header>
 		
 
-	</div>
+		<div id="inscription">
+			
+			
+			<form method="post" action ="" align ="center">
+				<p id="texteInscription">Inscription</p>
+				<table>
+					<tr>
+						<td id="champInscription">
+							<label for "login"> Login : </label>
+						</td>
+						<td>
+							<input id ="login" type="text" name="log" placeholder="Your Login" class="caseConnexion"/>
+						</td>
+					</tr>
+					<tr>
+						<td id="champInscription">
+							<label for "email"> E-mail : </label>
+						</td>
+						<td>
+							<input id ="email" type="TEXT" name="email" placeholder="Your E-Mail" class="caseConnexion" />
+						</td>
+					</tr>
+					<tr>
+						<td id="champInscription">
+							<label for "pass"> Password : </label>
+						</td>
+						<td>
+							<input id ="pass" type="password" name="pass" placeholder="Your Password" class="caseConnexion"/>
+						</td>
+					</tr>
+					<tr>
+						<td id="champInscription">
+							<label for "pass2"> Repeat Your Password : </label>
+						</td>
+						<td>
+							<input id ="pass2" type="password" name="pass2" placeholder="Your Password" class="caseConnexion"/>
+						</td>
+					</tr>
+				</table>
+					<br/>
+					<input type = "submit" name="formregister" value="Register !"> </input> 
+					<br/><br/>
+					<?php
+				if(isset($erreur))
+				{
+					echo '<font color = "red">'.$erreur. "</font>";
+				}
+			?>
 
-		
-		
+			</form>
+			
 
-	<div id="container">
-			</div>
+		</div>
 
-	<div id="bottom">
-		Charles ANDRE - Antoine DIOULOUFFET - Alexandre TUBIANA - ECE PARIS - 2016
-	</div>
+			
+			
+
+		<div id="container">
+				</div>
+
+		<footer>
+			Charles ANDRE - Antoine DIOULOUFFET - Alexandre TUBIANA - ECE PARIS - 2016
+		</footer>
 
 	</body>
 

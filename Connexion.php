@@ -64,7 +64,7 @@
 		<header>
 			
 			<div id="headerConnexion">
-				<p  id="bienvenue">Bienvenue sur notre site !</p>
+				<p  id="bienvenue">Nom du site</p>
 			</div>
 		</header>
 	
