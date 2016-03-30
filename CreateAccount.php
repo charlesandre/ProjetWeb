@@ -38,7 +38,7 @@
 			}
 			else
 			{
-				$erreur = "Paswords doesn't match";
+				$erreur = "Les mots de passe sont différents";
 			}
 		}	
 		else
@@ -74,66 +74,78 @@
 		<div id="inscription">
 			
 			
-			<form method="post" action ="" align ="center">
+			<form method="post" action ="" align ="center" id="formulaireInscription">
 				<p id="texteInscription">Inscription</p>
+				<div id="champForm">
 				<table>
 					<tr>
-						<td id="champInscription">
-							<label for "login"> Login : </label>
+						<td class="champInscription">
+							<label for "login"> Pseudo </label>
 						</td>
 						<td>
-							<input id ="login" type="text" name="log" placeholder="Your Login" class="caseConnexion"/>
+							<input id ="login" type="text" name="log" required="required" placeholder="Pseudo" class="caseConnexion"/>
 						</td>
 					</tr>
 					<tr>
-						<td id="champInscription">
-							<label for "email"> E-mail : </label>
+						<td class="champInscription">
+							<label for "email"> E-mail </label>
 						</td>
 						<td>
-							<input id ="email" type="TEXT" name="email" placeholder="Your E-Mail" class="caseConnexion" />
+							<input id ="email" type="TEXT" name="email"  required="required" placeholder="E-mail" class="caseConnexion" />
 						</td>
 					</tr>
 					<tr>
-						<td id="champInscription">
-							<label for "pass"> Password : </label>
+						<td class="champInscription">
+							<label for "pass"> Mot de passe </label>
 						</td>
 						<td>
-							<input id ="pass" type="password" name="pass" placeholder="Your Password" class="caseConnexion"/>
+							<input id ="pass" type="password" name="pass"  required="required" placeholder="Mot de passe" class="caseConnexion"/>
 						</td>
 					</tr>
 					<tr>
-						<td id="champInscription">
-							<label for "pass2"> Repeat Your Password : </label>
+						<td class="champInscription">
+							<label for "pass2"> Confirmer le mot de passe </label>
 						</td>
 						<td>
-							<input id ="pass2" type="password" name="pass2" placeholder="Your Password" class="caseConnexion"/>
+							<input id ="pass2" type="password" name="pass2"  required="required" placeholder="Confirmer le mot de passe" class="caseConnexion"/>
 						</td>
 					</tr>
+					<tr>
+					<td id="tdInscription" colspan="2">
+						<input type = "submit" name="formregister" value="S'inscrire" id="boutonInscription"> </input> 
+					</td>
+				</tr>
+
 				</table>
-					<br/>
-					<input type = "submit" name="formregister" value="Register !"> </input> 
-					<br/><br/>
-					<?php
-				if(isset($erreur))
-				{
-					echo '<font color = "red">'.$erreur. "</font>";
-				}
+
+
+					
+				</div>
+
+			<?php
+			if(isset($erreur))
+			{
+				echo "<p id='erreurInscription'>".$erreur. "</p>";
+			}
 			?>
 
+					
 			</form>
+			
 			
 
 		</div>
 
+			<div id="imageAccueilInscription">
+				<img src="paysage1.png" id="diapoAccueil"/>
+			</div>
 			
-			
-
-		<div id="container">
-				</div>
 
 		<footer>
 			Charles ANDRE - Antoine DIOULOUFFET - Alexandre TUBIANA - ECE PARIS - 2016
 		</footer>
+
+		<script type="text/javascript" src="script.js"> </script>
 
 	</body>
 

@@ -209,7 +209,7 @@ td{
 
 .champConnexion{
     font-size: 25px;
-    text-align: left;
+    text-align: center;
     padding-left: 50px;
     margin-left: 300px;
     height: 50px;
@@ -261,20 +261,26 @@ td{
 {
     position: absolute;
     margin-left:800px;
-    top:150px;
+    top:130px;
     width:500px;
     height:400px;
     background-color: white;
     font-family: 'Dancing Script';
+    margin-top: 0px;
+    position: relative;
+}
+
+#champForm{
+    position: absolute;
+    bottom: 50px;
 }
 
 
 .champInscription{
     font-size: 25px;
-    text-align: left;
-    padding-left: 50px;
-    margin-left: 300px;
+    text-align: center;
     height: 50px;
+    top: 0px;
 }
 
 #texteInscription
@@ -283,6 +289,46 @@ td{
     font-size: 60px;
     margin-top:0px;
 }
+
+#boutonInscription{
+    border-radius: 10px;
+    border-color: black;
+    height:30px;
+    width:100px;
+    font-size: 12px;
+    text-align: center;
+    background-color: white;
+    margin-top: 20px;
+    outline: none;
+}
+
+#boutonInscription:hover{
+    color:#AFAFAF;
+    border-color: #AFAFAF;
+}
+
+#tdInscription{
+    text-align: center;
+}
+
+
+
+#erreurInscription{
+    font-size: 18px;
+    color:red;
+    position: absolute;
+    bottom:0px;
+    text-align: center;
+    width: 100%;
+}
+
+#imageAccueilInscription{
+    margin-left:100px;
+    top:138px;
+    position: absolute;
+}
+
+
 
 
 /*form
