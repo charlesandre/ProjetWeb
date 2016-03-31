@@ -24,7 +24,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 
 	<body>
 			<header>
-			<p> <div id="accueil"><a class="onglet" href="Home.html">Accueil</a></div> 
+			<p> <a  href="Home.php"><span id="logo"></span></a>
 				<div id="recherche"> <input type="text" name="login" id="caserecherche" placeholder="Rechercher"/> </div>
 				<div id="boutons"> <a class="onglet" href="MyAccount.html">Profil</a> 
 								   <a class="onglet" href="Notifications.html">Notifications</a> </div> 
@@ -32,19 +32,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 		</header>
 
 		<div id="ajouterPhoto"> <img  src="images/boutonplus.png" id="boutonplus"> </div>
-		
 
-	
-
-
-
-		<div id="container">
-			
-			
-		
-
-
-		</div>
 		<div>
 			Bienvenue  :   <?php echo $login; ?> t'es trop beau! 
 		</div>

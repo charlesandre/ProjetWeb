@@ -123,7 +123,7 @@
 		</form>
 
 		<div id="imageAccueil">
-			<img src="paysage1.png" id="diapoAccueil"/>
+			<img id="diapoAccueil"/>
 		</div>
 		
 

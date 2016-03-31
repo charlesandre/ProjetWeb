@@ -67,7 +67,8 @@ header{
     border-top: 0px;
     padding-top: 0px;
 }
-#accueil{
+
+/*#accueil{
     margin-left: 20px;
     color:white;
     position: absolute;
@@ -76,6 +77,24 @@ header{
 
 #accueil:hover{
     color:#AFAFAF;
+}*/
+
+#logo{
+    top:5px;
+    left: 40px;
+    width: 100px;
+    height:40px;
+    position: absolute;
+    background: url("logoblanc.png") no-repeat;
+}
+
+#logo:hover{
+    top:5px;
+    left: 40px;
+    background: url("logogris.png") no-repeat;
+    width: 100px;
+    height:100%;
+    position: absolute;
 }
 
 #recherche{
@@ -118,11 +137,12 @@ header{
 #ajouterPhoto{
     position:fixed;
     margin-left: 90%;
-    top:90%;
+    top:80%;
+
 }
 
 #boutonplus{
-     width:50px;
+    width:50px;
     height:50px;
 }
 
@@ -147,6 +167,7 @@ a:active{
 a:hover{
     color:black;
 }
+
 
 
 #container
