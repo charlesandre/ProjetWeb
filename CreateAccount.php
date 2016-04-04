@@ -66,7 +66,7 @@
 		<header>
 				
 				<div id="headerConnexion">
-					<p  id="bienvenue">Nom du site</p>
+					<img src="logoblanc.png" id="logoAccueil"/>
 				</div>
 			</header>
 		

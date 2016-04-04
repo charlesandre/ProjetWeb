@@ -57,15 +57,13 @@ header{
 #headerConnexion{
     width:100%;
     height: 50px;
-}
-#bienvenue{
-    color: white;
-    font-size: 45px;
-    font-family: 'Dancing Script';
     text-align: center;
-    margin-top:0px;
-    border-top: 0px;
-    padding-top: 0px;
+    position: absolute;
+}
+#logoAccueil{
+    text-align: center;
+    position: relative;
+    top:5px;
 }
 
 /*#accueil{

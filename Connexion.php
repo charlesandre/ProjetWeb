@@ -64,7 +64,7 @@
 		<header>
 			
 			<div id="headerConnexion">
-				<p  id="bienvenue">Nom du site</p>
+				<img src="logoblanc.png" id="logoAccueil"/>
 			</div>
 		</header>
 	
@@ -123,7 +123,7 @@
 		</form>
 
 		<div id="imageAccueil">
-			<img id="diapoAccueil"/>
+			<img src="paysage1.png" id="diapoAccueil"/>
 		</div>
 		
 
