@@ -140,12 +140,13 @@
 				<img src="paysage1.png" id="diapoAccueil"/>
 			</div>
 			
-
+		<script type="text/javascript" src="script.js"> </script>
+		
 		<footer>
 			Charles ANDRE - Antoine DIOULOUFFET - Alexandre TUBIANA - ECE PARIS - 2016
 		</footer>
 
-		<script type="text/javascript" src="script.js"> </script>
+		
 
 	</body>
 
