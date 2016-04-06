@@ -31,7 +31,10 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 			</p>
 		</header>
 
-		<div id="ajouterPhoto"> <img  src="images/boutonplus.png" id="boutonplus"> </div>
+		<div id="ajouterPhoto"> <img  src="images/boutonplus.png" id="boutonplus" onclick="new_div()"> </div>
+		<div id="elementParent">
+  <span id="elementEnfant">foo bar</span>
+</div>
 
 		<div>
 			Bienvenue  :   <?php echo $login; ?> t'es trop beau! 
@@ -47,6 +50,12 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 		
 
 
+		<!--<div id="testHome">
+			<img src="paysage1.png"/>
+		</div>
+
+		<div id="caseCommentaire">
+		</div>-->
 
 
 
@@ -56,14 +65,15 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 
 
 
+	
+
+		<footer>
+			Charles ANDRE - Antoine DIOULOUFFET - Alexandre TUBIANA - ECE PARIS - 2016
+		</footer>
+
+	<script type="text/javascript" src="script.js"> </script>
 
 	</body>
-
-	<footer>
-		Charles ANDRE - Antoine DIOULOUFFET - Alexandre TUBIANA - ECE PARIS - 2016
-	</footer>
-
-
 
 </html>
 <?php

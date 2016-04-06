@@ -130,10 +130,6 @@
 	</div>
 
 		
-		
-
-	<div id="container">
-			</div>
 
 	<footer>
 		Charles ANDRE - Antoine DIOULOUFFET - Alexandre TUBIANA - ECE PARIS - 2016

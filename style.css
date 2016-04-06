@@ -145,6 +145,7 @@ header{
 }
 
 
+
 a{
     font-family: 'Dancing Script', cursive;
     font-size: 18px;
@@ -347,7 +348,25 @@ td{
     position: absolute;
 }
 
+#testHome{
+    margin-left:100px;
+    top:138px;
+    position: absolute;
+}
 
+#caseCommentaire{
+
+    position: absolute;
+    margin-left:800px;
+    top:94px;
+    width:500px;
+    height:400px;
+    background-color: white;
+    font-family: 'Dancing Script';
+    margin-top: 0px;
+    position: relative;
+
+}
 
 
 /*form

@@ -32,5 +32,28 @@ window.onload = function(){
 	ChangerImage();
 }
 
+function new_div()
+{
+	// crée un nouveau nœud d'élément <span> vide
+// sans aucun ID, attribut ou contenu
+var sp1 = document.createElement("span");
 
+// lui donne un attribut id appelé 'nouveauSpan'
+sp1.setAttribute("id", "nouveauSpan");
+
+// crée un peu de contenu pour cet élément.
+var sp1_content = document.createTextNode("Ceci est un nouvel élément span. ");
+
+// ajoute ce contenu au nouvel élément
+sp1.appendChild(sp1_content);
+
+// Obtient une référence de l'élément devant lequel on veut insérer notre nouveau span
+var sp2 = document.getElementById("elementEnfant");
+
+// Obtient une référence du nœud parent
+var parentDiv = sp2.parentNode;
+
+// insère le nouvel élément dans le DOM avant sp2
+parentDiv.insertBefore(sp1, sp2);
+}
 		
