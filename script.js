@@ -57,3 +57,11 @@ var parentDiv = sp2.parentNode;
 parentDiv.insertBefore(sp1, sp2);
 }
 		
+
+		function ajoutPhoto()
+{
+popup = window.open('Ajouter une photo', 'popup', 'height=800, width=600');
+popup.document.write('<form action="?" method="post">');
+popup.document.write('<input type="file" name="nom" />');
+popup.document.write('</form>');
+}

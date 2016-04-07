@@ -83,13 +83,18 @@ header{
     width: 100px;
     height:40px;
     position: absolute;
-    background: url("logoblanc.png") no-repeat;
+    background: url("images/logoblanc.png") no-repeat;
+}
+#boutonpluss{
+    position : relative;
+    z-index: 10;
+   background: url("images/boutonplus.png") no-repeat;
 }
 
 #logo:hover{
     top:5px;
     left: 40px;
-    background: url("logogris.png") no-repeat;
+    background: url("images/logogris.png") no-repeat;
     width: 100px;
     height:100%;
     position: absolute;

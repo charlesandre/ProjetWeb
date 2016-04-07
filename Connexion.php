@@ -1,9 +1,12 @@
 <?php 
+
 @ob_start();
 
 	session_start();	
 
+
 	$bdd = mysql_connect('localhost', 'root', 'root');
+	echo "Pb 1";
 	if (!$bdd) 
 		{
     die('Not connected : ' . mysql_error());
@@ -12,8 +15,9 @@
 	$db_selected = mysql_select_db('bdd', $bdd);
 	if (!$db_selected) 
 		{
-    die ('Can\'t use foo : ' . mysql_error());
+   die ('Can\'t use foo : ' . mysql_error());
 		}
+	
 
 
 	if (isset($_POST['formconnect']))
