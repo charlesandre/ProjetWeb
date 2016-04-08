@@ -60,8 +60,21 @@ parentDiv.insertBefore(sp1, sp2);
 
 		function ajoutPhoto()
 {
-popup = window.open('Ajouter une photo', 'popup', 'height=800, width=600');
-popup.document.write('<form action="?" method="post">');
-popup.document.write('<input type="file" name="nom" />');
-popup.document.write('</form>');
+	width = 300;
+height = 200;
+if(window.innerWidth)
+{
+   	var left = (window.innerWidth-width)/2;
+  	var top = (window.innerHeight-height)/2;
 }
+else
+{
+  	var left = (document.body.clientWidth-width)/2;
+  	var top = (document.body.clientHeight-height)/2;
+}
+popup = window.open('Ajouter une photo', 'popup', 'height=400, width=300');
+popup.document.write('<h1>Ceci est un test</h1>');
+popup.document.write('</form>');
+
+}
+

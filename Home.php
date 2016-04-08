@@ -19,7 +19,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 		<title>Index</title>
 		<link rel="stylesheet" href="style.css" />
 		<link href='http://fonts.googleapis.com/css?family=Dancing+Script:700' rel='stylesheet' type='text/css'>
-		
+
 	</head>
 
 	<body>
@@ -33,15 +33,21 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 
 		<div id="ajouterPhoto"> 
 
-			<a href="javascript:ajoutPhoto();"><img  src="images/boutonplus.png" id="boutonplus" onclick="new_div()"> </a>
+			<a href="" onclick="javascript:ajoutPhoto();"><img  src="images/boutonplus.png" id="boutonplus" onclick="new_div()"> </a>
 		</div>
 		<div id="elementParent">
   <span id="elementEnfant">foo bar</span>
 </div>
 
+
+
+
 		<div>
 			Bienvenue  :   <?php echo $login; ?> t'es trop beau! 
 		</div>
+		
+
+
 		<?php
 
 			if(isset($erreur))
