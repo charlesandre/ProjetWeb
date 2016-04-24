@@ -24,11 +24,9 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 			$allow_ext=array("jpg",'png','gif');
 				if(in_array($ext,$allow_ext))
 					{
-					//Déplace un fichier téléchargé
-					move_uploaded_file($img['tmp_name'],"Photos/".$img['name']); 
-					//Appelle des fonctions présentes dans le fichier imgClass.php
-					Img::creerMin("Photos/".$img['name'],"Photos/min",$img['name'],350,350);
-					Img::convertirJPG("Photos/".$img['name']); 
+						$nom = "Photos/";
+					$resultat = move_uploaded_file($_FILES['icone']['tmp_name'],$nom);
+				if ($resultat) echo "Transfert réussi";
 					}
 				else
 					{
