@@ -14,10 +14,30 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 
 	if (isset($_POST['importer']))
 	{
-		if(!empty($_POST['NomImg']) AND !empty($_POST['date']) AND !empty($_POST['lieu']) AND !empty($_POST['visibilité']) AND !empty($_POST['legende']))
+		if(!empty($_FILES))
+			{
+			// fonction présent dans le fichier imgClass
+			require("imgClass.php");
+			$img=$_FILES['img'];
+			//strtolower: Renvoie une chaîne en minuscules substr:           Retourne un segment de chaîne
+			$ext= strtolower(substr($img['name'],-3));
+			$allow_ext=array("jpg",'png','gif');
+				if(in_array($ext,$allow_ext))
+					{
+						$nom = "Photos/";
+					$resultat = move_uploaded_file($_FILES['icone']['tmp_name'],$nom);
+				if ($resultat) echo "Transfert réussi";
+					}
+				else
+					{
+					$erreur ="Votre fichier n'est pas une image"; 
+					}
+			}
+
+		if(!empty($_POST['NomImg']) AND !empty($_POST['date']) AND !empty($_POST['date']) AND !empty($_POST['lieu']) AND !empty($_POST['legende']))
 		{
 
-			$NomImage = htmlspecialchars($_POST['NomImage']);
+			$NomImage = htmlspecialchars($_POST['NomImg']);
 			$Date = htmlspecialchars($_POST['date']);
 			$Lieu = htmlspecialchars($_POST['lieu']);
 			$Visibilité = htmlspecialchars($_POST['visibilité']);
@@ -25,22 +45,20 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 
 
 			
-
-				$result = mysql_query("INSERT INTO Photos (Nom, Legende, Lieu, Daate, Proprio, Visibilité)  
+			$result = mysql_query("INSERT INTO Photos (Nom, Legende, Lieu, Daate, Proprio, Visibilite)
              VALUES ('$NomImage', '$Legende', '$Lieu', '$Date', '$getid', '$Visibilité')");
 				if($result)
 				{
-					header('Location: Connexion.php');
+					header('Location: Home.php?id='.$_SESSION['ID']);
 					exit;
 				}
-				
-				
-				
+		}
+	else
+	{
+		$erreur = "Veuillez remplir tous les champs";
+	}
 			
-		}	
-		else
-		{
-			$erreur = "All fields must be completed";		}
+	
 		
 	}
 ?>
@@ -64,6 +82,8 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 
 	<div id = "container">
 		<br/><br/>
+		Bienvenue  :   <?php echo $login; ?> t'es trop beau! 
+		Ton numero d'utilisateur est le : <?php echo $getid ?> ! 
 		<form method="POST" action="" enctype="multipart/form-data">
 	</br>
 		</br>
@@ -102,7 +122,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 			{
 				echo "<p id='erreurInscription'>".$erreur. "</p>";
 			}
-			?>
+	?>
 	</div>
 
 
