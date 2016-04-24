@@ -79,13 +79,12 @@ if (isset($_POST['formmodif']))
 
  		
 
-<div id ="modificationinfo">
+	<div id ="reglages">
 				<form method="post" action ="" align ="center">
-				<p id="texteInscription">Modifier mes informations</p>
-				<div>
+				<p id="texteReglages">Modifier mes informations</p>
 				<table>
 					<tr>
-						<td>
+						<td class="champReglages">
 							<label for "login"> Pseudo : </label>
 						</td>
 						<td>
@@ -93,7 +92,7 @@ if (isset($_POST['formmodif']))
 						</td>
 					</tr>
 					<tr>
-						<td>
+						<td class="champReglages">
 							<label for "email"> E-mail : </label>
 						</td>
 						<td>
@@ -101,7 +100,7 @@ if (isset($_POST['formmodif']))
 						</td>
 					</tr>
 					<tr>
-						<td>
+						<td class="champReglages">
 							<label for "pass">Ancien mot de passe </label>
 						</td>
 						<td>
@@ -110,7 +109,7 @@ if (isset($_POST['formmodif']))
 					</tr>
 
 					<tr>
-						<td>
+						<td class="champReglages">
 							<label for "pass">Nouveau mot de passe </label>
 						</td>
 						<td>
@@ -118,7 +117,7 @@ if (isset($_POST['formmodif']))
 						</td>
 					</tr>
 					<tr>
-						<td>
+						<td class="champReglages">
 							<label for "pass2"> Confirmer le nouveau mot de passe </label>
 						</td>
 						<td>
@@ -126,23 +125,22 @@ if (isset($_POST['formmodif']))
 						</td>
 					</tr>
 					<tr>
-					<td>
-						<input type = "submit" name="formmodif" value="Sauvegarder les modifications"> </input> 
-					</td>
-				</tr>
+						<td id="tdReglages" colspan="2">
+							<input type = "submit" name="formmodif" value="Sauvegarder" id="boutonReglages"> </input> 
+						</td>
+					</tr>
 
 				</table>
 
 
 					
-				</div>
 
 			
 
 			<?php
 			if(isset($erreur))
 			{
-				echo "<p id='erreurInscription'>".$erreur. "</p>";
+				echo "<p id='erreurReglages'>".$erreur. "</p>";
 			}
 			?>
 
@@ -150,7 +148,7 @@ if (isset($_POST['formmodif']))
 			</form>
 
 
-			</div>
+	</div>
 
 	
 

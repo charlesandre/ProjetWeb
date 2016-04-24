@@ -40,6 +40,7 @@ ul#menu li a:hover {
 body
 {
 	background-color: #e9eaed;
+    margin:0;
 }
 
 
@@ -373,6 +374,68 @@ td{
     left:500px;
     top:200px;
 }
+
+
+#reglages
+{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:140px;
+    width:600px;
+    height:460px;
+    background-color: white;
+    font-family: 'Dancing Script';
+    font-size: 100px;
+}
+
+#divReglages{
+    position: absolute;
+}
+
+#texteReglages
+{
+    text-align: center;
+    font-size: 60px;
+    height:30px;
+    margin-top:0px;
+}
+
+.champReglages{
+    font-size: 25px;
+    text-align: center;
+    height: 50px;
+    top: 0px;
+}
+
+#tdReglages{
+    text-align: center;
+}
+
+#boutonReglages{
+    border-radius: 10px;
+    border-color: black;
+    height:30px;
+    width:100px;
+    font-size: 12px;
+    text-align: center;
+    background-color: white;
+    margin-top: 20px;
+    outline: none;
+}
+
+#boutonReglages:hover{
+    color:#AFAFAF;
+    border-color: #AFAFAF;
+}
+
+#erreurReglages{
+    font-size: 18px;
+    color:red;
+    position: absolute;
+    text-align: center;
+    width:600px;
+}
+
 
 
 /*form
