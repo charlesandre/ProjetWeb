@@ -26,8 +26,8 @@
 			if($pw1 == $pw2)
 			{
 
-				$result = mysql_query("INSERT INTO Users (Login, Password)  
-             VALUES ('$login', '$pw1')");
+				$result = mysql_query("INSERT INTO Users (Login, Email, Password)  
+             VALUES ('$login', '$email', '$pw1')");
 				if($result)
 				{
 					header('Location: Connexion.php');

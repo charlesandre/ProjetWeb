@@ -74,7 +74,7 @@ else
 }
 popup = window.open('Ajouter une photo', 'popup', 'height=400, width=300');
 popup.document.write('<h1>Ceci est un test</h1>');
-popup.document.write('</form>');
+
 
 }
 
