@@ -1,5 +1,5 @@
 <?php
-session_start();
+include_once('cookie_connect.php');	
 $bdd = mysql_connect('localhost', 'root', 'root');
 $db_selected = mysql_select_db('bdd', $bdd);
 
@@ -14,39 +14,42 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 
 	if (isset($_POST['importer']))
 	{
+			
+		$NomImage = htmlspecialchars($_POST['NomImg']);
+		$Date = htmlspecialchars($_POST['date']);
+		$Lieu = htmlspecialchars($_POST['lieu']);
+		$Visibilité = htmlspecialchars($_POST['visibilité']);
+		$Legende = htmlspecialchars($_POST['legende']);
+		$Adresse = htmlspecialchars($_FILES['name']);
+		
 		if(!empty($_FILES))
 			{
 			// fonction présent dans le fichier imgClass
-			require("imgClass.php");
-			$img=$_FILES['img'];
-			//strtolower: Renvoie une chaîne en minuscules substr:           Retourne un segment de chaîne
-			$ext= strtolower(substr($img['name'],-3));
-			$allow_ext=array("jpg",'png','gif');
-				if(in_array($ext,$allow_ext))
-					{
-						$nom = "Photos/";
-					$resultat = move_uploaded_file($_FILES['icone']['tmp_name'],$nom);
-				if ($resultat) echo "Transfert réussi";
-					}
-				else
-					{
-					$erreur ="Votre fichier n'est pas une image"; 
-					}
+		$img=$_FILES['img'];
+		//strtolower: Renvoie une chaîne en minuscules substr:           Retourne un segment de chaîne
+		$ext= strtolower(substr($img['name'],-3));
+		$allow_ext=array("jpg",'png','gif');
+		if(in_array($ext,$allow_ext))
+			{
+			//Déplace un fichier téléchargé
+			move_uploaded_file($img['tmp_name'],"Photos/".$img['name']); 
+		
+			}
+		else
+			{
+			$erreur ="Votre fichier n'est pas une image"; 
+			}
 			}
 
 		if(!empty($_POST['NomImg']) AND !empty($_POST['date']) AND !empty($_POST['date']) AND !empty($_POST['lieu']) AND !empty($_POST['legende']))
 		{
 
-			$NomImage = htmlspecialchars($_POST['NomImg']);
-			$Date = htmlspecialchars($_POST['date']);
-			$Lieu = htmlspecialchars($_POST['lieu']);
-			$Visibilité = htmlspecialchars($_POST['visibilité']);
-			$Legende = htmlspecialchars($_POST['legende']);
+		
 
 
 			
-			$result = mysql_query("INSERT INTO Photos (Nom, Legende, Lieu, Daate, Proprio, Visibilite)
-             VALUES ('$NomImage', '$Legende', '$Lieu', '$Date', '$getid', '$Visibilité')");
+			$result = mysql_query("INSERT INTO Photos (Nom, Legende, Adresse, Lieu, Daate, Proprio, Visibilite)
+             VALUES ('$NomImage', '$Legende','$Adresse', '$Lieu', '$Date', '$getid', '$Visibilité')");
 				if($result)
 				{
 					header('Location: Home.php?id='.$_SESSION['ID']);
@@ -56,6 +59,8 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 	else
 	{
 		$erreur = "Veuillez remplir tous les champs";
+					$erreur = $nom;
+
 	}
 			
 	

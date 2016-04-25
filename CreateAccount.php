@@ -30,6 +30,11 @@
              VALUES ('$login', '$email', '$pw1')");
 				if($result)
 				{
+					$result2 = mysql_query("SELECT ID FROM Users WHERE Login = '$login' AND Email = '$email'");
+					$num_rows = mysql_num_rows($result2);
+					$row = mysql_fetch_row($result);
+					$ID = $row[0];
+			
 					header('Location: Connexion.php');
 					exit;
 				}
