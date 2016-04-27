@@ -11,6 +11,13 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 	$row = mysql_fetch_row($result);
 	$login = $row[1];
 
+	$result2 = mysql_query("SELECT * FROM Photos");
+	$num_rows2 = mysql_num_rows($result2);
+
+
+
+
+
 
 ?>
 <html>
@@ -32,45 +39,82 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 			</header>
 
 		<div id="ajouterPhoto"> 
-
-			<a href="AddImage.php?id=<?php echo $getid ?>"><img  src="images/boutonplus.png" id="boutonplus" onclick="new_div()"> </a>
+				<a href="AddImage.php?id=<?php echo $getid ?>"><img  src="images/boutonplus.png" id="boutonplus" onclick="new_div()"> </a>
 		</div>
 		
-		<div id="elementParent">
-  <span id="elementEnfant">foo bar</span>
-</div>
-
-
-
-
-		<div>
-			Bienvenue  :   <?php echo $login; ?> t'es trop beau! 
-		</div>
 		
 
 
-		<?php
+	
 
-			if(isset($erreur))
-			{
-				echo '<font color = "red">'.$erreur. "</font>";
-			}
+
+
 			
-		?>
+		<table>	
+		
+<?php
+	for($i=$num_rows2; $i>0; $i--){
+		$result2 = mysql_query("SELECT * FROM Photos WHERE ID = '$i'");
+		$row2 = mysql_fetch_row($result2);
+		$adresse = "Photos/".$row2[2];
 
 
-		<!--<div id="testHome">
-			<img src="paysage1.png"/>
-		</div>
+?>	
+<tr>
+	<td>
 
-		<div id="caseCommentaire">
-		</div>-->
+			<div>
+				<img src="<?php echo $adresse ?>"/>
+			</div>
+	</td>
+	<td>
+			<table>
+				<tr>
+					<?php echo $row2[1] ?>
+				</tr>
+				<tr>
+					<td>
+						Legende : 
+					</td>
+					<td>
+						<?php echo $row2[3] ?> 
+					<td>
+				</tr>
+				<tr>
+					<td>
+						Lieu : 
+					</td>
+					<td>
+						<?php echo $row2[4] ?> 
+					<td>
+				</tr>
+				<tr>
+					<td>
+						Date : 
+					</td>
+					<td>
+						<?php echo $row2[5] ?> 
+					<td>
+				</tr>
+				<tr>
+					<td>
+						Auteur  : 
+					</td>
+					<td>
+						<?php echo $row2[6] ?> 
+					<td>
+				</tr>
+			</table>
 
+	</td>
 
+<tr>
+			
+<?php 
 
-
-
-
+}
+?>
+</table>
 
 
 
