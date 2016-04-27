@@ -3,6 +3,10 @@ session_start();
 $bdd = mysql_connect('localhost', 'root', 'root');
 $db_selected = mysql_select_db('bdd', $bdd);
 
+	
+
+
+	
 
 if(isset($_GET['id']) AND $_GET['id']>0)
 {
@@ -42,21 +46,27 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 				<a href="AddImage.php?id=<?php echo $getid ?>"><img  src="images/boutonplus.png" id="boutonplus" onclick="new_div()"> </a>
 		</div>
 		
-		
-
-
-	
-
-
-
-			
 		<table>	
 		
 <?php
+if (isset($_POST['like']))
+	{
+		
+			$idPhoto = $_POST['idphoto'];
+			$idUser = $getid;
+
+			$result = mysql_query("INSERT INTO MentionAime (IDPhoto, IDUser)  
+             VALUES ('$idPhoto', '$idUser')");
+	
+		
+	}
+
 	for($i=$num_rows2; $i>0; $i--){
 		$result2 = mysql_query("SELECT * FROM Photos WHERE ID = '$i'");
 		$row2 = mysql_fetch_row($result2);
 		$adresse = "Photos/".$row2[2];
+
+	
 
 
 ?>	
@@ -103,6 +113,14 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 					<td>
 						<?php echo $row2[6] ?> 
 					<td>
+				</tr>
+				<tr>
+					<td>
+						<form method="post" action ="">
+							<input type="hidden"  name="idphoto"  value="<?php echo $i ?>">
+							<input type="submit" name="like" id="Like" value="Like">
+						</form>
+					</td>
 				</tr>
 			</table>
 
