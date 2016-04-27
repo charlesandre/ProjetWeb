@@ -20,7 +20,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 		$Lieu = htmlspecialchars($_POST['lieu']);
 		$Visibilité = htmlspecialchars($_POST['visibilité']);
 		$Legende = htmlspecialchars($_POST['legende']);
-		$Adresse = htmlspecialchars($_FILES['name']);
+		
 		
 		if(!empty($_FILES))
 			{
@@ -33,13 +33,15 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 			{
 			//Déplace un fichier téléchargé
 			move_uploaded_file($img['tmp_name'],"Photos/".$img['name']); 
-		
+			$Adresse = $img['name'];
+
+
 			}
 		else
 			{
 			$erreur ="Votre fichier n'est pas une image"; 
 			}
-			}
+		}
 
 		if(!empty($_POST['NomImg']) AND !empty($_POST['date']) AND !empty($_POST['date']) AND !empty($_POST['lieu']) AND !empty($_POST['legende']))
 		{
@@ -48,18 +50,17 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 
 
 			
-			$result = mysql_query("INSERT INTO Photos (Nom, Legende, Adresse, Lieu, Daate, Proprio, Visibilite)
-             VALUES ('$NomImage', '$Legende','$Adresse', '$Lieu', '$Date', '$getid', '$Visibilité')");
+			$result = mysql_query("INSERT INTO Photos (Nom, Adresse, Legende, Lieu, Daate, Proprio, Visibilite)
+             VALUES ('$NomImage', '$Adresse','$Legende', '$Lieu', '$Date', '$getid', '$Visibilité')");
 				if($result)
 				{
-					header('Location: Home.php?id='.$_SESSION['ID']);
+					header('Location: Homeee.php?id='.$_SESSION['ID']);
 					exit;
 				}
 		}
 	else
 	{
 		$erreur = "Veuillez remplir tous les champs";
-					$erreur = $nom;
 
 	}
 			
@@ -122,13 +123,13 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 		<input type="submit" name="importer" id="Importer" value="GO"></code>
 		</br>
 		</form>
-	<?php
+		<?php
 			if(isset($erreur))
 			{
 				echo "<p id='erreurInscription'>".$erreur. "</p>";
 			}
 	?>
-	</div>
+</div>
 
 
 	<footer>
