@@ -42,16 +42,22 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 			<h1> Mon compte </h1>
 			<h2> Bienvenue <?php echo $login; ?> Comment allez vous ? </h2>
 
+
+
 			<div id="divImageReglages">
 				<a href="Reglages.php?id=<?php echo $getid ?>" id="aReglages">
 					<img src="images/reglages.png" id="imageReglages"/>
 				</a>
+				<a href = "MesImages.php?id=<?php echo $getid ?>"> Mes Photos </a>
+				<a href = "Connexion.php"> Deconnexion </a>
 			</div>
 			
 
-		</div>
 
 		
+
+		
+		</div>
 
 	</body>
 
