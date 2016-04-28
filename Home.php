@@ -34,113 +34,73 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 	</head>
 
 	<body>
-			<header>
-				<p> <a  href="Home.php?id=<?php echo $getid ?>" ><span id="logo"></span></a>
-					<div id="recherche"> <input type="text" name="login" id="caserecherche" placeholder="Rechercher"/> </div>
-					<div id="boutons"> <a class="onglet" href="MyAccount.php?id=<?php echo $getid ?>">Profil</a> 
-									   <a class="onglet" href="Notifications.html">Notifications</a> </div> 
-				</p>
-			</header>
+	
+	<?php include('header.php'); ?>		
 
+	<?php
+		if (isset($_POST['like']))
+			{
+				
+					$idPhoto = $_POST['idphoto'];
+					$idUser = $getid;
+
+					$result = mysql_query("INSERT INTO MentionAime (IDPhoto, IDUser)  
+		             VALUES ('$idPhoto', '$idUser')");
+			
+				
+			}
+
+			for($i=$num_rows2; $i>0; $i--){
+				$result2 = mysql_query("SELECT * FROM Photos WHERE ID = '$i'");
+				$row2 = mysql_fetch_row($result2);
+				$adresse = "Photos/".$row2[2];
+
+	
+
+
+	?>	
+
+		
 		<div id="ajouterPhoto"> 
 				<a href="AddImage.php?id=<?php echo $getid ?>"><img  src="images/boutonplus.png" id="boutonplus" onclick="new_div()"> </a>
 		</div>
-		
-		<table>	
-		
-<?php
-if (isset($_POST['like']))
-	{
-		
-			$idPhoto = $_POST['idphoto'];
-			$idUser = $getid;
 
-			$result = mysql_query("INSERT INTO MentionAime (IDPhoto, IDUser)  
-             VALUES ('$idPhoto', '$idUser')");
-	
-		
-	}
+	<div id="postPhoto">
 
-	for($i=$num_rows2; $i>0; $i--){
-		$result2 = mysql_query("SELECT * FROM Photos WHERE ID = '$i'");
-		$row2 = mysql_fetch_row($result2);
-		$adresse = "Photos/".$row2[2];
+		<div id="affichagePhoto">
+			<img  id="dimension" src="<?php echo $adresse ?>"/>
+		</div>
 
-	
-
-
-?>	
-<tr>
-	<td>
-
-			<div>
-				<img src="<?php echo $adresse ?>"/>
+		<div id="legende">
+			<div id="auteur">
+				<?php echo $row2[6] ?> 
 			</div>
-	</td>
-	<td>
-			<table>
-				<tr>
-					<?php echo $row2[1] ?>
-				</tr>
-				<tr>
-					<td>
-						Legende : 
-					</td>
-					<td>
-						<?php echo $row2[3] ?> 
-					<td>
-				</tr>
-				<tr>
-					<td>
-						Lieu : 
-					</td>
-					<td>
-						<?php echo $row2[4] ?> 
-					<td>
-				</tr>
-				<tr>
-					<td>
-						Date : 
-					</td>
-					<td>
-						<?php echo $row2[5] ?> 
-					<td>
-				</tr>
-				<tr>
-					<td>
-						Auteur  : 
-					</td>
-					<td>
-						<?php echo $row2[6] ?> 
-					<td>
-				</tr>
-				<tr>
-					<td>
-						<form method="post" action ="">
-							<input type="hidden"  name="idphoto"  value="<?php echo $i ?>">
-							<input type="submit" name="like" id="Like" value="Like">
-						</form>
-					</td>
-				</tr>
-			</table>
+			<div id="description">
+				<?php echo $row2[1] ?>
+			</div>
+			<div id="date">
+				<?php echo $row2[5] ?> 
+			</div>
+			<div id="lieu">
+				<?php echo $row2[4] ?> 
+			</div>
+		</div>
+		
+	</div>
+		
+		
 
-	</td>
 
-<tr>
 			
 <?php 
 
 }
 ?>
-</table>
 
 
 
-	
+	<?php include('footer.php'); ?>
 
-		<footer>
-			Charles ANDRE - Antoine DIOULOUFFET - Alexandre TUBIANA - ECE PARIS - 2016
-		</footer>
 
 	<script type="text/javascript" src="script.js"> </script>
 

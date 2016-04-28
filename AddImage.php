@@ -53,7 +53,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
              VALUES ('$NomImage', '$Adresse','$Legende', '$Lieu', '$getid', '$Visibilité')");
 				if($result)
 				{
-					header('Location: Homeee.php?id='.$_SESSION['ID']);
+					header('Location: Home.php?id='.$_SESSION['ID']);
 					exit;
 				}
 		}
