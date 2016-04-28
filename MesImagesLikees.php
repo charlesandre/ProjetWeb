@@ -61,12 +61,12 @@ if (isset($_POST['like']))
 		
 	}
 
-			$result2 = mysql_query("SELECT * FROM Photos WHERE Proprio = '$getid'");
+			$result2 = mysql_query("SELECT Nom, Adresse, Legende, Lieu, Daate, Visibilite  FROM Photos P, MentionAime M WHERE '$getid' = M.IDUser AND P.ID = M.IDPhoto");
 
 
-	for($i=$num_rows2; $i>0; $i--){
-		$row2 = mysql_fetch_row($result2);
-		$adresse = "Photos/".$row2[2];
+			for($i=$num_rows2; $i>0; $i--){
+				$row2 = mysql_fetch_row($result2);
+				$adresse = "Photos/".$row2[1];
 
 
 ?>	
@@ -80,14 +80,14 @@ if (isset($_POST['like']))
 	<td>
 			<table>
 				<tr>
-					<?php echo $row2[1] ?>
+					<?php echo $row2[0] ?>
 				</tr>
 				<tr>
 					<td>
 						Legende : 
 					</td>
 					<td>
-						<?php echo $row2[3] ?> 
+						<?php echo $row2[2] ?> 
 					<td>
 				</tr>
 				<tr>
@@ -95,7 +95,7 @@ if (isset($_POST['like']))
 						Lieu : 
 					</td>
 					<td>
-						<?php echo $row2[4] ?> 
+						<?php echo $row2[3] ?> 
 					<td>
 				</tr>
 				<tr>
@@ -103,7 +103,7 @@ if (isset($_POST['like']))
 						Date : 
 					</td>
 					<td>
-						<?php echo $row2[5] ?> 
+						<?php echo $row2[4] ?> 
 					<td>
 				</tr>
 				<tr>
@@ -111,7 +111,7 @@ if (isset($_POST['like']))
 						Auteur  : 
 					</td>
 					<td>
-						<?php echo $row2[6] ?> 
+						<?php echo $row2[5] ?> 
 					<td>
 				</tr>
 				<tr>
