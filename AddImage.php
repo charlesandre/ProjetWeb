@@ -16,7 +16,6 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 	{
 			
 		$NomImage = htmlspecialchars($_POST['NomImg']);
-		$Date = htmlspecialchars($_POST['date']);
 		$Lieu = htmlspecialchars($_POST['lieu']);
 		$Visibilité = htmlspecialchars($_POST['visibilité']);
 		$Legende = htmlspecialchars($_POST['legende']);
@@ -43,15 +42,15 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 			}
 		}
 
-		if(!empty($_POST['NomImg']) AND !empty($_POST['date']) AND !empty($_POST['date']) AND !empty($_POST['lieu']) AND !empty($_POST['legende']))
+		if(!empty($_POST['NomImg']) AND !empty($_POST['lieu']) AND !empty($_POST['legende']))
 		{
 
 		
 
 
 			
-			$result = mysql_query("INSERT INTO Photos (Nom, Adresse, Legende, Lieu, Daate, Proprio, Visibilite)
-             VALUES ('$NomImage', '$Adresse','$Legende', '$Lieu', '$Date', '$getid', '$Visibilité')");
+			$result = mysql_query("INSERT INTO Photos (Nom, Adresse, Legende, Lieu, Proprio, Visibilite)
+             VALUES ('$NomImage', '$Adresse','$Legende', '$Lieu', '$getid', '$Visibilité')");
 				if($result)
 				{
 					header('Location: Homeee.php?id='.$_SESSION['ID']);
@@ -99,10 +98,6 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 		</br>
 		<li>Nom de l'image</li>
 		<input type="text" name="NomImg" id="Nom_Fichier"/>
-		</br>
-		</br>
-		<li>Date</li>
-		<input type="date" name="date" placeholder="JJ/MM/AAAA" id="Date"/>
 		</br>
 		</br>
 		<li>Lieu</li>
