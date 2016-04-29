@@ -62,6 +62,15 @@ if (isset($_POST['like']))
 	}
 
 			$result2 = mysql_query("SELECT * FROM Photos WHERE Proprio = '$getid'");
+			$num_rows2 = mysql_num_rows($result2);
+			if ($num_rows2 == 0) {
+
+			?>
+			<h2> Vous n'avez aimée aucune photo ! </h2>
+			<?php
+			
+
+			}
 
 
 	for($i=$num_rows2; $i>0; $i--){

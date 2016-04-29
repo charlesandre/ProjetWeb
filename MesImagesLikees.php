@@ -15,8 +15,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 	$row = mysql_fetch_row($result);
 	$login = $row[1];
 
-	$result2 = mysql_query("SELECT * FROM Photos WHERE  Proprio = '$getid'");
-	$num_rows2 = mysql_num_rows($result2);
+	
 
 
 
@@ -61,8 +60,18 @@ if (isset($_POST['like']))
 		
 	}
 
-			$result2 = mysql_query("SELECT Nom, Adresse, Legende, Lieu, Daate, Visibilite  FROM Photos P, MentionAime M WHERE '$getid' = M.IDUser AND P.ID = M.IDPhoto");
+			
+			$result2 = mysql_query("SELECT P.Nom, P.Adresse, P.Legende, P.Lieu, P.Daate, P.Visibilite  FROM Photos P, MentionAime M WHERE '$getid' = M.IDUser AND P.ID = M.IDPhoto");
+			$num_rows2 = mysql_num_rows($result2);
 
+			if ($num_rows2 == 0) {
+
+			?>
+			<h2> Vous n'avez aimée aucune photo ! </h2>
+			<?php
+			
+
+			}
 
 			for($i=$num_rows2; $i>0; $i--){
 				$row2 = mysql_fetch_row($result2);

@@ -49,13 +49,22 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 			
 				
 			}
+			
+			$result2 = mysql_query("SELECT * FROM Photos ORDER BY Daate DESC");
+			$num_rows2 = mysql_num_rows($result2);
+			if ($num_rows2 == 0) {
 
-			for($i=$num_rows2; $i>0; $i--){
-				$result2 = mysql_query("SELECT * FROM Photos WHERE ID = '$i'");
-				$row2 = mysql_fetch_row($result2);
-				$adresse = "Photos/".$row2[2];
+			?>
+			<h2> Vous n'avez aimée aucune photo ! </h2>
+			<?php
+			
 
-	
+			}
+
+
+	for($i=$num_rows2; $i>0; $i--){
+		$row2 = mysql_fetch_row($result2);
+		$adresse = "Photos/".$row2[2];
 
 
 	?>	
@@ -84,7 +93,14 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 			<div id="lieu">
 				<?php echo $row2[4] ?> 
 			</div>
+			<form method="post" action ="">
+							<input type="hidden"  name="idphoto"  value="<?php echo $row2[0] ?>">
+							<input type="submit" name="like" id="Like" value="Like">
+			</form>
+
+				
 		</div>
+
 		
 	</div>
 		
