@@ -60,6 +60,27 @@ if (isset($_POST['like']))
 	
 		
 	}
+	if (isset($_POST['unlike']))
+			{
+				
+					$idPhoto = $_POST['idphoto'];
+					$idUser = $getid;
+
+					$result = mysql_query("DELETE FROM MentionAime WHERE IDPhoto = '$idPhoto' AND IDUser = '$idUser'");
+			
+				
+			}
+	if (isset($_POST['modificationvisi']))
+	{
+		
+			$idPhoto = $_POST['idphoto'];
+			$nouvellevisi = $_POST['visibilité']; 
+							
+			$result = mysql_query("UPDATE Photos SET Visibilite = '$nouvellevisi' WHERE ID = '$idPhoto'");
+
+		
+		
+	}
 
 			$result2 = mysql_query("SELECT * FROM Photos WHERE Proprio = '$getid'");
 			$num_rows2 = mysql_num_rows($result2);
@@ -126,8 +147,35 @@ if (isset($_POST['like']))
 				<tr>
 					<td>
 						<form method="post" action ="">
-							<input type="hidden"  name="idphoto"  value="<?php echo $i ?>">
-							<input type="submit" name="like" id="Like" value="Like">
+							<input type="hidden"  name="idphoto"  value="<?php echo $row2[0] ?>">
+							<?php
+							$photolike = mysql_query("SELECT * FROM MentionAime WHERE IDPhoto = '$row2[0]' AND IDUser = '$getid' "); 
+							$photolikenum = mysql_num_rows($photolike);
+							if($photolikenum == 0){
+							?><input type="submit" name="like" id="Like" value="Like"><?php
+							}
+							else {
+								?><input type="submit" name="unlike" id="UnLike" value="UnLike"><?php
+							}
+							?>
+						</form>
+						<form method="post" action ="">
+							<input type="hidden"  name="idphoto"  value="<?php echo $row2[0] ?>">
+								<select name="visibilité">
+									<?php
+									$result3 = mysql_query("SELECT * FROM Photos WHERE ID = '$row2[0]'");
+									$row3 = mysql_fetch_row($result3);
+									if($row3[7] == 'Public'){
+									?><option value="Public">Public</option>
+									<option value="Privee">Privee</option><?php
+									}
+									else {
+										?><option value="Privee">Privee</option>
+										<option value="Public">Public</option><?php
+									}
+									?>
+								</select>
+							<input type="submit" name="modificationvisi" id="modificationvisi" value="Modifier">
 						</form>
 					</td>
 				</tr>

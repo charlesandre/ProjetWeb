@@ -18,11 +18,6 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 	$result2 = mysql_query("SELECT * FROM Photos");
 	$num_rows2 = mysql_num_rows($result2);
 
-
-
-
-
-
 ?>
 <html>
 	<head>
@@ -35,31 +30,72 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 
 	<body>
 	
-	<?php include('header.php'); ?>		
+<header>
+	<p> <a  href="Home.php?id=<?php echo $getid ?>" ><span id="logo"></span></a>
+		<div id="recherche"> <form method = "post" action = ""> <input type="text" name="caserecherche" id="caserecherche" placeholder="Rechercher"/> </form></div>
+		<div id="boutons"> <a class="onglet" href="MyAccount.php?id=<?php echo $getid ?>">Profil</a> 
+						   <a class="onglet" href="Notifications.html">Notifications</a> </div> 
+	</p>
+</header>
 
 	<?php
+
+		if(isset($_POST['caserecherche'])){
+			$motcle = $_POST['caserecherche'];
+			$result2 = mysql_query("SELECT DISTINCT P.ID, P.Nom, P.Adresse, P.Legende, P.Lieu, P.Daate, P.Visibilite FROM Photos P, Users U WHERE P.Visibilite = 'Public' AND (P.Nom LIKE '%$motcle%' OR (P.Proprio = U.ID AND U.Login LIKE '%$motcle%') OR (P.Lieu LIKE '%$motcle%'))");
+			$num_rows2 = mysql_num_rows($result2);
+		}
+		else {
+			$result2 = mysql_query("SELECT * FROM Photos WHERE Visibilite = 'Public' ORDER BY Daate DESC");
+			$num_rows2 = mysql_num_rows($result2);
+		}
+
 		if (isset($_POST['like']))
 			{
 				
 					$idPhoto = $_POST['idphoto'];
 					$idUser = $getid;
 
-					$result = mysql_query("INSERT INTO MentionAime (IDPhoto, IDUser)  
+					$result = mysql_query("INSERT INTO MentionAime (IDPhoto, IDUser)
 		             VALUES ('$idPhoto', '$idUser')");
 			
 				
 			}
-			
-			$result2 = mysql_query("SELECT * FROM Photos ORDER BY Daate DESC");
-			$num_rows2 = mysql_num_rows($result2);
-			if ($num_rows2 == 0) {
+			if (isset($_POST['unlike']))
+			{
+				
+					$idPhoto = $_POST['idphoto'];
+					$idUser = $getid;
 
-			?>
-			<h2> Vous n'avez aimée aucune photo ! </h2>
-			<?php
+					$result = mysql_query("DELETE FROM MentionAime WHERE IDPhoto = '$idPhoto' AND IDUser = '$idUser'");
 			
+				
+			}
+			
+
+			?> <br/><br/><br/> <?php
+
+			if ($num_rows2 == 0) {
+				if(isset($_POST['caserecherche'])){
+			?>
+			<h2> Aucune photo ne correspond à votre recherche pour : <?php echo $motcle ?> </h2>
+			<?php
+			}
+			else {
+				?>
+			<h2> Nous n'avons pas de photos a vous montrer, ajoutez des photos en cliquant sur le bouton plus en bas a droite ou ajoutez des amis ! </h2>
+			<?php
 
 			}
+
+			}
+			else if(isset($_POST['caserecherche'])){
+			?>
+			<h2> Il y a <?php echo $num_rows2 ?> résultat(s) correspondant a votre recherche : <?php echo $motcle ?></h2>
+			<?php
+
+			}
+
 
 
 	for($i=$num_rows2; $i>0; $i--){
@@ -95,7 +131,16 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 			</div>
 			<form method="post" action ="">
 							<input type="hidden"  name="idphoto"  value="<?php echo $row2[0] ?>">
-							<input type="submit" name="like" id="Like" value="Like">
+							<?php
+							$photolike = mysql_query("SELECT * FROM MentionAime WHERE IDPhoto = '$row2[0]' AND IDUser = '$getid' "); 
+							$photolikenum = mysql_num_rows($photolike);
+							if($photolikenum == 0){
+							?><input type="submit" name="like" id="Like" value="Like"><?php
+							}
+							else {
+								?><input type="submit" name="unlike" id="UnLike" value="UnLike"><?php
+							}
+							?>
 			</form>
 
 				

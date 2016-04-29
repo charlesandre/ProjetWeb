@@ -59,9 +59,19 @@ if (isset($_POST['like']))
 	
 		
 	}
+if (isset($_POST['unlike']))
+			{
+				
+					$idPhoto = $_POST['idphoto'];
+					$idUser = $getid;
+
+					$result = mysql_query("DELETE FROM MentionAime WHERE IDPhoto = '$idPhoto' AND IDUser = '$idUser'");
+			
+				
+			}
 
 			
-			$result2 = mysql_query("SELECT P.Nom, P.Adresse, P.Legende, P.Lieu, P.Daate, P.Visibilite  FROM Photos P, MentionAime M WHERE '$getid' = M.IDUser AND P.ID = M.IDPhoto");
+			$result2 = mysql_query("SELECT P.ID, P.Nom, P.Adresse, P.Legende, P.Lieu, P.Daate, P.Visibilite  FROM Photos P, MentionAime M WHERE '$getid' = M.IDUser AND P.ID = M.IDPhoto");
 			$num_rows2 = mysql_num_rows($result2);
 
 			if ($num_rows2 == 0) {
@@ -75,7 +85,7 @@ if (isset($_POST['like']))
 
 			for($i=$num_rows2; $i>0; $i--){
 				$row2 = mysql_fetch_row($result2);
-				$adresse = "Photos/".$row2[1];
+				$adresse = "Photos/".$row2[2];
 
 
 ?>	
@@ -89,19 +99,11 @@ if (isset($_POST['like']))
 	<td>
 			<table>
 				<tr>
-					<?php echo $row2[0] ?>
+					<?php echo $row2[1] ?>
 				</tr>
 				<tr>
 					<td>
 						Legende : 
-					</td>
-					<td>
-						<?php echo $row2[2] ?> 
-					<td>
-				</tr>
-				<tr>
-					<td>
-						Lieu : 
 					</td>
 					<td>
 						<?php echo $row2[3] ?> 
@@ -109,7 +111,7 @@ if (isset($_POST['like']))
 				</tr>
 				<tr>
 					<td>
-						Date : 
+						Lieu : 
 					</td>
 					<td>
 						<?php echo $row2[4] ?> 
@@ -117,7 +119,7 @@ if (isset($_POST['like']))
 				</tr>
 				<tr>
 					<td>
-						Auteur  : 
+						Date : 
 					</td>
 					<td>
 						<?php echo $row2[5] ?> 
@@ -125,9 +127,26 @@ if (isset($_POST['like']))
 				</tr>
 				<tr>
 					<td>
+						Auteur  : 
+					</td>
+					<td>
+						<?php echo $row2[6] ?> 
+					<td>
+				</tr>
+				<tr>
+					<td>
 						<form method="post" action ="">
-							<input type="hidden"  name="idphoto"  value="<?php echo $i ?>">
-							<input type="submit" name="like" id="Like" value="Like">
+							<input type="hidden"  name="idphoto"  value="<?php echo $row2[0] ?>">
+							<?php
+							$photolike = mysql_query("SELECT * FROM MentionAime WHERE IDPhoto = '$row2[0]' AND IDUser = '$getid' "); 
+							$photolikenum = mysql_num_rows($photolike);
+							if($photolikenum == 0){
+							?><input type="submit" name="like" id="Like" value="Like"><?php
+							}
+							else {
+								?><input type="submit" name="unlike" id="UnLike" value="UnLike"><?php
+							}
+							?>
 						</form>
 					</td>
 				</tr>
