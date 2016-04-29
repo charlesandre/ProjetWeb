@@ -117,11 +117,16 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 		</div>
 
 		<div id="legende">
-			<div id="auteur">
-				<?php echo $row2[6] ?> 
-			</div>
 			<div id="description">
 				<?php echo $row2[1] ?>
+			</div>
+			<div id="auteur">
+				<?php 
+					$resultAuteur = mysql_query("SELECT Login FROM Users WHERE ID = '$row2[6]'");
+					$rowAuteur = mysql_fetch_row($resultAuteur);
+					$auteur = $rowAuteur[0];
+					echo $auteur;
+				?> 
 			</div>
 			<div id="date">
 				<?php echo $row2[5] ?> 
@@ -129,19 +134,21 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 			<div id="lieu">
 				<?php echo $row2[4] ?> 
 			</div>
-			<form method="post" action ="">
-							<input type="hidden"  name="idphoto"  value="<?php echo $row2[0] ?>">
-							<?php
-							$photolike = mysql_query("SELECT * FROM MentionAime WHERE IDPhoto = '$row2[0]' AND IDUser = '$getid' "); 
-							$photolikenum = mysql_num_rows($photolike);
-							if($photolikenum == 0){
-							?><input type="submit" name="like" id="Like" value="Like"><?php
-							}
-							else {
-								?><input type="submit" name="unlike" id="UnLike" value="UnLike"><?php
-							}
-							?>
-			</form>
+			<div id="epingle">
+				<form method="post" action ="">
+								<input type="hidden"  name="idphoto"  value="<?php echo $row2[0] ?>">
+								<?php
+								$photolike = mysql_query("SELECT * FROM MentionAime WHERE IDPhoto = '$row2[0]' AND IDUser = '$getid' "); 
+								$photolikenum = mysql_num_rows($photolike);
+								if($photolikenum == 0){
+								?><input type="image" src="images/epingle.png" name="like" id="Like" value="Like"><?php
+								}
+								else {
+									?><input type="image" src="images/epingleRouge.png" name="unlike" id="UnLike" value="UnLike"><?php
+								}
+								?>
+				</form>
+			</div>
 
 				
 		</div>
