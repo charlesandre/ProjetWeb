@@ -18,7 +18,6 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 		$NomImage = htmlspecialchars($_POST['NomImg']);
 		$Lieu = htmlspecialchars($_POST['lieu']);
 		$Visibilité = htmlspecialchars($_POST['visibilité']);
-		$Legende = htmlspecialchars($_POST['legende']);
 		
 		
 		if(!empty($_FILES))
@@ -42,15 +41,15 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 			}
 		}
 
-		if(!empty($_POST['NomImg']) AND !empty($_POST['lieu']) AND !empty($_POST['legende']))
+		if(!empty($_POST['NomImg']) AND !empty($_POST['lieu']))
 		{
 
 		
 
 
 			
-			$result = mysql_query("INSERT INTO Photos (Nom, Adresse, Legende, Lieu, Proprio, Visibilite)
-             VALUES ('$NomImage', '$Adresse','$Legende', '$Lieu', '$getid', '$Visibilité')");
+			$result = mysql_query("INSERT INTO Photos (Nom, Adresse, Lieu, Proprio, Visibilite)
+             VALUES ('$NomImage', '$Adresse', '$Lieu', '$getid', '$Visibilité')");
 				if($result)
 				{
 					header('Location: Home.php?id='.$_SESSION['ID']);
@@ -77,21 +76,62 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 	</head>
 
 	<body>
-			<header>
-				<p> <a  href="Home.php?id=<?php echo $getid ?>" ><span id="logo"></span></a>
-					<div id="recherche"> <input type="text" name="login" id="caserecherche" placeholder="Rechercher"/> </div>
-					<div id="boutons"> <a class="onglet" href="MyAccount.php?id=<?php echo $getid ?>">Profil</a> 
-									   <a class="onglet" href="Notifications.html">Notifications</a> </div> 
-				</p>
-			</header>
 
-	<div id = "container">
-		<br/><br/>
-		Bienvenue  :   <?php echo $login; ?> t'es trop beau! 
-		Ton numero d'utilisateur est le : <?php echo $getid ?> ! 
+	<?php include('header.php'); ?>
+		
+
+	<div id = "caseAjout">
+
+		Ajouter une photo
+		
 		<form method="POST" action="" enctype="multipart/form-data">
-	</br>
-		</br>
+		
+		<div class="formAjout">
+			<div class="labelAjout">
+				Charger l'image
+			</div>
+			<div class="champAjout">
+				<input type="file" id="file" name="img"/>
+			</div>
+		</div>
+
+		<div class="formAjout">
+			<div class="labelAjout">
+				Entrer la légende
+			</div>
+			<div class="champAjout">
+				<textarea name="NomImg" id="Nom_Fichier"></textarea>
+			</div>
+		</div>
+
+		<div class="formAjout">
+			<div class="labelAjout">
+				Entrer le lieu
+			</div>
+			<div class="champAjout">
+				<input type="text" name="lieu" id="Lieu" />
+			</div>
+		</div>
+
+		<div class="formAjout">
+			<div class="labelAjout">
+				Choisir la confidentialité
+			</div>
+			<div  class="champAjout">
+				<select name="visibilité">
+					<option value="Public">Public</option>
+					<option value="Privee">Privee</option>
+				</select>
+			</div>
+		</div>
+
+		<div id="submitImage">
+			<input type="submit" name="importer" id="Importer" value="Valider"></code>
+		</div>
+
+	</div>
+
+		<!--
 		<li>chargez votre image</li>		
 		<input type="file" id="file" name="img"/>
 		</br>
@@ -119,18 +159,18 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 		</br>
 		</form>
 		<?php
-			if(isset($erreur))
+			//if(isset($erreur))
 			{
-				echo "<p id='erreurInscription'>".$erreur. "</p>";
+				//echo "<p id='erreurInscription'>".$erreur. "</p>";
 			}
 	?>
-</div>
+</div> -->
 
 
-	<footer>
-		Charles ANDRE - Antoine DIOULOUFFET - Alexandre TUBIANA - ECE PARIS - 2016
-	</footer>
+		<?php include('footer.php'); ?>
 
+
+	</body>
 
 </html>
 <?php

@@ -30,19 +30,14 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 
 	<body>
 	
-<header>
-	<p> <a  href="Home.php?id=<?php echo $getid ?>" ><span id="logo"></span></a>
-		<div id="recherche"> <form method = "post" action = ""> <input type="text" name="caserecherche" id="caserecherche" placeholder="Rechercher"/> </form></div>
-		<div id="boutons"> <a class="onglet" href="MyAccount.php?id=<?php echo $getid ?>">Profil</a> 
-						   <a class="onglet" href="Notifications.html">Notifications</a> </div> 
-	</p>
-</header>
+
+	<?php include('header.php'); ?>
 
 	<?php
 
 		if(isset($_POST['caserecherche'])){
 			$motcle = $_POST['caserecherche'];
-			$result2 = mysql_query("SELECT DISTINCT P.ID, P.Nom, P.Adresse, P.Legende, P.Lieu, P.Daate, P.Visibilite FROM Photos P, Users U WHERE P.Visibilite = 'Public' AND (P.Nom LIKE '%$motcle%' OR (P.Proprio = U.ID AND U.Login LIKE '%$motcle%') OR (P.Lieu LIKE '%$motcle%'))");
+			$result2 = mysql_query("SELECT DISTINCT P.ID, P.Nom, P.Adresse, P.Lieu, P.Daate, P.Visibilite FROM Photos P, Users U WHERE P.Visibilite = 'Public' AND (P.Nom LIKE '%$motcle%' OR (P.Proprio = U.ID AND U.Login LIKE '%$motcle%') OR (P.Lieu LIKE '%$motcle%'))");
 			$num_rows2 = mysql_num_rows($result2);
 		}
 		else {
@@ -106,9 +101,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 	?>	
 
 		
-		<div id="ajouterPhoto"> 
-				<a href="AddImage.php?id=<?php echo $getid ?>"><img  src="images/boutonplus.png" id="boutonplus" onclick="new_div()"> </a>
-		</div>
+		
 
 	<div id="postPhoto">
 
@@ -118,21 +111,24 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 
 		<div id="legende">
 			<div id="description">
-				<?php echo $row2[1] ?>
+				<?php 
+					$message = '"'.$row2[1] .'"';
+					echo $message;
+				?>
 			</div>
 			<div id="auteur">
 				<?php 
-					$resultAuteur = mysql_query("SELECT Login FROM Users WHERE ID = '$row2[6]'");
+					$resultAuteur = mysql_query("SELECT Login FROM Users WHERE ID = '$row2[5]'");
 					$rowAuteur = mysql_fetch_row($resultAuteur);
 					$auteur = $rowAuteur[0];
 					echo $auteur;
 				?> 
 			</div>
 			<div id="date">
-				<?php echo $row2[5] ?> 
+				<?php echo $row2[4] ?> 
 			</div>
 			<div id="lieu">
-				<?php echo $row2[4] ?> 
+				<?php echo $row2[3] ?> 
 			</div>
 			<div id="epingle">
 				<form method="post" action ="">
@@ -164,6 +160,10 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 
 }
 ?>
+
+	<div id="ajouterPhoto"> 
+				<a href="AddImage.php?id=<?php echo $getid ?>"><img  src="images/boutonplus.png" id="boutonplus" onclick="new_div()"> </a>
+	</div>
 
 
 
