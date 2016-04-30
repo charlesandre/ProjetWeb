@@ -91,7 +91,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 				Charger l'image
 			</div>
 			<div class="champAjout">
-				<input type="file" id="file" name="img"/>
+				<input type="file" id="file" name="img" required="required"/>
 			</div>
 		</div>
 
@@ -100,7 +100,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 				Entrer la légende
 			</div>
 			<div class="champAjout">
-				<textarea name="NomImg" id="Nom_Fichier"></textarea>
+				<textarea name="NomImg" id="Nom_Fichier" required="required"></textarea>
 			</div>
 		</div>
 
@@ -109,7 +109,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 				Entrer le lieu
 			</div>
 			<div class="champAjout">
-				<input type="text" name="lieu" id="Lieu" />
+				<input type="text" name="lieu" id="Lieu" required="required"/>
 			</div>
 		</div>
 

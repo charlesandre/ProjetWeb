@@ -10,9 +10,9 @@ h1
 
 h2
 {
-     color : #E8BE33;
-     font-weight: bold;
-     font-size: 150%;
+    font-family: 'Roboto';
+    font-size: 1.4em;
+    margin-left: 5%;
  }
 
 ul#menu {
@@ -113,6 +113,11 @@ header{
     top:5px;
 }
 
+.motcle{
+    font-family: 'Roboto';
+    font-style: italic;
+}
+
 
 
 #caserecherche{
@@ -204,22 +209,26 @@ td{
 
 }*/
 
+#totalConnexion{
+    margin-top:150px;
+    margin-left: 100px;
+    width:1300px;
+    height:400px;
+    display: flex;
+}
+
 #connexion
 {
-    position: absolute;
-    left:100px;
-    top:150px;
     width:500px;
     height:400px;
     background-color: white;
     font-family: 'Dancing Script';
-    font-size: 150px;
+    text-align: center;
 }
 
 #formulaire
 {
     position: absolute;
-    top:0px;
     width:500px;
     height:400px;
 }
@@ -229,6 +238,19 @@ td{
     text-align: center;
     font-size: 60px;
     margin-top:0px;
+    font-family: 'Dancing Script';
+    font-size: 4.5em;
+    text-align: center;
+}
+
+#formConnexion{
+    margin-top: 40px;
+    height: 80%;
+    width: 100%;
+}
+
+.labelConnexion{
+    width: 200px;
 }
 
 .caseConnexion
@@ -238,14 +260,17 @@ td{
     height:30px;
     margin-left: 50px;
     margin-right: 50px;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .champConnexion{
     font-size: 25px;
     text-align: center;
-    padding-left: 50px;
-    margin-left: 300px;
+    margin-left: 5%;
+    margin-top: 20px;
     height: 50px;
+    display: flex;
 }
 
 #boutonConnexion{
@@ -271,36 +296,52 @@ td{
 
 .boutonAide{
     margin-top: 20px;
+    margin-right: 5%;
     text-align: center;
     color: black;
 }
 
+.boutonAide:hover{
+    color: #AFAFAF;
+}
+
 #ligneAide{
-    margin-top: 50%;    
+    margin-top: 5%;    
     height: 50px;
 }
 
-#imageAccueil{
-    margin-left:500px;
-    top:150px;
-}
+
 
 #erreur{
     font-size: 18px;
     color:red;
 }
 
+#totalInscription{
+    margin-top:150px;
+    margin-left: 100px;
+    width:1300px;
+    height:400px;
+    display: flex;
+}
+
 #inscription
 {
-    position: absolute;
-    margin-left:800px;
-    top:130px;
     width:500px;
     height:400px;
     background-color: white;
     font-family: 'Dancing Script';
-    margin-top: 0px;
     position: relative;
+}
+
+#texteInscription
+{
+    text-align: center;
+    font-size: 60px;
+    margin-top:0px;
+    font-family: 'Dancing Script';
+    font-size: 4.5em;
+    text-align: center;
 }
 
 #champForm{
@@ -312,16 +353,12 @@ td{
 .champInscription{
     font-size: 25px;
     text-align: center;
+    margin-left: 5%;
+    margin-top: 13px;
     height: 50px;
-    top: 0px;
+    display: flex;
 }
 
-#texteInscription
-{
-    text-align: center;
-    font-size: 60px;
-    margin-top:0px;
-}
 
 #boutonInscription{
     border-radius: 10px;
@@ -355,11 +392,7 @@ td{
     width: 100%;
 }
 
-#imageAccueilInscription{
-    margin-left:100px;
-    top:138px;
-    position: absolute;
-}
+
 
 #testHome{
     margin-left:100px;
@@ -396,31 +429,55 @@ td{
     height:460px;
     background-color: white;
     font-family: 'Dancing Script';
-    font-size: 100px;
 }
 
-#divReglages{
-    position: absolute;
-}
+
 
 #texteReglages
 {
     text-align: center;
     font-size: 60px;
-    height:30px;
     margin-top:0px;
+    font-family: 'Dancing Script';
+    font-size: 3.2em;
+    text-align: center;
+}
+
+#formReglages{
+    margin-top: 10px;
+    height: 100%;
+    width: 100%;
+}
+
+#formulaireReglages{
+    height: 100%;
+    width: 100%;
+}
+
+.caseReglages
+{
+    padding:5px;
+    width: 200px;
+    height:30px;
+    margin-left: 100px;
+    margin-right: 50px;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .champReglages{
-    font-size: 25px;
+    font-size: 1.5em;
     text-align: center;
-    height: 50px;
-    top: 0px;
+    margin-left: 5%;
+    margin-top: 20px;
+    height: 40px;
+    display: flex;
 }
 
 #tdReglages{
     text-align: center;
 }
+
 
 #boutonReglages{
     border-radius: 10px;
@@ -470,6 +527,7 @@ td{
     background-color: white;
     text-align: center;
     margin-top: 3%;
+    margin-left: 3%;
 }
 
 #description{
@@ -506,13 +564,28 @@ td{
     height:500px;
 }
 
+#boutonsImage{
+    display: flex;
+}
+
 #epingle{
     text-align: left;
     margin-top: 10%;
     margin-left: 10%;
-    text-align: left;
+    width:50%;
 }
-#like{
+
+#Like{
+    width: 50px;
+    height: 50px;
+}
+
+#follow{
+    text-align: right;
+    margin-top: 10%;
+}
+
+#imgFollow{
     width: 50px;
     height: 50px;
 }

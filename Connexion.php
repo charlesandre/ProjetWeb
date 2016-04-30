@@ -73,64 +73,56 @@
 		</header>
 	
 
-	<div id="connexion">
+	<div id="totalConnexion">
+		<div id="connexion">
+			
+			<div id="texteConnexion">Connexion</div>
+
+			<div id="formConnexion">
+				<form method="post" action ="" align ="center" id="formulaire">
+
+				<div class="champConnexion">
+					<label class="labelConnexion" for "login"> Pseudo </label>
+					<input id ="login" type="text" name="log" required="required" placeholder="Pseudo" class="caseConnexion"/>
+				</div>
+
+				<div class="champConnexion">
+					<label class="labelConnexion" for "pass"> Mot de passe </label>
+					<input id ="pass" type="password" name="pass" required="required" placeholder="Mot de passe" class="caseConnexion"/>
+				</div>
+
+				<div id="validerConnexion">
+					<input type = "submit" name="formconnect" value="Se connecter" id="boutonConnexion"> </input> 
+				</div>
+
+				<div id="ligneAide">
+					<a class="boutonAide" href="">Mot de passe oublié ? </a> 
+					<a class="boutonAide" href="CreateAccount.php">Créer un compte</a>
+				</div>
+						
+						<?php
+					if(isset($erreur))
+					{
+						echo "<p id='erreur'>".$erreur. "</p>";
+					}
+					
+					?> 
+					
+					
+
+				</form>
+			</div>
 		
-	
-		<form method="post" action ="" align ="center" id="formulaire">
-			<p id="texteConnexion">Connexion</p>
-			<table>
-				<tr>
-					<td class="champConnexion">
-						<label for "login"> Pseudo </label>
-					</td>
-					<td>
-						<input id ="login" type="text" name="log" required="required" placeholder="Pseudo" class="caseConnexion"/>
-					</td>
-				</tr>
-				
-				<tr>
-					<td class="champConnexion">
-						<label for "pass"> Mot de passe </label>
-					</td>
-					<td>
-						<input id ="pass" type="password" name="pass" required="required" placeholder="Mot de passe" class="caseConnexion"/>
-					</td>
-				</tr>
 
-				<tr>
-					<td id="tdConnexion" colspan="2">
-						<input type = "submit" name="formconnect" value="Se connecter" id="boutonConnexion"> </input> 
-					</td>
-				</tr>
-				<tr id="ligneAide">
-					<td class="boutonAide">
-						<a href="">Mot de passe oublié ? </a> 
-					</td>
-					<td class="boutonAide">
-						<a href="CreateAccount.php">Créer un compte</a>
-					</td>
-				</tr>
-			</table>
-				
-				
-				
-				<?php
-			if(isset($erreur))
-			{
-				echo "<p id='erreur'>".$erreur. "</p>";
-			}
-			
-			?> 
-			
-			
 
-		</form>
+			</div>
 
 		<div id="imageAccueil">
 			<img src="paysage1.png" id="diapoAccueil"/>
 		</div>
-		
+			
 
+		
 	</div>
 
 		

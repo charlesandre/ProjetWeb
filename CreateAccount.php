@@ -74,76 +74,67 @@
 					<img src="images/logoblanc.png" id="logoAccueil"/>
 				</div>
 			</header>
-		
 
-		<div id="inscription">
-			
-			
-			<form method="post" action ="" align ="center" id="formulaireInscription">
-				<p id="texteInscription">Inscription</p>
-				<div id="champForm">
-				<table>
-					<tr>
-						<td class="champInscription">
-							<label for "login"> Pseudo </label>
-						</td>
-						<td>
-							<input id ="login" type="text" name="log" required="required" placeholder="Pseudo" class="caseConnexion"/>
-						</td>
-					</tr>
-					<tr>
-						<td class="champInscription">
-							<label for "email"> E-mail </label>
-						</td>
-						<td>
-							<input id ="email" type="TEXT" name="email"  required="required" placeholder="E-mail" class="caseConnexion" />
-						</td>
-					</tr>
-					<tr>
-						<td class="champInscription">
-							<label for "pass"> Mot de passe </label>
-						</td>
-						<td>
-							<input id ="pass" type="password" name="pass"  required="required" placeholder="Mot de passe" class="caseConnexion"/>
-						</td>
-					</tr>
-					<tr>
-						<td class="champInscription">
-							<label for "pass2"> Confirmer le mot de passe </label>
-						</td>
-						<td>
-							<input id ="pass2" type="password" name="pass2"  required="required" placeholder="Confirmer le mot de passe" class="caseConnexion"/>
-						</td>
-					</tr>
-					<tr>
-					<td id="tdInscription" colspan="2">
-						<input type = "submit" name="formregister" value="S'inscrire" id="boutonInscription"> </input> 
-					</td>
-				</tr>
-
-				</table>
-
-
-					
-				</div>
-
-			<?php
-			if(isset($erreur))
-			{
-				echo "<p id='erreurInscription'>".$erreur. "</p>";
-			}
-			?>
-
-					
-			</form>
-			
-			
-
-		</div>
+		<div id="totalInscription">
 
 			<div id="imageAccueilInscription">
 				<img src="paysage1.png" id="diapoAccueil"/>
 			</div>
+			
+			<div id="inscription">
+				
+				<div id="texteInscription">Inscription</div>
+
+				<div id="formInscription">
+					<form method="post" action ="" align ="center" id="formulaire">
+
+					<div class="champInscription">
+						<label class="labelConnexion" for "login"> Pseudo </label>
+						<input id ="login" type="text" name="log" required="required" placeholder="Pseudo" class="caseConnexion"/>
+					</div>
+
+					<div class="champInscription">
+						<label class="labelConnexion" for "email"> E-mail </label>
+						<input id ="email" type="TEXT" name="email"  required="required" placeholder="E-mail" class="caseConnexion" />
+					</div>
+
+					<div class="champInscription">
+						<label class="labelConnexion" for "pass"> Mot de passe </label>
+						<input id ="pass" type="password" name="pass"  required="required" placeholder="Mot de passe" class="caseConnexion"/>
+					</div>
+
+					<div class="champInscription">
+						<label class="labelConnexion" for "pass2"> Confirmer le mot de passe </label>
+						<input id ="pass2" type="password" name="pass2"  required="required" placeholder="Confirmer le mot de passe" class="caseConnexion"/>
+					</div>
+
+					<div id="validerInscription">
+						<input type = "submit" name="formregister" value="S'inscrire" id="boutonInscription"> </input> 
+					</div>
+
+							
+							<?php
+						if(isset($erreur))
+						{
+							echo "<p id='erreur'>".$erreur. "</p>";
+						}
+						
+						?> 
+						
+						
+
+					</form>
+				</div>
+			
+				</div>
+				
+			
+			
+
+		
+	</div>
+
+		
 			
 		<script type="text/javascript" src="script.js"> </script>
 		

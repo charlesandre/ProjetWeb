@@ -77,8 +77,60 @@ if (isset($_POST['formmodif']))
 			</p>
 		</header>
 
- 		
+	<div id="reglages">
+			
+			<div id="texteReglages">Modifier mes informations</div>
 
+			<div id="formReglages">
+				<form method="post" action ="" align ="center" id="formulaireReglages">
+
+				<div class="champReglages">
+					<label class="labelConnexion" for "login"> Pseudo </label>
+					<input id ="login" type="text" name="log" required="required" placeholder="<?php echo $login; ?>" class="caseReglages"/>
+				</div>
+
+				<div class="champReglages">
+					<label class="labelConnexion" for "email"> E-mail</label>
+					<input id ="email" type="TEXT" name="email"  required="required" placeholder="<?php echo $email; ?>" class="caseReglages" />				
+				</div>
+
+				<div class="champReglages">
+					<label class="labelConnexion" for "pass"> Ancien mot de passe </label>
+					<input id ="pass" type="password" name="pass"  required="required" placeholder="Ancien mot de passe" class="caseReglages"/>
+				</div>
+
+				<div class="champReglages">
+					<label class="labelConnexion" for "pass2"> Nouveau mot de passe </label>
+					<input id ="pass" type="password" name="pass2"  required="required" placeholder="Nouveau mot de passe" class="caseReglages"/>
+				</div>
+
+				<div class="champReglages">
+					<label class="labelConnexion" for "pass3"> Confirmer le nouveau mot de passe </label>
+					<input id ="pass2" type="password" name="pass3"  required="required" placeholder="Nouveau mot de passe" class="caseReglages"/>
+				</div>
+
+				<div id="submitReglages">
+					<input type = "submit" name="formmodif" value="Sauvegarder" id="boutonReglages"> </input> 
+				</div>
+						
+						<?php
+					if(isset($erreur))
+					{
+						echo "<p id='erreurReglages'>".$erreur. "</p>";
+					}
+					
+					?> 
+					
+					
+
+				</form>
+		</div>
+		
+
+
+	</div>	
+ 		
+<!--
 	<div id ="reglages">
 				<form method="post" action ="" align ="center">
 				<p id="texteReglages">Modifier mes informations</p>
@@ -138,9 +190,9 @@ if (isset($_POST['formmodif']))
 			
 
 			<?php
-			if(isset($erreur))
+			//if(isset($erreur))
 			{
-				echo "<p id='erreurReglages'>".$erreur. "</p>";
+				//echo "<p id='erreurReglages'>".$erreur. "</p>";
 			}
 			?>
 
@@ -150,7 +202,7 @@ if (isset($_POST['formmodif']))
 
 	</div>
 
-	
+	-->
 
 	</body>
 

@@ -72,21 +72,27 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 
 			if ($num_rows2 == 0) {
 				if(isset($_POST['caserecherche'])){
-			?>
-			<h2> Aucune photo ne correspond à votre recherche pour : <?php echo $motcle ?> </h2>
-			<?php
+					?>
+					<h2> Aucune photo ne correspond à votre recherche pour : <span class="motcle"><?php echo $motcle ?></span> </h2>
+					<?php
+					}
+					else {
+						?>
+					<h2> Nous n'avons pas de photos a vous montrer, ajoutez des photos en cliquant sur le bouton plus en bas a droite ou ajoutez des amis ! </h2>
+					<?php
+
+				}
+
 			}
-			else {
+
+			else if($num_rows2 == 1){
 				?>
-			<h2> Nous n'avons pas de photos a vous montrer, ajoutez des photos en cliquant sur le bouton plus en bas a droite ou ajoutez des amis ! </h2>
-			<?php
-
-			}
-
+				<h2> Il y a <?php echo $num_rows2 ?> résultat correspondant a votre recherche : <span class="motcle"><?php echo $motcle ?></span></h2>
+				<?php
 			}
 			else if(isset($_POST['caserecherche'])){
 			?>
-			<h2> Il y a <?php echo $num_rows2 ?> résultat(s) correspondant a votre recherche : <?php echo $motcle ?></h2>
+			<h2> Il y a <?php echo $num_rows2 ?> résultats correspondant a votre recherche : <span class="motcle"><?php echo $motcle ?></span></h2>
 			<?php
 
 			}
@@ -130,20 +136,28 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 			<div id="lieu">
 				<?php echo $row2[3] ?> 
 			</div>
-			<div id="epingle">
-				<form method="post" action ="">
-								<input type="hidden"  name="idphoto"  value="<?php echo $row2[0] ?>">
-								<?php
-								$photolike = mysql_query("SELECT * FROM MentionAime WHERE IDPhoto = '$row2[0]' AND IDUser = '$getid' "); 
-								$photolikenum = mysql_num_rows($photolike);
-								if($photolikenum == 0){
-								?><input type="image" src="images/epingle.png" name="like" id="Like" value="Like"><?php
-								}
-								else {
-									?><input type="image" src="images/epingleRouge.png" name="unlike" id="UnLike" value="UnLike"><?php
-								}
-								?>
-				</form>
+
+			<div id="boutonsImage">
+
+				<div id="epingle">
+					<form method="post" action ="">
+									<input type="hidden"  name="idphoto"  value="<?php echo $row2[0] ?>">
+									<?php
+									$photolike = mysql_query("SELECT * FROM MentionAime WHERE IDPhoto = '$row2[0]' AND IDUser = '$getid' "); 
+									$photolikenum = mysql_num_rows($photolike);
+									if($photolikenum == 0){
+									?><input type="image" src="images/epingle.png" name="like" id="Like" value="Like"><?php
+									}
+									else {
+										?><input type="image" src="images/epingleRouge.png" name="unlike" id="UnLike" value="UnLike"><?php
+									}
+									?>
+					</form>
+				</div>
+
+				<div id="follow">
+					<img src="images/follow.png" id="imgFollow">
+				</div>
 			</div>
 
 				
