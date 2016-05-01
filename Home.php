@@ -37,23 +37,23 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 
 		if(isset($_POST['caserecherche'])){
 			$motcle = $_POST['caserecherche'];
-			$result2 = mysql_query("SELECT DISTINCT P.ID, P.Nom, P.Adresse, P.Lieu, P.Daate, P.Visibilite FROM Photos P, Users U WHERE P.Visibilite = 'Public' AND (P.Nom LIKE '%$motcle%' OR (P.Proprio = U.ID AND U.Login LIKE '%$motcle%') OR (P.Lieu LIKE '%$motcle%'))");
+			$result2 = mysql_query("SELECT DISTINCT P.* FROM Photos P, Users U WHERE P.Visibilite = 'Public' AND (P.Nom LIKE '%$motcle%' OR (P.Proprio = U.ID AND U.Login LIKE '%$motcle%') OR (P.Lieu LIKE '%$motcle%'))");
 			$num_rows2 = mysql_num_rows($result2);
 		}
 		else {
-			$result2 = mysql_query("SELECT * FROM Photos WHERE Visibilite = 'Public' ORDER BY Daate DESC");
+			$result2 = mysql_query("SELECT P.* FROM Photos P, RelationFollow R WHERE P.Visibilite = 'Public' AND R.IDSuiveur = '$getid' AND R.IDSuivi = P.Proprio ORDER BY Daate DESC");
 			$num_rows2 = mysql_num_rows($result2);
 		}
 
-		if (isset($_POST['like']))
-			{
-				
-					$idPhoto = $_POST['idphoto'];
-					$idUser = $getid;
+			if (isset($_POST['like']))
+				{
+					
+						$idPhoto = $_POST['idphoto'];
+						$idUser = $getid;
 
-					$result = mysql_query("INSERT INTO MentionAime (IDPhoto, IDUser)
-		             VALUES ('$idPhoto', '$idUser')");
-			
+						$result = mysql_query("INSERT INTO MentionAime (IDPhoto, IDUser)
+			             VALUES ('$idPhoto', '$idUser')");
+				
 				
 			}
 			if (isset($_POST['unlike']))
@@ -70,16 +70,25 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 			if (isset($_POST['follow']))
 			{
 				
-					$idPhoto = $_POST['idphoto'];
+					$idProp = $_POST['idprop'];
 					$idUser = $getid;
-
-					$result3 = mysql_query("SELECT Proprio FROM Photos WHERE ID = $idPhoto");
-					$row3 = mysql_fetch_row($result3);
-					$idSuivi = $row3[0];
 
 
 					$result = mysql_query("INSERT INTO RelationFollow (IDSuiveur, IDSuivi)
-		             VALUES ('$idUser', '$idSuivi')");
+		             VALUES ('$idUser', '$idProp')");
+			
+				
+			}
+
+			if (isset($_POST['unfollow']))
+			{
+				
+					$idProp = $_POST['idprop'];
+					$idUser = $getid;
+
+
+
+					$result = mysql_query("DELETE FROM RelationFollow WHERE IDSuiveur = '$idUser' AND IDSuivi = '$idProp'");
 			
 				
 			}
@@ -94,7 +103,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 					}
 					else {
 						?>
-					<h2> Nous n'avons pas de photos a vous montrer, ajoutez des photos en cliquant sur le bouton plus en bas a droite ou ajoutez des amis ! </h2>
+					<h2> Nous n'avons pas de photos a vous montrer, ajoutez des photos en cliquant sur le bouton plus en bas a droite ou commencez à suivre des gens ! </h2>
 					<?php
 
 				}
@@ -173,15 +182,15 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 
 				<div id="follow">
 						<form method="post" action ="">
-									<input type="hidden"  name="idphoto"  value="<?php echo $row2[0] ?>">
+									<input type="text"  name="idprop"  value="<?php echo $row2[6] ?>">
 									<?php
-									$follow = mysql_query("SELECT * FROM RelationFollow WHERE IDSuiveur=1 AND IDSuivi=4 "); 
+									$follow = mysql_query("SELECT * FROM RelationFollow WHERE IDSuiveur = '$getid' AND IDSuivi = '$row2[6]' "); 
 									$Follownum = mysql_num_rows($follow);
-									if($Followenum == 0){
-									?><input type="image" src="images/follow.png" name="follow" id="Follow" value="Follow"><?php
+									if($Follownum == 0){
+									?><input type="submit" name="follow" id="Follow" value="Follow"><?php
 									}
 									else {
-										?><input type="image" src="images/epingle.png" name="unfollow" id="UnFollow" value="UnFollow"><?php
+									?><input type="submit" name="unfollow" id="unFollow" value="UnFollow"><?php
 									}
 									?>
 						</form>
