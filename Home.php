@@ -178,7 +178,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 									$follow = mysql_query("SELECT * FROM RelationFollow WHERE IDSuiveur=1 AND IDSuivi=4 "); 
 									$Follownum = mysql_num_rows($follow);
 									if($Followenum == 0){
-									?><input type="image" src="images/follow.png" name="follow" id="Follow" value="Follow"><?php
+									?><input type="image" src="images/follow.png" name="follow" id="imgFollow" value="Follow"><?php
 									}
 									else {
 										?><input type="image" src="images/epingle.png" name="unfollow" id="UnFollow" value="UnFollow"><?php
