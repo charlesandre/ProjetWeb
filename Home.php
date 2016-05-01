@@ -66,7 +66,23 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 			
 				
 			}
+
+			if (isset($_POST['follow']))
+			{
+				
+					$idPhoto = $_POST['idphoto'];
+					$idUser = $getid;
+
+					$result3 = mysql_query("SELECT Proprio FROM Photos WHERE ID = $idPhoto");
+					$row3 = mysql_fetch_row($result3);
+					$idSuivi = $row3[0];
+
+
+					$result = mysql_query("INSERT INTO RelationFollow (IDSuiveur, IDSuivi)
+		             VALUES ('$idUser', '$idSuivi')");
 			
+				
+			}
 
 			?> <br/><br/><br/> <?php
 
@@ -156,7 +172,19 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 				</div>
 
 				<div id="follow">
-					<img src="images/follow.png" id="imgFollow">
+						<form method="post" action ="">
+									<input type="hidden"  name="idphoto"  value="<?php echo $row2[0] ?>">
+									<?php
+									$follow = mysql_query("SELECT * FROM RelationFollow WHERE IDSuiveur=1 AND IDSuivi=4 "); 
+									$Follownum = mysql_num_rows($follow);
+									if($Followenum == 0){
+									?><input type="image" src="images/follow.png" name="follow" id="Follow" value="Follow"><?php
+									}
+									else {
+										?><input type="image" src="images/epingle.png" name="unfollow" id="UnFollow" value="UnFollow"><?php
+									}
+									?>
+						</form>
 				</div>
 			</div>
 
