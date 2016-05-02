@@ -69,13 +69,7 @@ if (isset($_POST['formmodif']))
 
 	<body>
 		
-		<header>
-			<p> <a  href="Home.php?id=<?php echo $getid ?>" ><span id="logo"></span></a>
-				<div id="recherche"> <input type="text" name="login" id="caserecherche" placeholder="Rechercher"/> </div>
-				<div id="boutons"> <a class="onglet" href="MyAccount.php?id=<?php echo $getid ?>">Profil</a> 
-								   <a class="onglet" href="Notifications.html">Notifications</a> </div> 
-			</p>
-		</header>
+		<?php include('header.php'); ?>
 
 	<div id="reglages">
 			
@@ -206,9 +200,7 @@ if (isset($_POST['formmodif']))
 
 	</body>
 
-	<footer>
-		Charles ANDRE - Antoine DIOULOUFFET - Alexandre TUBIANA - ECE PARIS - 2016
-	</footer>
+	<?php include('footer.php'); ?>
 
 
 
