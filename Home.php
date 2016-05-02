@@ -40,6 +40,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 			$result2 = mysql_query("SELECT DISTINCT P.* FROM Photos P, Users U WHERE P.Visibilite = 'Public' AND (P.Nom LIKE '%$motcle%' OR (P.Proprio = U.ID AND U.Login LIKE '%$motcle%') OR (P.Lieu LIKE '%$motcle%'))");
 			$num_rows2 = mysql_num_rows($result2);
 		}
+		
 		else {
 			$result2 = mysql_query("SELECT P.* FROM Photos P, RelationFollow R WHERE P.Visibilite = 'Public' AND R.IDSuiveur = '$getid' AND R.IDSuivi = P.Proprio ORDER BY Daate DESC");
 			$num_rows2 = mysql_num_rows($result2);
@@ -182,9 +183,9 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 
 				<div id="follow">
 						<form method="post" action ="">
-									<input type="text"  name="idprop"  value="<?php echo $row2[6] ?>">
+									<input type="text"  name="idprop"  value="<?php echo $row2[5] ?>">
 									<?php
-									$follow = mysql_query("SELECT * FROM RelationFollow WHERE IDSuiveur = '$getid' AND IDSuivi = '$row2[6]' "); 
+									$follow = mysql_query("SELECT * FROM RelationFollow WHERE IDSuiveur = '$getid' AND IDSuivi = '$row2[5]' "); 
 									$Follownum = mysql_num_rows($follow);
 									if($Follownum == 0){
 									?><input type="submit" name="follow" id="Follow" value="Follow"><?php
