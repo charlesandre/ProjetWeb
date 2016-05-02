@@ -183,7 +183,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 
 				<div id="follow">
 						<form method="post" action ="">
-									<input type="text"  name="idprop"  value="<?php echo $row2[5] ?>">
+									<input type="hidden"  name="idprop"  value="<?php echo $row2[5] ?>">
 									<?php
 									$follow = mysql_query("SELECT * FROM RelationFollow WHERE IDSuiveur = '$getid' AND IDSuivi = '$row2[5]' "); 
 									$Follownum = mysql_num_rows($follow);
