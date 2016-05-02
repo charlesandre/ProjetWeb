@@ -42,10 +42,19 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 		}
 		
 		else {
-			$result2 = mysql_query("SELECT P.* FROM Photos P, RelationFollow R WHERE (P.Visibilite = 'Public' AND R.IDSuiveur = '$getid' AND R.IDSuivi = P.Proprio) OR P.Proprio = '$getid' ORDER BY Daate DESC");
+			$result2 = mysql_query("SELECT P.* FROM Photos P, RelationFollow R WHERE R.IDSuiveur = '$getid' AND R.IDSuivi = P.Proprio AND (P.Visibilite = 'Public' OR P.Proprio = '$getid') ORDER BY Daate DESC");
 			$num_rows2 = mysql_num_rows($result2);
 		}
 
+			if (isset($_POST['comm']))
+			{
+				
+					$idPhoto = $_POST['idphoto'];
+					$contenu = $_POST['com'];
+					$idUser = $getid;
+
+					$result = mysql_query("INSERT INTO Commentaires (IDUser, Contenu, IDPhoto) VALUES ('$idUser', '$contenu', '$idPhoto')");
+			}
 			if (isset($_POST['like']))
 				{
 					
@@ -72,8 +81,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 					$idUser = $getid;
 
 
-					$result = mysql_query("INSERT INTO RelationFollow (IDSuiveur, IDSuivi)
-		             VALUES ('$idUser', '$idProp')");
+					$result = mysql_query("INSERT INTO RelationFollow (IDSuiveur, IDSuivi) VALUES ('$idUser', '$idProp')");
 			}
 
 			if (isset($_POST['unfollow']))
@@ -85,16 +93,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 					$result = mysql_query("DELETE FROM RelationFollow WHERE IDSuiveur = '$idUser' AND IDSuivi = '$idProp'");
 			}
 
-			if (isset($_POST['com']))
-			{
-				
-					$idPhoto = $_POST['idphoto'];
-					$contenu = $_POST['com'];
-					$idUser = $getid;
-
-					$result = mysql_query("INSERT INTO Commentaires (IDUser, Contenu, IDPhoto)
-		             VALUES ('$idUser', '$contenu', '$idPhoto')");
-			}
+			
 
 			?> <br/><br/><br/> <?php
 
@@ -126,10 +125,10 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 			}
 
 
-
 	for($i=$num_rows2; $i>0; $i--){
-		$row2 = mysql_fetch_row($result2);
-		$adresse = "Photos/".$row2[2];
+	
+	$row2 = mysql_fetch_row($result2);
+	$adresse = "Photos/".$row2[2];
 
 
 	?>	
@@ -168,7 +167,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 			<div id="boutonsImage">
 
 				<div id="epingle">
-					<form method="post" action ="">
+					<form name = "like" method="post" action ="">
 									<input type="hidden"  name="idphoto"  value="<?php echo $row2[0] ?>">
 									<?php
 									$photolike = mysql_query("SELECT * FROM MentionAime WHERE IDPhoto = '$row2[0]' AND IDUser = '$getid' "); 
@@ -187,7 +186,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 				</div>
 
 				<div id="follow">
-						<form method="post" action ="">
+						<form name ="follow" method="post" action ="">
 									<input type="hidden"  name="idprop"  value="<?php echo $row2[5] ?>">
 									<?php
 									$follow = mysql_query("SELECT * FROM RelationFollow WHERE IDSuiveur = '$getid' AND IDSuivi = '$row2[5]' "); 
@@ -204,35 +203,34 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 				</div>
 
 				<div id="com">
-					<form method="post" action ="">
-						<input type="text"  name="idphoto"  value="<?php echo $row2[0] ?>">
-						<?php
-									$com = mysql_query("SELECT * FROM Commentaires WHERE IDPhoto = '$row2[0]' ORDER BY Daate DESC");
-									$numbercom = mysql_num_rows($like);
-
+					<?php 
+						$requetenombrecomm = mysql_query("SELECT * FROM Commentaires WHERE IDPhoto = '$row2[0]'");
+						$nombrecom = mysql_num_rows($requetenombrecomm);
 						?>
-						Nombre de commentaires : <?php echo $numbercom ?> ! 
-						Commentaires : <br/>
+						Nbr coms : <?php echo $nombrecom ?> !
+					
+					<form name ="comment" method="post" action ="">
+						<input type="hidden"  name="idphoto"  value="<?php echo $row2[0] ?>">
+						<input type="text" name="com" id="Com" placeholder="Votre commentaire ...">
+						<input type ="submit" name "comm" id ="Com" values = "Commenter">
 						<table>
-							<?php
-								for($i = 0; $i < $numbercom; $i++){
-									$commentaires = mysql_fetch_row($com);
-									$propriocommentaire = mysql_query("SELECT Login FROM Users WHERE ID = '$commentaires[1]'");
-									$nomproprio = mysql_fetch_row($propriocommentaire);
+						<?php 
+							for($i =0; $i < $nombrecom; $i++){
+								$commentaire = mysql_fetch_row($requetenombrecomm);
+								$requetenomproprio = mysql_query("SELECT Login FROM User WHERE ID = '$commentaire[1]'");
 								?>
-								<tr>
-									<td>
-										 commentaire de : <?php echo $nomproprio ?> 
-									</td>
-								</tr>
+									<tr>
+										<td>	
+									<?php echo $commentaire[1] ?> :
+										<td/>
+										<td>
+									<?php echo $commentaire[2] ?>
+										</td>
+									</tr>
 								<?php
-								}
-								?>
+							}
+						?>
 						</table>
-						<input type="text" name="com" id="Com" placeholder="Votre commentaire">
-
-									
-									
 					</form>
 				</div>
 			</div>
