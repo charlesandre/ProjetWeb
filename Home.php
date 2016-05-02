@@ -39,29 +39,21 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 			$motcle = $_POST['caserecherche'];
 			$result2 = mysql_query("SELECT DISTINCT P.* FROM Photos P, Users U WHERE P.Visibilite = 'Public' AND (P.Nom LIKE '%$motcle%' OR (P.Proprio = U.ID AND U.Login LIKE '%$motcle%') OR (P.Lieu LIKE '%$motcle%'))");
 			$num_rows2 = mysql_num_rows($result2);
-		}
+		}s
 		
 		else {
-			$result2 = mysql_query("SELECT P.* FROM Photos P, RelationFollow R WHERE R.IDSuiveur = '$getid' AND R.IDSuivi = P.Proprio AND (P.Visibilite = 'Public' OR P.Proprio = '$getid') ORDER BY Daate DESC");
+			$result2 = mysql_query("SELECT * FROM Photos WHERE Visibilite = 'Public' ORDER BY Daate DESC");
 			$num_rows2 = mysql_num_rows($result2);
 		}
 
-			if (isset($_POST['comm']))
-			{
-				
-					$idPhoto = $_POST['idphoto'];
-					$contenu = $_POST['com'];
-					$idUser = $getid;
 
-					$result = mysql_query("INSERT INTO Commentaires (IDUser, Contenu, IDPhoto) VALUES ('$idUser', '$contenu', '$idPhoto')");
-			}
 			if (isset($_POST['like']))
 				{
 					
 						$idPhoto = $_POST['idphoto'];
 						$idUser = $getid;
 
-						$result = mysql_query("INSERT INTO MentionAime (IDPhoto, IDUser)
+					$result = mysql_query("INSERT INTO MentionAime (IDPhoto, IDUser)
 			             VALUES ('$idPhoto', '$idUser')");
 				
 			}
@@ -93,6 +85,13 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 					$result = mysql_query("DELETE FROM RelationFollow WHERE IDSuiveur = '$idUser' AND IDSuivi = '$idProp'");
 			}
 
+			if(isset($_POST['com']))
+			{
+					$iduser = $getid;
+					$idphoto = $_POST['idphoto'];
+					$contenu = $_POST['com'];
+					$result = mysql_query("INSERT INTO Commentaires (IDUser, Contenu, IDPhoto) VALUES ('$iduser', '$contenu', '$idphoto')");
+			}
 			
 
 			?> <br/><br/><br/> <?php
@@ -212,7 +211,8 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 					<form name ="comment" method="post" action ="">
 						<input type="hidden"  name="idphoto"  value="<?php echo $row2[0] ?>">
 						<input type="text" name="com" id="Com" placeholder="Votre commentaire ...">
-						<input type ="submit" name "comm" id ="Com" values = "Commenter">
+					</form>
+
 						<table>
 						<?php 
 							for($i =0; $i < $nombrecom; $i++){
@@ -231,7 +231,8 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 							}
 						?>
 						</table>
-					</form>
+
+					
 				</div>
 			</div>
 		</div>
