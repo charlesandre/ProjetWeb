@@ -165,7 +165,7 @@ if (isset($_POST['like']))
 									<?php
 									$result3 = mysql_query("SELECT * FROM Photos WHERE ID = '$row2[0]'");
 									$row3 = mysql_fetch_row($result3);
-									if($row3[7] == 'Public'){
+									if($row3[6] == 'Public'){
 									?><option value="Public">Public</option>
 									<option value="Privee">Privee</option><?php
 									}

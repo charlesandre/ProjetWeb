@@ -42,7 +42,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 		}
 		
 		else {
-			$result2 = mysql_query("SELECT P.* FROM Photos P, RelationFollow R WHERE P.Visibilite = 'Public' AND R.IDSuiveur = '$getid' AND R.IDSuivi = P.Proprio ORDER BY Daate DESC");
+			$result2 = mysql_query("SELECT P.* FROM Photos P, RelationFollow R WHERE (P.Visibilite = 'Public' AND R.IDSuiveur = '$getid' AND R.IDSuivi = P.Proprio) OR P.Proprio = '$getid' ORDER BY Daate DESC");
 			$num_rows2 = mysql_num_rows($result2);
 		}
 
@@ -55,7 +55,6 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 						$result = mysql_query("INSERT INTO MentionAime (IDPhoto, IDUser)
 			             VALUES ('$idPhoto', '$idUser')");
 				
-				
 			}
 			if (isset($_POST['unlike']))
 			{
@@ -64,8 +63,6 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 					$idUser = $getid;
 
 					$result = mysql_query("DELETE FROM MentionAime WHERE IDPhoto = '$idPhoto' AND IDUser = '$idUser'");
-			
-				
 			}
 
 			if (isset($_POST['follow']))
@@ -77,8 +74,6 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 
 					$result = mysql_query("INSERT INTO RelationFollow (IDSuiveur, IDSuivi)
 		             VALUES ('$idUser', '$idProp')");
-			
-				
 			}
 
 			if (isset($_POST['unfollow']))
@@ -87,11 +82,18 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 					$idProp = $_POST['idprop'];
 					$idUser = $getid;
 
-
-
 					$result = mysql_query("DELETE FROM RelationFollow WHERE IDSuiveur = '$idUser' AND IDSuivi = '$idProp'");
-			
+			}
+
+			if (isset($_POST['com']))
+			{
 				
+					$idPhoto = $_POST['idphoto'];
+					$contenu = $_POST['com'];
+					$idUser = $getid;
+
+					$result = mysql_query("INSERT INTO Commentaires (IDUser, Contenu, IDPhoto)
+		             VALUES ('$idUser', '$contenu', '$idPhoto')");
 			}
 
 			?> <br/><br/><br/> <?php
@@ -171,13 +173,16 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 									<?php
 									$photolike = mysql_query("SELECT * FROM MentionAime WHERE IDPhoto = '$row2[0]' AND IDUser = '$getid' "); 
 									$photolikenum = mysql_num_rows($photolike);
+									$like = mysql_query("SELECT * FROM MentionAime WHERE IDPhoto = '$row2[0]'");
+									$numberlike = mysql_num_rows($like);
 									if($photolikenum == 0){
 									?><input type="image" src="images/epingle.png" name="like" id="Like" value="Like"><?php
 									}
 									else {
 										?><input type="image" src="images/epingleRouge.png" name="unlike" id="UnLike" value="UnLike"><?php
 									}
-									?>
+									?> Nombre de likes : <?php echo $numberlike ?> ! 
+									
 					</form>
 				</div>
 
@@ -187,6 +192,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 									<?php
 									$follow = mysql_query("SELECT * FROM RelationFollow WHERE IDSuiveur = '$getid' AND IDSuivi = '$row2[5]' "); 
 									$Follownum = mysql_num_rows($follow);
+									
 									if($Follownum == 0){
 									?><input type="submit" name="follow" id="Follow" value="Follow"><?php
 									}
@@ -196,12 +202,41 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 									?>
 						</form>
 				</div>
+
+				<div id="com">
+					<form method="post" action ="">
+						<input type="text"  name="idphoto"  value="<?php echo $row2[0] ?>">
+						<?php
+									$com = mysql_query("SELECT * FROM Commentaires WHERE IDPhoto = '$row2[0]' ORDER BY Daate DESC");
+									$numbercom = mysql_num_rows($like);
+
+						?>
+						Nombre de commentaires : <?php echo $numbercom ?> ! 
+						Commentaires : <br/>
+						<table>
+							<?php
+								for($i = 0; $i < $numbercom; $i++){
+									$commentaires = mysql_fetch_row($com);
+									$propriocommentaire = mysql_query("SELECT Login FROM Users WHERE ID = '$commentaires[1]'");
+									$nomproprio = mysql_fetch_row($propriocommentaire);
+								?>
+								<tr>
+									<td>
+										 commentaire de : <?php echo $nomproprio ?> 
+									</td>
+								</tr>
+								<?php
+								}
+								?>
+						</table>
+						<input type="text" name="com" id="Com" placeholder="Votre commentaire">
+
+									
+									
+					</form>
+				</div>
 			</div>
-
-				
 		</div>
-
-		
 	</div>
 		
 		

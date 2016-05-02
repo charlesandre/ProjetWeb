@@ -56,8 +56,6 @@ if (isset($_POST['like']))
 
 			$result = mysql_query("INSERT INTO MentionAime (IDPhoto, IDUser)  
              VALUES ('$idPhoto', '$idUser')");
-	
-		
 	}
 if (isset($_POST['unlike']))
 			{
@@ -66,18 +64,16 @@ if (isset($_POST['unlike']))
 					$idUser = $getid;
 
 					$result = mysql_query("DELETE FROM MentionAime WHERE IDPhoto = '$idPhoto' AND IDUser = '$idUser'");
-			
-				
 			}
 
 			
-			$result2 = mysql_query("SELECT P.ID, P.Nom, P.Adresse, P.Legende, P.Lieu, P.Daate, P.Visibilite  FROM Photos P, MentionAime M WHERE '$getid' = M.IDUser AND P.ID = M.IDPhoto");
+			$result2 = mysql_query("SELECT P.* FROM Photos P, MentionAime M WHERE (M.IDUser = $getid AND P.ID = M.IDPhoto)");
 			$num_rows2 = mysql_num_rows($result2);
 
 			if ($num_rows2 == 0) {
 
 			?>
-			<h2> Vous n'avez aimée aucune photo ! </h2>
+			<h2> Vous n'avez aimé aucune photo ! </h2>
 			<?php
 			
 
@@ -106,7 +102,7 @@ if (isset($_POST['unlike']))
 						Legende : 
 					</td>
 					<td>
-						<?php echo $row2[3] ?> 
+						<?php echo $row2[2] ?> 
 					<td>
 				</tr>
 				<tr>
@@ -114,7 +110,7 @@ if (isset($_POST['unlike']))
 						Lieu : 
 					</td>
 					<td>
-						<?php echo $row2[4] ?> 
+						<?php echo $row2[3] ?> 
 					<td>
 				</tr>
 				<tr>
@@ -122,7 +118,7 @@ if (isset($_POST['unlike']))
 						Date : 
 					</td>
 					<td>
-						<?php echo $row2[5] ?> 
+						<?php echo $row2[4] ?> 
 					<td>
 				</tr>
 				<tr>
@@ -130,7 +126,7 @@ if (isset($_POST['unlike']))
 						Auteur  : 
 					</td>
 					<td>
-						<?php echo $row2[6] ?> 
+						<?php echo $row2[5] ?> 
 					<td>
 				</tr>
 				<tr>
