@@ -39,10 +39,10 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 			$motcle = $_POST['caserecherche'];
 			$result2 = mysql_query("SELECT DISTINCT P.* FROM Photos P, Users U WHERE P.Visibilite = 'Public' AND (P.Nom LIKE '%$motcle%' OR (P.Proprio = U.ID AND U.Login LIKE '%$motcle%') OR (P.Lieu LIKE '%$motcle%'))");
 			$num_rows2 = mysql_num_rows($result2);
-		}s
+		}
 		
-		else {
-			$result2 = mysql_query("SELECT * FROM Photos WHERE Visibilite = 'Public' ORDER BY Daate DESC");
+		else if (!isset($_POST['caserecherche'])){
+			$result2 = mysql_query("SELECT P.* FROM Photos P, RelationFollow R WHERE P.Visibilite = 'Public' AND (R.IDSuiveur = '$getid' AND R.IDSuivi = P.Proprio) OR P.Proprio = '$getid' ORDER BY Daate DESC");
 			$num_rows2 = mysql_num_rows($result2);
 		}
 
@@ -102,7 +102,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 					<h2> Aucune photo ne correspond à votre recherche pour : <span class="motcle"><?php echo $motcle ?></span> </h2>
 					<?php
 					}
-					else {
+					else{
 						?>
 					<h2> Nous n'avons pas de photos a vous montrer, ajoutez des photos en cliquant sur le bouton plus en bas a droite ou commencez à suivre des gens ! </h2>
 					<?php
@@ -111,11 +111,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 
 			}
 
-			else if($num_rows2 == 1){
-				?>
-				<h2> Il y a <?php echo $num_rows2 ?> résultat correspondant a votre recherche : <span class="motcle"><?php echo $motcle ?></span></h2>
-				<?php
-			}
+			
 			else if(isset($_POST['caserecherche'])){
 			?>
 			<h2> Il y a <?php echo $num_rows2 ?> résultats correspondant a votre recherche : <span class="motcle"><?php echo $motcle ?></span></h2>
@@ -124,8 +120,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 			}
 
 
-	for($i=$num_rows2; $i>0; $i--){
-	
+	for($j=$num_rows2; $j>0; $j--){
 	$row2 = mysql_fetch_row($result2);
 	$adresse = "Photos/".$row2[2];
 
@@ -162,7 +157,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 			<div id="lieu">
 				<?php echo $row2[3] ?> 
 			</div>
-
+			<br/>
 			<div id="boutonsImage">
 
 				<div id="epingle">
@@ -184,6 +179,8 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 					</form>
 				</div>
 
+				<br/>
+
 				<div id="follow">
 						<form name ="follow" method="post" action ="">
 									<input type="hidden"  name="idprop"  value="<?php echo $row2[5] ?>">
@@ -200,6 +197,8 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 									?>
 						</form>
 				</div>
+
+				<br/>
 
 				<div id="com">
 					<?php 

@@ -78,8 +78,14 @@ if (isset($_POST['like']))
 							
 			$result = mysql_query("UPDATE Photos SET Visibilite = '$nouvellevisi' WHERE ID = '$idPhoto'");
 
+	}
+
+	if (isset($_POST['supphoto']))
+	{
 		
-		
+			$idPhoto = $_POST['idphoto'];
+			$result = mysql_query("DELETE FROM Photos WHERE ID = '$idPhoto' ");
+
 	}
 
 			$result2 = mysql_query("SELECT * FROM Photos WHERE Proprio = '$getid'");
@@ -176,6 +182,10 @@ if (isset($_POST['like']))
 									?>
 								</select>
 							<input type="submit" name="modificationvisi" id="modificationvisi" value="Modifier">
+						</form>
+						<form method="post" action ="">
+							<input type="hidden"  name="idphoto"  value="<?php echo $row2[0] ?>">
+							<input type="submit" name="supphoto" id="supphoto" value="Supprimer la Photo">
 						</form>
 					</td>
 				</tr>
