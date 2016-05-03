@@ -44,6 +44,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 				</a>
 				<a href = "MesImages.php?id=<?php echo $getid ?>"> Mes Photos </a>
 				<a href = "MesImagesLikees.php?id=<?php echo $getid ?>"> Les photos que j'ai aimée </a>
+				<a href = "MesAlbums.php?id=<?php echo $getid ?>"> Mes albums </a>
 				<a href = "Connexion.php"> Deconnexion </a>
 			</div>
 			

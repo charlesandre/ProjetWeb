@@ -94,6 +94,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 			}
 			
 
+
 			?> <br/><br/><br/> <?php
 
 			if ($num_rows2 == 0) {
