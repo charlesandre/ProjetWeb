@@ -31,21 +31,21 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 
  		
 
-		<div id="container">
-
-			<h1> Mon compte </h1>
-			<h2> Bienvenue <?php echo $login; ?> Comment allez vous ? </h2>
-
+		<div id="profil">
 
 
 			<div id="divImageReglages">
 				<a href="Reglages.php?id=<?php echo $getid ?>" id="aReglages">
-					<img src="images/reglages.png" id="imageReglages"/>
+					<img src="images/reglages.png" alt="" id="imageReglages"/>
 				</a>
-				<a href = "MesImages.php?id=<?php echo $getid ?>"> Mes Photos </a>
-				<a href = "MesImagesLikees.php?id=<?php echo $getid ?>"> Les photos que j'ai aimée </a>
-				<a href = "MesAlbums.php?id=<?php echo $getid ?>"> Mes albums </a>
-				<a href = "Connexion.php"> Deconnexion </a>
+				
+			</div>
+
+			<div id="ongletsProfil">
+				<a class="boutonProfil" href = "MesImages.php?id=<?php echo $getid ?>"> Mes Photos </a>
+				<a class="boutonProfil" href = "MesImagesLikees.php?id=<?php echo $getid ?>"> Les photos que j'ai aimée </a>
+				<a class="boutonProfil" href = "MesAlbums.php?id=<?php echo $getid ?>"> Mes albums </a>
+				<a class="boutonProfil" href = "Connexion.php"> Deconnexion </a>
 			</div>
 			
 
@@ -55,9 +55,15 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 		
 		</div>
 
+		<?php include('ajouterPhoto.php'); ?>
+
+		<?php include('footer.php'); ?>
+
 	</body>
 
-	<?php include('footer.php'); ?>
+
+
+	
 
 
 

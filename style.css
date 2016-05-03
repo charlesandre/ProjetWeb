@@ -33,10 +33,7 @@ ul#menu li a {
     border-radius: 8px;
 }
 
-ul#menu li a:hover {
-    background-color: #59719A;
-    opacity: 1;
-}
+
 
 html{
     height: 100%;
@@ -181,19 +178,8 @@ a:active{
 
 
 
-a:hover{
-    color:black;
-}
 
 
-
-#container
-{
-	min-height: 70%;
-	margin: 0 auto -50px;
-    color : #4D7FA8;
-
-}
 
 td{
     width:100%;
@@ -401,22 +387,40 @@ td{
 }
 
 #caseCommentaire{
+    width: 100%;
+    height: 43%;
+}
 
-    position: absolute;
-    margin-left:800px;
-    top:94px;
-    width:500px;
-    height:400px;
-    background-color: white;
-    font-family: 'Dancing Script', 300italic;
-    margin-top: 0px;
-    position: relative;
+#nbCom{
+    font-style: italic;
+    font-family: 'Roboto';
+}
 
+#profil
+{
+    margin-top: 10%;
+    text-align: center;
 }
 
 #divImageReglages{
     left:500px;
     top:200px;
+}
+
+#ongletsProfil{
+    margin-top: 5%;
+}
+
+.boutonProfil{
+    font-family: 'Roboto';
+    color: #374a5c;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.boutonProfil:hover{
+    padding-bottom: 3px;
+    border-bottom: 2px solid #374a5c;
 }
 
 
@@ -573,11 +577,17 @@ td{
     margin-top: 10%;
     margin-left: 10%;
     width:50%;
+    display: flex;
 }
 
-#Like{
+#imgLike{
     width: 50px;
     height: 50px;
+}
+
+#nbLikes{
+    font-family: 'Dancing Script';
+    font-size: 3em;
 }
 
 #follow{

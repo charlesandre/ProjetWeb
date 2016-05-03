@@ -68,7 +68,7 @@
 		<header>
 			
 			<div id="headerConnexion">
-				<img src="images/logoblanc.png" id="logoAccueil"/>
+				<img src="images/logoblanc.png" alt="" id="logoAccueil"/>
 			</div>
 		</header>
 	
@@ -118,7 +118,7 @@
 			</div>
 
 		<div id="imageAccueil">
-			<img src="paysage1.png" id="diapoAccueil"/>
+			<img src="paysage1.png" alt="" id="diapoAccueil"/>
 		</div>
 			
 
