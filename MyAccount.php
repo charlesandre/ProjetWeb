@@ -41,22 +41,15 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 				
 			</div>
 
-				<table class = "tabprofil">
-					<tr>
-						<td>
-							<a class="boutonProfil" href = "MesImages.php?id=<?php echo $getid ?>"> Mes Photos </a>
-						</td>
-						<td>
-							<a class="boutonProfil" href = "MesImagesLikees.php?id=<?php echo $getid ?>"> Les photos que j'ai aimée </a>
-						</td>
-						<td>
-							<a class="boutonProfil" href = "MesAlbums.php?id=<?php echo $getid ?>"> Mes albums </a>
-						</td>
-						<td>
-							<a class="boutonProfil" href = "Connexion.php"> Deconnexion </a>
-						</td>
-					</tr>
+			<div id="barreOngletsProfils">
 
+				<a class="boutonProfil" href = "MesImages.php?id=<?php echo $getid ?>">Mes Photos</a>
+				<a class="boutonProfil" href = "MesImagesLikees.php?id=<?php echo $getid ?>">Photos accrochées</a>
+				<a class="boutonProfil" href = "MesAlbums.php?id=<?php echo $getid ?>">Mes albums</a>
+				<a class="boutonProfil" href = "Connexion.php"> Deconnexion </a>
+			</div>
+
+			<div id="galeriePhotosProfil">
 				<?php
 
 				$mesphotos= mysql_query("SELECT * FROM Photos WHERE Proprio = '$getid'");
@@ -69,6 +62,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 				$nombredemesalbums = mysql_num_rows($mesalbums);
 				
 			
+				
 				for($i=0; $i<5; $i++){
 					$maphoto = mysql_fetch_row($mesphotos);
 					$maphotolikee = mysql_fetch_row($mesphotoslikees);
@@ -83,7 +77,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 							<?php 
 							if ($nombrephotos > $i){
 								?>
-								<img id="dimension" src ="<?php echo $adressephoto ?>" /> 
+								<img id="maPhoto" src ="<?php echo $adressephoto ?>" /> 
 								<?php
 							}
 							?>
@@ -92,7 +86,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 							<?php 
 							if ($nbrphotoslikees > $i){
 								?>
-								<img id="dimension" src ="<?php echo $adressephotolikee ?>" /> 
+								<img id="maPhoto" src ="<?php echo $adressephotolikee ?>" /> 
 								<?php
 							}
 							?>
@@ -117,6 +111,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 
 		
 				?>
+			</div>
 		
 		</div>
 

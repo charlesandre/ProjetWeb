@@ -419,13 +419,17 @@ td{
 #profil
 {
     margin-top: 10%;
-    text-align: center;
 }
 
 #divImageReglages{
     left:500px;
     top:200px;
 }
+
+#barreOngletsProfils{
+    text-align: center;
+}
+    
 
 #ongletsProfil{
     margin-top: 5%;
@@ -441,6 +445,15 @@ td{
 .boutonProfil:hover{
     padding-bottom: 3px;
     border-bottom: 2px solid #374a5c;
+}
+
+#galeriePhotosProfil{
+    margin-top: 5%;
+}
+
+#maPhoto{
+    width: 100px;
+    height: 100px;
 }
 
 
