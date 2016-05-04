@@ -44,14 +44,13 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 
 		>
 		<?php 
-				$album = mysql_query("SELECT * FROM ALBUMS WHERE IDProrpio = '$getid'");
+				$album = mysql_query("SELECT * FROM ALBUMS WHERE IDProprio = '$getid'");
 				$nombrealbums = mysql_num_rows($album);
 		?>
 		<br/><br/>
 		<h1>Mes albums</h1>
 		<?php 
-				$album = mysql_query("SELECT * FROM ALBUMS WHERE IDProrpio = '$getid'");
-				$nombrealbums = mysql_num_rows($album);
+				
 
 				if($nombrealbums == 0){
 						?>
@@ -63,35 +62,154 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 					if(isset($_POST['ajoutalbum'])){
 						?>
 						<form method = "post" action = "">
+							Choisissez un nom d'album, sa visibilité ainsi que la premeiere photo qui le composeras ! <br/>
 							Nom de l'album : <input type = "text" name = "nomnouvelalbum" placeholder = "Nouvel Album ...">
-						</form>
+							Visibilité : <select name="visibilité"> <option value="Public">Public</option>
+									<option value="Privee">Privee</option></select>
+						
 						<?php
 
 						
-					}
-						if(isset($_POST['nomnouvelalbum'])){
+					
 							?>
-								<h4>Commencez par ajouter une photo a votre album <?php echo $_POST['nomnouvelalbum'] ?> ! </h4>
-								<h4>Voici vos photos :</h4> 
-								<table>
+								
+								
+									<h4>Choisissez une photo:</h4> 	
+									<select name ="choixphoto">
 							<?php
 							$mesphotos = mysql_query("SELECT * FROM Photos WHERE Proprio = '$getid'");
 							$nbrmesphotos = mysql_num_rows($mesphotos);
+							
 							for($i=0; $i<$nbrmesphotos; $i++){
-								?>
-								<tr>
-									<td>
-									</td>
-								</tr>
-								<?php
+								$maphoto = mysql_fetch_row($mesphotos);
+									
+									?>
+									<option value="<?php echo $maphoto[0]?>" ><?php echo $maphoto[1] ?> </option>
+									<?php
 							}
+							?>
+								</select>
+								<input type = "submit" value = "Créer l'Album" name = "creationalbum">
+							</form>
+
+							<?php
+							
+							}
+						
+
+						if (isset($_POST['creationalbum'])){
+							$idPhoto = $_POST['choixphoto'];
+							$nomalbum = $_POST['nomnouvelalbum'];
+							$visialbum = $_POST['visibilité'];
+							
+
+							$requete = mysql_query("INSERT INTO Albums(Nom, IDProprio, IDPhoto, Visibilite) VALUES('$nomalbum', '$getid', '$idPhoto', '$visialbum')");
+
+							header('Location: MesAlbums.php?id='.$getid);
+							
+
+
 						}
 				
 						
 					
 				}
-		?>
-								</table>
+				else {
+
+						?> 
+							<h2> Vous possedez <?php echo $nombrealbums ?> albums </h2> 
+							<table>
+								<tr>
+									<td>
+										Nom de l'album 
+									</td>
+									<td>
+										Nombre de photos
+									</td>
+									<td>
+										Ajouter/supprimer des photos
+									</td>
+									<td>
+										Supprimer l'album
+									</td>
+									<td>
+										Modifier l'album
+									</td>
+									<td> 
+										Visibilité de l'album
+									</td>
+								</tr>
+							
+						<?php
+						for($j=0; $j<$nombrealbums; $j++){
+							$monalbum = mysql_fetch_row($album);
+							$photosdelalbum = mysql_query("SELECT * FROM Albums WHERE ID = '$monalbum[1]'");
+							$nombrephotodansalbum = mysql_num_rows($photosdelalbum);
+
+							?>
+								<tr>
+									<td>
+										<?php echo $monalbum[1] ?>
+									</td>
+									<td>
+										<?php echo $nombrephotodansalbum ?>
+									</td>
+									<td>
+										<form method = "post" action ="">
+											<input type = "hidden" name ="idalbum" value = "<?php echo $monalbum[0]?>">
+											<input type = "submit" name ="gererphotos" value = "Cliquer ici">
+										</form>
+									</td>
+									<td>
+										<form method = "post" action ="">
+											<input type = "hidden" name = "idalbum" value = "<?php echo $monalbum[0]?>">
+											<input type = "submit" name ="ModAlbum" value = "Cliquer ici">
+										</form>
+									</td>
+									<td>
+										<form method = "post" action ="">
+											<input type = "hidden" name = "idalbum" value = "<?php echo $monalbum[0]?>">
+											<input type = "submit" name ="SuppAlbum" value = "Cliquer ici">
+										</form>
+									</td>
+									<td>
+										<form method = "post" action ="">
+											<input type = "hidden" name = "idalbum" value = "<?php echo $monalbum[0]?>">
+												<select name="visibilité">
+													<?php
+													if($monalbum[4] == 'Public'){
+														?><option value="Public">Public</option>
+														<option value="Privee">Privee</option><?php
+													}
+													
+													else {
+														?><option value="Privee">Privee</option>
+														<option value="Public">Public</option><?php
+													}
+													?>
+												</select>
+
+											<input type = "submit" name ="nouvellevisialbum" value = "Enregistrer">
+										</form>
+									</td>
+								<tr>
+
+
+
+							<?php
+						}
+
+
+
+
+
+
+
+				}
+		?>	
+							</table>
+										
+									
 	<div id = "ajouterPhoto">
 		<form  method ="post" action =""> 
 			<input id = "boutonplus" type = "image" src = "images/boutonplus.png" name ="ajoutalbum" value = "Creer un album"> 
