@@ -95,7 +95,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 			
 
 
-			?> <br/><br/><br/> <?php
+			?> <?php
 
 			if ($num_rows2 == 0) {
 				if(isset($_POST['caserecherche'])){
@@ -134,7 +134,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 	<div id="postPhoto">
 
 		<div id="affichagePhoto">
-			<img  id="dimension" src="<?php echo $adresse ?>"/>
+			<img  id="laPhoto" src="<?php echo $adresse ?>"/>
 		</div>
 
 		<div id="legende">
@@ -158,85 +158,96 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 			<div id="lieu">
 				<?php echo $row2[3] ?> 
 			</div>
-			<br/>
+
 			<div id="boutonsImage">
 
 				<div id="epingle">
-					<form name = "like" method="post" action ="">
-									<input type="hidden"  name="idphoto"  value="<?php echo $row2[0] ?>">
-									<?php
-										$photolike = mysql_query("SELECT * FROM MentionAime WHERE IDPhoto = '$row2[0]' AND IDUser = '$getid' "); 
-										$photolikenum = mysql_num_rows($photolike);
-										$like = mysql_query("SELECT * FROM MentionAime WHERE IDPhoto = '$row2[0]'");
-										$numberlike = mysql_num_rows($like);
-										if($photolikenum == 0){
-									?>
-									<input type="image" src="images/epingle.png" name="like" id="Like" value="Like">
-									<?php
-										}
-										else {
-									?>
-									<input type="image" src="images/epingleRouge.png" name="unlike" id="UnLike" value="UnLike">
-									<?php
-										}
-									?> Nombre de likes : <?php echo $numberlike ?> ! 
+					<form name = "like" id ="formLike" method="post" action ="">
+						<input type="hidden"  name="idphoto"  value="<?php echo $row2[0] ?>">
+						<?php
+							$photolike = mysql_query("SELECT * FROM MentionAime WHERE IDPhoto = '$row2[0]' AND IDUser = '$getid' "); 
+							$photolikenum = mysql_num_rows($photolike);
+							$like = mysql_query("SELECT * FROM MentionAime WHERE IDPhoto = '$row2[0]'");
+							$numberlike = mysql_num_rows($like);
+							if($photolikenum == 0){
+						?>
+						
+							<input type="image" src="images/epingle.png" name="like" id="imgLike" value="Like">
+						
+						<?php
+							}
+							else {
+						?>
+						
+							<input type="image" src="images/epingleRouge.png" name="unlike" id="imgUnlike" value="UnLike">
+						
+						<?php
+							}
+						?>
+						<span id="nbLikes">
+							<?php echo $numberlike ?>
+						</span>
 									
 					</form>
 				</div>
 
-				<br/>
+				
 
 				<div id="follow">
 						<form name ="follow" method="post" action ="">
-									<input type="hidden"  name="idprop"  value="<?php echo $row2[5] ?>">
-									<?php
-									$follow = mysql_query("SELECT * FROM RelationFollow WHERE IDSuiveur = '$getid' AND IDSuivi = '$row2[5]' "); 
-									$Follownum = mysql_num_rows($follow);
-									
-									if($Follownum == 0){
-									?><input type="submit" name="follow" id="Follow" value="Follow"><?php
-									}
-									else {
-									?><input type="submit" name="unfollow" id="unFollow" value="UnFollow"><?php
-									}
-									?>
+							<input type="hidden"  name="idprop"  value="<?php echo $row2[5] ?>">
+							<?php
+							$follow = mysql_query("SELECT * FROM RelationFollow WHERE IDSuiveur = '$getid' AND IDSuivi = '$row2[5]' "); 
+							$Follownum = mysql_num_rows($follow);
+							
+							if($Follownum == 0){
+							?><input type="image" src="images/follow.png" name="follow" id="imgFollow" value="Follow"><?php
+							}
+							else {
+							?><input type="submit" name="unfollow" id="unFollow" value="UnFollow"><?php
+							}
+							?>
 						</form>
 				</div>
+			</div>
+				
 
-				<br/>
+			<div id="caseCommentaire">
+				<?php 
+					$requetenombrecomm = mysql_query("SELECT * FROM Commentaires WHERE IDPhoto = '$row2[0]'");
+					$nombrecom = mysql_num_rows($requetenombrecomm);
+					?>
+					<div id="nbCom">
+						<?php echo $nombrecom ?> commentaires
+					</div>
+				
+				<form name ="comment" method="post" action ="">
+					<input type="hidden"  name="idphoto"  value="<?php echo $row2[0] ?>">
+					<input type="text" name="com" id="saisieCom" placeholder="Votre commentaire ...">
+				</form>
 
-				<div id="com">
+				<div id="commentaires">
 					<?php 
-						$requetenombrecomm = mysql_query("SELECT * FROM Commentaires WHERE IDPhoto = '$row2[0]'");
-						$nombrecom = mysql_num_rows($requetenombrecomm);
-						?>
-						Nbr coms : <?php echo $nombrecom ?> !
-					
-					<form name ="comment" method="post" action ="">
-						<input type="hidden"  name="idphoto"  value="<?php echo $row2[0] ?>">
-						<input type="text" name="com" id="Com" placeholder="Votre commentaire ...">
-					</form>
+						for($i =0; $i < $nombrecom; $i++){
+							$commentaire = mysql_fetch_row($requetenombrecomm);
+							$requetenomproprio = mysql_query("SELECT Login FROM Users WHERE ID = '$commentaire[1]'");
+							$rowProprio = mysql_fetch_row($requetenomproprio);
+							$proprio = $rowProprio[0];
+							?>
 
-						<table>
-						<?php 
-							for($i =0; $i < $nombrecom; $i++){
-								$commentaire = mysql_fetch_row($requetenombrecomm);
-								$requetenomproprio = mysql_query("SELECT Login FROM User WHERE ID = '$commentaire[1]'");
-								?>
-									<tr>
-										<td>	
-									<?php echo $commentaire[1] ?> :
-										<td/>
-										<td>
+							<div id="champCom">
+								<div id="pseudoCom">
+									<?php echo $proprio ?>
+								</div>
+
+								<div id="leCom">
 									<?php echo $commentaire[2] ?>
-										</td>
-									</tr>
-								<?php
-							}
-						?>
-						</table>
+								</div>
+							</div>
 
-					
+							<?php
+						}
+					?>
 				</div>
 			</div>
 		</div>
@@ -251,12 +262,10 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 }
 ?>
 
-	<div id="ajouterPhoto"> 
-				<a href="AddImage.php?id=<?php echo $getid ?>"><img  src="images/boutonplus.png" id="boutonplus" onclick="new_div()"> </a>
-	</div>
+	
 
 
-
+	<?php include('boutonPlus.php'); ?>
 	<?php include('footer.php'); ?>
 
 
