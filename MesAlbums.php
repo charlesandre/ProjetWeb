@@ -129,7 +129,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 						<?php
 						for($j=0; $j<$nombrealbums; $j++){
 							$monalbum = mysql_fetch_row($album);
-							$photosdelalbum = mysql_query("SELECT * FROM PhotosAlbums P WHERE IDAlbum = '$monalbum[1]'");
+							$photosdelalbum = mysql_query("SELECT * FROM PhotosAlbums WHERE IDAlbum = '$monalbum[0]'");
 							$nombrephotodansalbum = mysql_num_rows($photosdelalbum);
 
 							?>
@@ -218,13 +218,14 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 						}
 
 						if(isset($_POST['voiralbum'])){
-							$nomAlbumavoir = $_POST['voiralbum'];
-							$IDAlbum = $_POST['idalbum'];
-							$photos = mysql_query("SELECT * FROM PhotosAlbums WHERE IDAlbum = '$IDAlbum'");
+							$idAlbum = $_POST['idalbum'];
+							$photos = mysql_query("SELECT P.* FROM PhotosAlbums A, Photos P WHERE A.IDAlbum = '$idAlbum' AND A.IDPhoto = P.ID");
 							$nbrphotos = mysql_num_rows($photos);
+							?>
+							Nombre de photos a afficher : <?php echo $nbrphotos; 
 							for($k=0; $k<$nbrphotos;$k++){
 								$photo = mysql_fetch_row($photos);
-								$adresse = "Photos/".$row2[2];
+								$adresse = "Photos/".$photo[2];
 								?>
 
 									<div id="affichagePhoto">
