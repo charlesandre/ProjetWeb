@@ -721,6 +721,13 @@ td{
     font-size: 100%;
 }
 
+.tabprofil 
+{
+    text-align: center;
+    border-collapse: collapse;
+
+}
+
 footer
 {
     color:white;
