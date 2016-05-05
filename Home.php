@@ -42,7 +42,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 		}
 		
 		else if (!isset($_POST['caserecherche'])){
-			$result2 = mysql_query("SELECT P.* FROM Photos P, RelationFollow R WHERE P.Visibilite = 'Public' AND (R.IDSuiveur = '$getid' AND R.IDSuivi = P.Proprio) OR P.Proprio = '$getid' ORDER BY Daate DESC");
+			$result2 = mysql_query("SELECT DISTINCT P.* FROM Photos P, RelationFollow R WHERE P.Visibilite = 'Public' AND (R.IDSuiveur = '$getid' AND R.IDSuivi = P.Proprio) OR P.Proprio = '$getid' ORDER BY Daate DESC");
 			$num_rows2 = mysql_num_rows($result2);
 		}
 
