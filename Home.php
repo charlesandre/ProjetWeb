@@ -204,7 +204,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 							?><input type="image" src="images/follow.png" name="follow" id="imgFollow" value="Follow"><?php
 							}
 							else {
-							?><input type="submit" name="unfollow" id="unFollow" value="UnFollow"><?php
+							?><input type="image" src="images/unfollow.png" name="unfollow" id="imgUnfollow" value="UnFollow"><?php
 							}
 							?>
 						</form>

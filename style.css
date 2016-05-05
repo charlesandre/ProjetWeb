@@ -622,6 +622,11 @@ td{
     height: 50px;
 }
 
+#imgUnlike{
+    width: 50px;
+    height: 50px;
+}
+
 #nbLikes{
     font-family: 'Dancing Script';
     font-size: 3.5em;
@@ -635,6 +640,11 @@ td{
 }
 
 #imgFollow{
+    width: 50px;
+    height: 50px;
+}
+
+#imgUnfollow{
     width: 50px;
     height: 50px;
 }
