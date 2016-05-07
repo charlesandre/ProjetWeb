@@ -500,6 +500,22 @@ td{
     width: 100%;
 }
 
+#imageAlbum{
+    width: 170px;
+    height: 170px;
+    margin-left: 5%;
+    margin-top: 5%; 
+    display: flex;
+}
+
+#photoDossier{
+    width: 170px;
+    height: 170px;
+    margin-left: 2%;
+    margin-top: 4%; 
+    display: flex;
+}
+
 #maPhoto{
     width: 170px;
     height: 170px;
@@ -516,6 +532,60 @@ td{
     margin-left: -170px;
     opacity: 0;
     text-align: center;
+}
+
+#afficherInfos:hover{
+    opacity: 0.8;
+}
+
+#afficherInfosAlbum{
+    background-color: rgba(0, 0, 0, 0);
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    margin-top: 5%; 
+    margin-left: -170px;
+    text-align: center;
+    display: flex;
+}
+
+#formulaireAlbum{
+    opacity: 0;
+    font-family: 'Dancing Script';
+    font-size: 3em;
+    color: white;
+    margin: 0;
+    position: relative;
+}
+
+#formulaireAlbum:hover{
+    opacity: 1;
+}
+
+#fondVide{
+    width: 170px;
+    height: 170px;
+    
+}
+
+#nbPhotosAlbum{
+    position: absolute;
+    top: 35%;
+    left: 43%;
+    right: 43%;
+}
+
+
+
+#titreAlbum{
+    background-color: #34495e;
+    margin-top: 90%;
+    margin-left: -170px;
+    height: 30px;
+    width: 100%;
+    font-family: 'Dancing Script';
+    color: white;
+    position: absolute;
 }
 
 #epingleBlanche{

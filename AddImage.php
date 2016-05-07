@@ -109,7 +109,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 				Entrer le lieu
 			</div>
 			<div class="champAjout">
-				<input type="text" name="lieu" id="Lieu" required="required"/>
+				<input type="text" name="lieu" id="ajoutLieu" required="required"/>
 			</div>
 		</div>
 

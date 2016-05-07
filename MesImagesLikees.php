@@ -123,7 +123,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 								//CALCULER NOMBRE DE LIKES D'UNE PHOTO
 								$resultatLikePhoto = mysql_query("SELECT * FROM MentionAime WHERE IDPhoto = '$row2[0]'");
 								$nombreLikesPhoto = mysql_num_rows($resultatLikePhoto);
-								if($adressephoto != "Photos/"){
+								if($adressephotolikee != "Photos/" && $nbrphotoslikees > $j){
 								?>
 
 									<img id="maPhoto" class="lesPhotos" src ="<?php echo $adressephotolikee ?>" /> 
