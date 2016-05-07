@@ -128,8 +128,10 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 
 
 								//CALCULER NOMBRE DE LIKES D'UNE PHOTO
-								$resultatLikePhoto = mysql_query("SELECT * FROM MentionAime WHERE IDPhoto = '$row2[0]'");
+								$resultatLikePhoto = mysql_query("SELECT * FROM MentionAime WHERE IDPhoto = '$maphoto[0]'");
 								$nombreLikesPhoto = mysql_num_rows($resultatLikePhoto);
+								$resultatcommentairephoto = mysql_query("SELECT * FROM Commentaires WHERE IDPhoto = '$maphoto[0]'");
+								$nombrecommentairephoto = mysql_num_rows($resultatcommentairephoto);
 
 							$photosdelalbum = mysql_query("SELECT * FROM PhotosAlbums WHERE IDAlbum = '$monalbum[0]'");
 							$nombrephotodansalbum = mysql_num_rows($photosdelalbum);

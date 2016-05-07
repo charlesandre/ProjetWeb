@@ -121,8 +121,11 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 
 
 								//CALCULER NOMBRE DE LIKES D'UNE PHOTO
-								$resultatLikePhoto = mysql_query("SELECT * FROM MentionAime WHERE IDPhoto = '$row2[0]'");
+								$resultatLikePhoto = mysql_query("SELECT * FROM MentionAime WHERE IDPhoto = '$maphoto[0]'");
 								$nombreLikesPhoto = mysql_num_rows($resultatLikePhoto);
+								$resultatcommentairephoto = mysql_query("SELECT * FROM Commentaires WHERE IDPhoto = '$maphoto[0]'");
+								$nombrecommentairephoto = mysql_num_rows($resultatcommentairephoto);
+								
 								if($adressephotolikee != "Photos/" && $nbrphotoslikees > $j){
 								?>
 
@@ -131,7 +134,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 										<img id="epingleBlanche" src ="images/epingleBlanche.png" /> 
 										<span id="infosLike"> <?php echo $nombreLikesPhoto ?> </span>
 										<img id="imgCommentaires" src ="images/commentaires.png" /> 
-										<span id="infosLike"> 15 </span>
+										<span id="infosLike"> <?php echo $nombrecommentairephoto ?> </span>
 									</div>
 									<?php
 								}

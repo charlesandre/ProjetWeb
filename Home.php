@@ -41,8 +41,8 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 			$num_rows2 = mysql_num_rows($result2);
 		}
 		
-		else if (!isset($_POST['caserecherche'])){
-			$result2 = mysql_query("SELECT DISTINCT P.* FROM Photos P, RelationFollow R WHERE P.Visibilite = 'Public' AND (R.IDSuiveur = '$getid' AND R.IDSuivi = P.Proprio) OR P.Proprio = '$getid' ORDER BY Daate DESC");
+		else {
+			$result2 = mysql_query("SELECT DISTINCT P.* FROM Photos P, RelationFollow R WHERE P.Visibilite = 'Public' AND ((R.IDSuiveur = '$getid' AND R.IDSuivi = P.Proprio) OR P.Proprio = '$getid') ORDER BY Daate DESC");
 			$num_rows2 = mysql_num_rows($result2);
 		}
 
@@ -134,7 +134,9 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 	<div id="postPhoto">
 
 		<div id="affichagePhoto">
-			<img  id="laPhoto" src="<?php echo $adresse ?>"/>
+			<a  href="AffichageImage.php?id=<?php echo $row2[0] ?>" >
+				<img  id="laPhoto" src="<?php echo $adresse ?>"/>
+			</a>
 		</div>
 
 		<div id="legende">
@@ -199,6 +201,8 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 							<?php
 							$follow = mysql_query("SELECT * FROM RelationFollow WHERE IDSuiveur = '$getid' AND IDSuivi = '$row2[5]' "); 
 							$Follownum = mysql_num_rows($follow);
+							$numberfollower = mysql_query("SELECT FROM RelationFollow WHERE IDSuivi = '$row2[5]'");
+							$nbrfollower = mysql_num_rows($numberfollower);
 							
 							if($Follownum == 0){
 							?><input type="image" src="images/follow.png" name="follow" id="imgFollow" value="Follow"><?php
@@ -207,6 +211,9 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 							?><input type="image" src="images/unfollow.png" name="unfollow" id="imgUnfollow" value="UnFollow"><?php
 							}
 							?>
+								<span id="nbFollow">
+							<?php echo $nbrfollower ?>
+						</span>
 						</form>
 				</div>
 			</div>
