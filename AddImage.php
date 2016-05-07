@@ -84,7 +84,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 
 		Ajouter une photo
 		
-		<form method="POST" action="" enctype="multipart/form-data">
+		<form enctype="multipart/form-data" method="POST" action="">
 		
 		<div class="formAjout">
 			<div class="labelAjout">

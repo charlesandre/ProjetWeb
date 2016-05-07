@@ -418,16 +418,56 @@ td{
 
 #profil
 {
-    margin-top: 10%;
+    margin-top: 50px;
+}
+
+#carteProfil{
+    display: flex;
+    margin-top: 8%;
+    width: 100%;
+    justify-content: center;
+}
+
+#avatar{
+}
+
+#infosProfil{
+    margin-left: 3%;
+}
+
+#nomReglages{
+    display: flex;
 }
 
 #divImageReglages{
-    left:500px;
-    top:200px;
+    margin-left:30%;
+    margin: auto;
 }
+
+#imageReglages{
+    width: 30px;
+    height: 30px;
+}
+
+#nomProfil{
+    font-family: 'Dancing Script';
+    font-size: 2.5em;
+}
+
+#caseStats{
+    margin-top: 15%;
+    font-family: 'Roboto';
+    font-weight: 300;
+    font-style: italic;
+    font-size: 1.1em;
+    color:#AFAFAF;
+}
+
+
 
 #barreOngletsProfils{
     text-align: center;
+    margin-top: 3%;
 }
     
 
@@ -449,11 +489,53 @@ td{
 
 #galeriePhotosProfil{
     margin-top: 5%;
+    width: 100%;
+    margin-left: 5%;
+}
+
+#lignePhotos{
+    text-align: left;
+    display: flex;
+    position: relative;
+    width: 100%;
 }
 
 #maPhoto{
-    width: 100px;
-    height: 100px;
+    width: 170px;
+    height: 170px;
+    margin-left: 5%;
+    margin-top: 5%; 
+}
+
+#afficherInfos{
+    background-color: black;
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    margin-top: 5%; 
+    margin-left: -170px;
+    opacity: 0;
+    text-align: center;
+}
+
+#epingleBlanche{
+    opacity: 1;
+    width: 30px;
+    height: 30px;
+    margin-top: 40%;
+}
+
+#infosLike{
+    font-family: 'Roboto';
+    color: white;
+    font-size: 2.2em;
+}
+
+#imgCommentaires{
+    opacity: 1;
+    width: 25px;
+    height: 25px;
+    margin-top: 40%;
 }
 
 
@@ -461,9 +543,9 @@ td{
 {
     margin-left: auto;
     margin-right: auto;
-    margin-top:140px;
-    width:600px;
-    height:460px;
+    margin-top:8%;
+    width:40%;
+    height:75%;
     background-color: white;
     font-family: 'Dancing Script';
 }

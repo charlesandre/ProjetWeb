@@ -23,11 +23,30 @@
 			$pw1 = htmlspecialchars($_POST['pass']);
 			$pw2 = htmlspecialchars($_POST['pass2']);
 
+			if(!empty($_FILES))
+			{
+				// fonction présent dans le fichier imgClass
+				$img=$_FILES['avatar'];
+				//strtolower: Renvoie une chaîne en minuscules substr:           Retourne un segment de chaîne
+				$ext= strtolower(substr($img['name'],-3));
+				$allow_ext=array('jpg','png','gif');
+				if(in_array($ext,$allow_ext))
+				{
+					//Déplace un fichier téléchargé
+					move_uploaded_file($img['tmp_name'],"Avatars/".$img['name']); 
+					$avatar = $img['name'];
+				}
+			}
+			else
+			{
+				$erreur ="Votre fichier n'est pas une image"; 
+			}
+
 			if($pw1 == $pw2)
 			{
 
-				$result = mysql_query("INSERT INTO Users (Login, Email, Password)  
-             VALUES ('$login', '$email', '$pw1')");
+				$result = mysql_query("INSERT INTO Users (Login, Email, Password, Avatar)  
+             VALUES ('$login', '$email', '$pw1', '$avatar')");
 				if($result)
 				{
 					$result2 = mysql_query("SELECT ID FROM Users WHERE Login = '$login' AND Email = '$email'");
@@ -86,7 +105,7 @@
 				<div id="texteInscription">Inscription</div>
 
 				<div id="formInscription">
-					<form method="post" action ="" align ="center" id="formulaire">
+					<form enctype="multipart/form-data" method="post" action ="" align ="center" id="formulaire">
 
 					<div class="champInscription">
 						<label class="labelConnexion" for "login"> Pseudo </label>
@@ -107,6 +126,11 @@
 						<label class="labelConnexion" for "pass2"> Confirmer le mot de passe </label>
 						<input id ="pass2" type="password" name="pass2"  required="required" placeholder="Confirmer le mot de passe" class="caseConnexion"/>
 					</div>
+
+					<div class="champInscription">
+					<label class="labelConnexion" for "avatar"> Avatar </label>
+					<input id ="changerAvatar" type="file" name="avatar" required="required" class="caseConnexion"/>
+				</div>
 
 					<div id="validerInscription">
 						<input type = "submit" name="formregister" value="S'inscrire" id="boutonInscription"> </input> 

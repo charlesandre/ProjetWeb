@@ -78,3 +78,14 @@ popup.document.write('<h1>Ceci est un test</h1>');
 
 }
 
+
+document.getElementById("afficherInfos").onmouseover = function() {mouseOver()};
+document.getElementById("afficherInfos").onmouseout = function() {mouseOut()};
+
+function mouseOver() {
+    document.getElementById("afficherInfos").style.opacity = "0.8";
+}
+
+function mouseOut() {
+    document.getElementById("afficherInfos").style.opacity = "0";
+}

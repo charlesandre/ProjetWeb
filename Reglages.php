@@ -18,22 +18,43 @@ if (isset($_POST['formmodif']))
 	{
 		if(!empty($_POST['log']) AND !empty($_POST['email']) AND !empty($_POST['pass']) AND !empty($_POST['pass2']) AND !empty($_POST['pass3']))
 		{
+			
 			$loginform = htmlspecialchars($_POST['log']);
 			$emailform = htmlspecialchars($_POST['email']);
 			$pw1 = htmlspecialchars($_POST['pass']);
 			$pw2 = htmlspecialchars($_POST['pass2']);
 			$pw3 = htmlspecialchars($_POST['pass3']);
 
+			if(!empty($_FILES))
+			{
+				// fonction présent dans le fichier imgClass
+				$img=$_FILES['avatar'];
+				//strtolower: Renvoie une chaîne en minuscules substr:           Retourne un segment de chaîne
+				$ext= strtolower(substr($img['name'],-3));
+				$allow_ext=array('jpg','png','gif');
+				if(in_array($ext,$allow_ext))
+				{
+					//Déplace un fichier téléchargé
+					move_uploaded_file($img['tmp_name'],"Avatars/".$img['name']); 
+					$avatar = $img['name'];
+				}
+			}
+			else
+			{
+				$erreur ="Votre fichier n'est pas une image"; 
+			}
+		
+
 			if($pw2 == $pw3)
 			{
 				if($pw1 == $pw){
 
-				$result = mysql_query("UPDATE Users SET Login = '$loginform', Email = '$emailform', Password = '$pw3' WHERE ID = '$getid'");
-				if($result)
-				{
-					header('Location: Home.php?id=<?php echo $getid ?>');
-					
-				}
+				$result = mysql_query("UPDATE Users SET Login = '$loginform', Email = '$emailform', Password = '$pw3' , Avatar = $avatar WHERE ID = '$getid' ");
+					if($result)
+					{
+						header('Location: Home.php?id=<?php echo $getid ?>');
+						
+					}
 				}
 				else 
 				{
@@ -76,7 +97,12 @@ if (isset($_POST['formmodif']))
 			<div id="texteReglages">Modifier mes informations</div>
 
 			<div id="formReglages">
-				<form method="post" action ="" align ="center" id="formulaireReglages">
+				<form  method="post" action ="" align ="center" id="formulaireReglages">
+
+				<div class="champReglages">
+					<label class="labelConnexion" for "avatar"> Avatar </label>
+					<input id ="changerAvatar" type="file" name="avatar" required="required" class="caseReglages"/>
+				</div>
 
 				<div class="champReglages">
 					<label class="labelConnexion" for "login"> Pseudo </label>
