@@ -13,8 +13,9 @@ if(isset($_GET['id']) AND $_GET['id']>=0)
 	$getidphoto = intval($_GET['id']);
 	$maphoto = mysql_query("SELECT * FROM Photos WHERE ID = '$getidphoto' ");
 	$maphoto = mysql_fetch_row($maphoto);
-	$getid = $maphoto[5];
-
+	if(isset($_GET['idU'])){
+		$getid = $_GET['idU'];
+	}
 	$adresse = "Photos/".$maphoto[2];
 
 ?>
@@ -94,6 +95,24 @@ if(isset($_GET['id']) AND $_GET['id']>=0)
 					$contenu = $_POST['com'];
 					$result = mysql_query("INSERT INTO Commentaires (IDUser, Contenu, IDPhoto) VALUES ('$iduser', '$contenu', '$idphoto')");
 			}
+
+			if (isset($_POST['modificationvisi']))
+	{
+		
+			$idPhoto = $_POST['idphoto'];
+			$nouvellevisi = $_POST['visibilité']; 
+							
+			$result = mysql_query("UPDATE Photos SET Visibilite = '$nouvellevisi' WHERE ID = '$idPhoto'");
+
+	}
+
+	if (isset($_POST['supphoto']))
+	{
+		
+			$idPhoto = $_POST['idphoto'];
+			$result = mysql_query("DELETE FROM Photos WHERE ID = '$idPhoto' ");
+
+	}
 
 		?>
 
@@ -188,6 +207,41 @@ if(isset($_GET['id']) AND $_GET['id']>=0)
 					<input type="image" src="images/infos.png" name="infos" id="imageInfos">
 				</form>
 			</div>
+
+			<?php 
+					if($maphoto[5] == $getid) {
+						?>
+
+							<form method="post" action ="">
+							<input type="hidden"  name="idphoto"  value="<?php echo $row2[0] ?>">
+								<select name="visibilité">
+									<?php
+									$result3 = mysql_query("SELECT * FROM Photos WHERE ID = '$row2[0]'");
+									$row3 = mysql_fetch_row($result3);
+									if($row3[6] == 'Public'){
+									?><option value="Public">Public</option>
+									<option value="Privee">Privee</option><?php
+									}
+									else {
+										?><option value="Privee">Privee</option>
+										<option value="Public">Public</option><?php
+									}
+									?>
+								</select>
+							<input type="submit" name="modificationvisi" id="modificationvisi" value="Modifier">
+						</form>
+						<form method="post" action ="">
+							<input type="hidden"  name="idphoto"  value="<?php echo $row2[0] ?>">
+							<input type="submit" name="supphoto" id="supphoto" value="Supprimer la Photo">
+						</form>
+
+						<?php
+
+					}
+
+
+
+			?>
 				
 
 			<div id="caseCommentaire">
@@ -235,7 +289,7 @@ if(isset($_GET['id']) AND $_GET['id']>=0)
 					<a  href="MyAccount.php?id=<?php echo $getid ?>" >
 						<input type = "submit" name="formmodif" value="Retour" id="boutonReglages"> </input> 
 					</a>
-				</div>
+	</div>
 
 
 			 
