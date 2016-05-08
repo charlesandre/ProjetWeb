@@ -15,8 +15,6 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 	$row = mysql_fetch_row($result);
 	$login = $row[1];
 
-	$result2 = mysql_query("SELECT * FROM Photos WHERE  Proprio = '$getid'");
-	$num_rows2 = mysql_num_rows($result2);
 
 	$avatar = "Avatars/".$row[4];
 
@@ -35,8 +33,23 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 
 	<body>
 		
-		<?php include('header.php'); ?>
-
+		<header>
+	<p> 
+		<a  href="Home.php?id=<?php echo $getid ?>" >
+			<span id="logo"></span>
+		</a>
+		<div id="recherche"> 
+			<form method = "post" action = ""> 
+				<input type="text" name="caserecherche" id="caserecherche" placeholder="Rechercher"/> 
+			</form>
+		</div>
+		<div id="boutons"> 
+			<a class="onglet" href="MyAccount.php?id=<?php echo $getid ?>"><?php echo $login ?></a> 
+		   	<a class="onglet" href="Notifications.html">Notifications</a> 
+		   	<a class="onglet" href = "Connexion.php"> Déconnexion </a>
+		</div> 
+	</p>
+</header>
 		<div id="profil">
 
 			<div id="carteProfil">

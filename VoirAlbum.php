@@ -14,6 +14,8 @@ if(isset($_GET['id']) AND $_GET['id']>=0)
 	$result = mysql_query("SELECT * FROM Albums WHERE ID = '$getidalbum'");
 	$row = mysql_fetch_row($result);
 	$getid = $row[2];
+	$nomalbum = $row[1];
+
 
 	$result2 = mysql_query("SELECT P.* FROM Photos P, PhotosAlbums A WHERE P.ID = A.IDPhoto AND A.IDAlbum = '$getidalbum'");
 	$num_rows2 = mysql_num_rows($result2);
@@ -32,6 +34,27 @@ if(isset($_GET['id']) AND $_GET['id']>=0)
 	</head>
 
 	<body>
+
+		<header>
+	<p> 
+		<a  href="Home.php?id=<?php echo $getid ?>" >
+			<span id="logo"></span>
+		</a>
+		<div id="recherche"> 
+			<form method = "post" action = ""> 
+				<input type="text" name="caserecherche" id="caserecherche" placeholder="Rechercher"/> 
+			</form>
+		</div>
+		<div id="boutons"> 
+			<a class="onglet" href="MyAccount.php?id=<?php echo $getid ?>"><?php echo $login ?></a> 
+		   	<a class="onglet" href="Notifications.html">Notifications</a> 
+		   	<a class="onglet" href = "Connexion.php"> Déconnexion </a>
+		</div> 
+	</p>
+</header>
+
+		<h1> <?php echo $nomalbum ?> </h1>
+
 		<h1> <?php if($nombrephotodansalbum > 1){ ?>
 		     			Il y a <?php echo $nombrephotodansalbum ?> photos dans l'album 
 		     <?php }
@@ -39,8 +62,9 @@ if(isset($_GET['id']) AND $_GET['id']>=0)
 		     				Il y a <?php echo $nombrephotodansalbum ?> photo dans votre album
 		     <?php }?>
 		</h1>
+
 	
-	<?php include('header.php'); 
+	<?php 
 
 		for($j=$num_rows2; $j>0; $j--){
 			$row2 = mysql_fetch_row($result2);
@@ -191,7 +215,7 @@ if(isset($_GET['id']) AND $_GET['id']>=0)
 
 
 	 <div id="ajouterPhoto"> 
-		<a href="ReglagesAlbum.php?id=<?php echo $getid ?>"><img  src="images/boutonReglages.png" id="boutonplus"> </a>
+		<a href="ReglagesAlbum.php?id=<?php echo $getidalbum ?>"><img  src="images/boutonReglages.png" id="boutonplus"> </a>
 	</div>
 
 	 <?php include('footer.php'); ?>
