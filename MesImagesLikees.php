@@ -18,7 +18,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title>Formulaire</title>
+		<title>Photos accrochées</title>
 		<link rel="stylesheet" href="style.css" />
 		<link href='http://fonts.googleapis.com/css?family=Dancing+Script:700' rel='stylesheet' type='text/css'>
 		
@@ -128,10 +128,10 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 								
 								if($adressephotolikee != "Photos/" && $nbrphotoslikees > $j){
 								?>
-									<a  class="lienMaPhoto"  href="AffichageImage.php?id=<?php echo $adressephotolikee ?>" >
+									<a  class="lienMaPhoto"  href="AffichageImage.php?id=<?php echo $maphotolikee[0] ?>" >
 										<img id="maPhoto" class="lesPhotos" src ="<?php echo $adressephotolikee ?>" />
 									</a>
-									<a  href="AfficherImage.php?id=<?php echo $row2[0] ?>&idU=<?php echo $getid ?>" > 
+									<a  href="AfficherImage.php?id=<?php echo $maphotolikee[0] ?>&idU=<?php echo $getid ?>" > 
 									<div id="afficherInfos" class="affichageInfos">
 										<img id="epingleBlanche" src ="images/epingleBlanche.png" /> 
 										<span id="infosLike"> <?php echo $nombreLikesPhoto ?> </span>

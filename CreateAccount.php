@@ -78,7 +78,7 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title>Index</title>
+		<title>Inscription</title>
 		<link rel="stylesheet" href="style.css" />
 		<link href='http://fonts.googleapis.com/css?family=Dancing+Script:700' rel='stylesheet' type='text/css'>
 		
