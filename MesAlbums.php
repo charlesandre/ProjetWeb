@@ -221,7 +221,31 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 			<input id = "boutonplus" type = "image" src = "images/boutonplus.png" name ="ajoutalbum" value = "Creer un album"> 
 		</form>
 	</div>
-		
+
+	<?php 
+				if(isset($_POST['ajoutalbum'])){
+
+					?>
+					<form method = "post" action = "">
+						<input type ="text" name = "nomnouveaualbum" placeholder = "Nom du nouvel album ...">
+						<input type = "submit" name ="nouveaualbum" value = "Creer cet album">
+					</form>
+					<?php
+					}
+
+				if (isset($_POST['nouveaualbum'])){
+
+					$nom = $_POST['nomnouveaualbum'];
+					$prop = $getid;
+
+					$requete = mysql_query("INSERT INTO Albums (Nom, IDProprio) VALUES ('$nom', '$prop')");
+
+
+				}
+
+
+
+	?>		
 
 
 		<?php include('footer.php'); ?>
