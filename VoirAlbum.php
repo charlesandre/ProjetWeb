@@ -8,14 +8,14 @@ $db_selected = mysql_select_db('bdd', $bdd);
 
 	
 
-if(isset($_GET['id']) AND $_GET['id']>0)
+if(isset($_GET['id']) AND $_GET['id']>=0)
 {
-	$getid = intval($_GET['id']);
-	$result = mysql_query("SELECT * FROM Users WHERE ID = '$getid'");
+	$getidalbum = intval($_GET['id']);
+	$result = mysql_query("SELECT * FROM Albums WHERE ID = '$getidalbum'");
 	$row = mysql_fetch_row($result);
-	$login = $row[1];
+	$getid = $row[2];
 
-	$result2 = mysql_query("SELECT * FROM Photos");
+	$result2 = mysql_query("SELECT P.* FROM Photos P, PhotosAlbums A WHERE P.ID = A.IDPhoto AND A.IDAlbum = '$getidalbum'");
 	$num_rows2 = mysql_num_rows($result2);
 
 ?>
@@ -29,55 +29,41 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 	</head>
 
 	<body>
+<h1> Il y a <?php echo $getid ?> Photos dans votre album </h1>
 	
+	<?php include('header.php'); 
 
-	<?php include('header.php'); ?>
-
-<div id="lignePhotos">
-							<?php 
-							for($j=0; $j<5; $j++){
-								$maphoto = mysql_fetch_row($mesphotos);
-								$maphotolikee = mysql_fetch_row($mesphotoslikees);
-								$monalbum = mysql_fetch_row($mesalbums);
-								$adressephoto = "Photos/".$maphoto[2];
-								$adressephotolikee = "Photos/".$maphotolikee[2];
+		for($j=$num_rows2; $j>0; $j--){
+	$row2 = mysql_fetch_row($result2);
+	$adresse = "Photos/".$row2[2];
 
 
+	?>	
 
-								//CALCULER NOMBRE DE LIKES D'UNE PHOTO
-								$resultatLikePhoto = mysql_query("SELECT * FROM MentionAime WHERE IDPhoto = '$maphoto[0]'");
-								$nombreLikesPhoto = mysql_num_rows($resultatLikePhoto);
-								$resultatcommentairephoto = mysql_query("SELECT * FROM Commentaires WHERE IDPhoto = '$maphoto[0]'");
-								$nombrecommentairephoto = mysql_num_rows($resultatcommentairephoto);
+		
+		
 
-							$photosdelalbum = mysql_query("SELECT * FROM PhotosAlbums WHERE IDAlbum = '$monalbum[0]'");
-							$nombrephotodansalbum = mysql_num_rows($photosdelalbum);
-								if($nombredemesalbums > $j){
-								?>
-								<div id="imageAlbum">
-										<img id ="photoDossier" src ="images/album.png"> 
-								</div>
-								<div id="afficherInfosAlbum" class="affichageInfos">
-									<form method = "post" id="formulaireAlbum" action = "">
-										<span id="nbPhotosAlbum"><?php echo $nombrephotodansalbum ?> </span>
-										<input type = "hidden" name ="idalbum" value = "<?php echo $monalbum[0]?>">
-										<input type = "image" id ="fondVide" src ="images/fondVide.png"name = "voiralbum" value = "Voir les photos"> 
-									</form>
-									<div id="titreAlbum">
-										<?php echo $monalbum[1] ?>
-									</div>
-								</div>
-									
-									<?php
-								}
-							}
-							?>
-					</div>
-	
+	<div id="postPhoto">
+
+		<div id="affichagePhoto">
+			<img  id="laPhoto" src="<?php echo $adresse ?>"/>
+		</div>
+
+		
+	</div>
+		
+		
 
 
-	<?php include('boutonPlus.php'); ?>
-	<?php include('footer.php'); ?>
+			
+<?php 
+
+}
+
+
+
+	 include('boutonPlus.php'); 
+	 include('footer.php'); ?>
 
 
 	<script type="text/javascript" src="script.js"> </script>

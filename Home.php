@@ -134,9 +134,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 	<div id="postPhoto">
 
 		<div id="affichagePhoto">
-			<a  href="AffichageImage.php?id=<?php echo $row2[0] ?>" >
-				<img  id="laPhoto" src="<?php echo $adresse ?>"/>
-			</a>
+			<img  id="laPhoto" src="<?php echo $adresse ?>"/>
 		</div>
 
 		<div id="legende">

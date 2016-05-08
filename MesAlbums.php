@@ -144,7 +144,9 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 									<form method = "post" id="formulaireAlbum" action = "">
 										<span id="nbPhotosAlbum"><?php echo $nombrephotodansalbum ?> </span>
 										<input type = "hidden" name ="idalbum" value = "<?php echo $monalbum[0]?>">
-										<input type = "image" id ="fondVide" src ="images/fondVide.png"name = "voiralbum" value = "Voir les photos"> 
+										<a  href = "VoirAlbum.php?id=<? echo $monalbum[0] ?>">
+											<img type = "image" id ="fondVide" src ="images/fondVide.png"name = "voiralbum" value = "Voir les photos"> 
+										</a>
 									</form>
 									<div id="titreAlbum">
 										<?php echo $monalbum[1] ?>

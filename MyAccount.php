@@ -128,8 +128,10 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 								$nombrecommentairephoto = mysql_num_rows($resultatcommentairephoto);
 								if($adressephoto != "Photos/" && $nombrephotos > $j){
 								?>
-								
-									<img id="maPhoto" class="lesPhotos" src ="<?php echo $adressephoto ?>" href="Home.php"/> 
+									<a  id="maPhoto" class="lesPhotos" href="AffichageImage.php?id=<?php echo $maphoto[0] ?>" >
+										<img id="maPhoto" class="lesPhotos" src ="<?php echo $adressephoto ?>" href="Home.php"/> 
+									</a>
+									<a  href="AffichageImage.php?id=<?php echo $row2[0] ?>" >
 									<div id="afficherInfos" class="affichageInfos">
 										<img id="epingleBlanche" src ="images/epingleBlanche.png" /> 
 										<span id="infosLike"> <?php echo $nombreLikesPhoto ?> </span>
@@ -147,7 +149,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 
 
 
-					
+
 						<!--</td>
 						<td>
 							<!--<?php 
