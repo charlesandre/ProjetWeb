@@ -43,61 +43,72 @@ if(isset($_GET['id']) AND $_GET['id']>=0)
 			<div id="formReglages">
 				<form  method="post" action ="" align ="center" id="formulaireReglages">
 
-				<div class="champReglages">
+				<div class="champReglagesAlbum">
 					<label class="labelConnexion" for "avatar"> Changer le nom de l'album </label>
-					<!--<input id ="changerAvatar" type="file" name="avatar" required="required" class="caseReglages"/>-->
+					<input id ="nouveauNom" type="text" name="nouveaunomalbum"  placeholder="Nouveau nom" class="caseReglages" />	
+					<input type = "submit" name = "ajoutnouvellephoto" value = "Valider">
 				</div>
 
-				<div class="champReglages">
+				<div class="champReglagesAlbum">
 					<label class="labelConnexion" for "login"> Ajouter une photo </label>
-					<input type = "hidden" name ="idalbum" value = "<?php echo $monalbum[0]?>">
-											<?php
-												
-													$idalbum = $getid;
-													if($idalbum == $monalbum[0]){
-														$mesphotos = mysql_query("SELECT * FROM Photos WHERE Proprio = '$getid'");
-														$nbrmesphotos = mysql_num_rows($mesphotos);
-														?> <select name ="choixnouvellephoto"> <?php
-														for($k=0;$k<$nbrmesphotos;$k++){
-															$maphoto = mysql_fetch_row($mesphotos);
-															?>
-															<option value = "<?php echo $maphoto[0] ?>"><?php echo $maphoto[1] ?> </option>
-															<?php
+						<?php
+							
+								$idalbum = $_POST['idalbum'];
+								$mesphotos = mysql_query("SELECT * FROM PhotosAlbums WHERE IDAlbum = '$getid'");
+								$nbrmesphotos = mysql_num_rows($mesphotos);
+								?> <select name ="choixnouvellephoto"> <?php
+								for($k=0;$k<$nbrmesphotos;$k++){
+									$maphoto = mysql_fetch_row($mesphotos);
+									?>
+									<option value = "<?php echo $maphoto[0] ?>"><?php echo $maphoto[1] ?> </option>
+									<?php
 
-													}
-												
+							}
+						
 
-													?> 
-														</select>
-													<input type = "submit" name = "ajoutnouvellephoto" value = "ajouter cette photo">
-													<?php
+							?> 
+								</select>
+							<input type = "submit" name = "ajoutnouvellephoto" value = "Supprimer cette photo">
+							<?php
 
-												}
-											?>
+						
+					?>			
 				</div>
 
-				<div class="champReglages">
-					<label class="labelConnexion" for "email"> Supprimer l'album</label>
-					<input id ="email" type="TEXT" name="email"  required="required" placeholder="<?php echo $email; ?>" class="caseReglages" />				
+				<div class="champReglagesAlbum">
+					<label class="labelConnexion" for "email"> Supprimer une photo</label>
+						<?php
+							
+								$idalbum = $_POST['idalbum'];
+								$mesphotos = mysql_query("SELECT * FROM PhotosAlbums WHERE IDAlbum = '$getid'");
+								$nbrmesphotos = mysql_num_rows($mesphotos);
+								?> <select name ="choixnouvellephoto"> <?php
+								for($k=0;$k<$nbrmesphotos;$k++){
+									$maphoto = mysql_fetch_row($mesphotos);
+									?>
+									<option value = "<?php echo $maphoto[0] ?>"><?php echo $maphoto[1] ?> </option>
+									<?php
+
+							}
+						
+
+							?> 
+								</select>
+							<input type = "submit" name = "ajoutnouvellephoto" value = "Supprimer cette photo">
+							<?php
+
+						
+					?>				
 				</div>
 
-				<div class="champReglages">
-					<label class="labelConnexion" for "pass"> Ancien mot de passe </label>
+				<div class="champReglagesAlbum">
+					<label class="labelConnexion" for "pass"> Supprimer l'album </label>
 					<input id ="pass" type="password" name="pass"  required="required" placeholder="Ancien mot de passe" class="caseReglages"/>
 				</div>
 
-				<div class="champReglages">
-					<label class="labelConnexion" for "pass2"> Nouveau mot de passe </label>
-					<input id ="pass" type="password" name="pass2"  required="required" placeholder="Nouveau mot de passe" class="caseReglages"/>
-				</div>
-
-				<div class="champReglages">
-					<label class="labelConnexion" for "pass3"> Confirmer le nouveau mot de passe </label>
-					<input id ="pass2" type="password" name="pass3"  required="required" placeholder="Nouveau mot de passe" class="caseReglages"/>
-				</div>
 
 				<div id="submitReglages">
-					<input type = "submit" name="formmodif" value="Sauvegarder" id="boutonReglages"> </input> 
+					<input type = "submit" name="formmodif" value="Retour" id="boutonReglages"> </input> 
 				</div>
 						
 						<?php
