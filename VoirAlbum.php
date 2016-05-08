@@ -32,19 +32,19 @@ if(isset($_GET['id']) AND $_GET['id']>=0)
 	</head>
 
 	<body>
-<h1> <?php if($nombrephotodansalbum > 1){ ?>
-     			Il y a <?php echo $nombrephotodansalbum ?> photos dans l'album 
-     <?php }
-     		else{  ?>
-     				Il y a <?php echo $nombrephotodansalbum ?> photo dans votre album
-     <?php }?>
-</h1>
+		<h1> <?php if($nombrephotodansalbum > 1){ ?>
+		     			Il y a <?php echo $nombrephotodansalbum ?> photos dans l'album 
+		     <?php }
+		     		else{  ?>
+		     				Il y a <?php echo $nombrephotodansalbum ?> photo dans votre album
+		     <?php }?>
+		</h1>
 	
 	<?php include('header.php'); 
 
 		for($j=$num_rows2; $j>0; $j--){
-	$row2 = mysql_fetch_row($result2);
-	$adresse = "Photos/".$row2[2];
+			$row2 = mysql_fetch_row($result2);
+			$adresse = "Photos/".$row2[2];
 
 
 	?>	
@@ -186,11 +186,15 @@ if(isset($_GET['id']) AND $_GET['id']>=0)
 <?php 
 
 }
+?>
 
 
 
-	 include('boutonPlus.php'); 
-	 include('footer.php'); ?>
+	 <div id="ajouterPhoto"> 
+		<a href="ReglagesAlbum.php?id=<?php echo $getid ?>"><img  src="images/boutonReglages.png" id="boutonplus"> </a>
+	</div>
+
+	 <?php include('footer.php'); ?>
 
 
 	<script type="text/javascript" src="script.js"> </script>
