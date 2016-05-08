@@ -74,7 +74,7 @@ if(isset($_GET['id']) AND $_GET['id']>=0)
 							<?php
 								
 									$idalbum = $_POST['idalbum'];
-									$mesphotos = mysql_query("SELECT P.* FROM Photos P, PhotosAlbums A WHERE A.IDAlbum = '$getidalbum' AND A.IDPhoto != P.ID");
+									$mesphotos = mysql_query("SELECT DISTINCT P.* FROM Photos P, PhotosAlbums A WHERE A.IDAlbum = '$getidalbum' AND A.IDPhoto != P.ID");
 									$nbrmesphotos = mysql_num_rows($mesphotos);
 									?> <select name ="choixnouvellephoto"> <?php
 									
@@ -129,7 +129,9 @@ if(isset($_GET['id']) AND $_GET['id']>=0)
 
 t
 				<div id="submitReglages">
-					<input type = "submit" name="formmodif" value="Retour" id="boutonReglages"> </input> 
+					<a  href="VoirAlbum.php?id=<?php echo $getidalbum ?>" >
+						<input type = "submit" name="formmodif" value="Retour" id="boutonReglages"> </input> 
+					</a>
 				</div>
 						
 						<?php
@@ -141,6 +143,9 @@ t
 
 					$ajout = mysql_query("INSERT INTO PhotosAlbums (IDPhoto, IDAlbum) VALUES ('$idphoto', '$getidalbum')");
 
+					header('Location: ReglagesAlbum.php?id='.$getidalbum);
+
+
 
 				}
 
@@ -149,6 +154,9 @@ t
 					$idphoto = $_POST['choixnouvellephoto'];
 
 					$ajout = mysql_query("DELETE FROM PhotosAlbums WHERE IDPhoto = '$idphoto'");
+
+					header('Location: ReglagesAlbum.php?id='.$getidalbum);
+
 
 
 				}
@@ -161,6 +169,8 @@ t
 					if($motdepasse == $mdp){
 
 					$supprimer = mysql_query("DELETE FROM Albums WHERE ID = '$getidalbum'");
+					header('Location: ReglagesAlbum.php?id='.$getidalbum);
+
 
 
 				}
@@ -177,10 +187,13 @@ t
 							
 							$requete = mysql_query("UPDATE Albums SET Nom = '$nomalbum' WHERE ID = '$getidalbum'");
 
+							header('Location: ReglagesAlbum.php?id='.$getidalbum);
+
 							
 
 
 						}
+
 
 
 					if(isset($erreur))

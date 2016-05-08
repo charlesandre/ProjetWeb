@@ -231,6 +231,11 @@ if(isset($_GET['id']) AND $_GET['id']>=0)
 		</div>
 	</div>
 		
+	<div id="submitReglages">
+					<a  href="MyAccount.php?id=<?php echo $getid ?>" >
+						<input type = "submit" name="formmodif" value="Retour" id="boutonReglages"> </input> 
+					</a>
+				</div>
 
 
 			 

@@ -226,9 +226,9 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 			</div>
 
 			<div id="infosSup">
-				<form name "formInfos" id="formInfos" method="post" action ="">
+				<a  href="exif.php?id=<?php echo $getid ?>&idp=<?php echo $row2[0] ?>" >
 					<input type="image" src="images/infos.png" name="infos" id="imageInfos">
-				</form>
+				</a>
 			</div>
 				
 
