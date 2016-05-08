@@ -25,7 +25,6 @@
 		</div>
 		<div id="boutons"> 
 			<a class="onglet" href="MyAccount.php?id=<?php echo $getid ?>"><?php echo $login ?></a> 
-		   	<a class="onglet" href="Notifications.html">Notifications</a> 
 		   	<a class="onglet" href = "Connexion.php"> Déconnexion </a>
 		</div> 
 	</p>

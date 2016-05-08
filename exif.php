@@ -10,17 +10,20 @@ $db_selected = mysql_select_db('bdd', $bdd);
 
 if(isset($_GET['id']) AND $_GET['id']>0)
 {
-		$getidphoto = intval($_GET['idp']);
+	$getidphoto = intval($_GET['idp']);
 
 	$getid = intval($_GET['id']);
+
+	$result = mysql_query("SELECT * FROM Photos WHERE ID = '$getidphoto'");
+	$row = mysql_fetch_row($result);
+	$legende = $row[1];
 
 
 ?>
 
-<!DOCTYPE html>
 <html>
 
-		<head>
+	<head>
 		<meta charset="utf-8" />
 		<title>Index</title>
 		<link rel="stylesheet" href="style.css" />
@@ -32,7 +35,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 
 	<body>
 		<div>
-			<h1> Bonjour user : <?php echo $getid ?>  Photo : <?php echo $getidphoto ?> </h1>
+			<h1> Photo : <span id='legendeExif'> <?php echo $legende  ?> </span></h1>
 			<?php
 			$photos = mysql_query("SELECT * FROM Photos WHERE ID = '$getidphoto'");
 			$maphoto = mysql_fetch_row($photos);
@@ -40,22 +43,33 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 
 			$exif = exif_read_data($adresse, 0, true);
 
-			foreach ($exif as $key => $section) 
-						{
-							foreach ($section as $name => $val) 
-							{
-								echo "$key.$name: $val<br />\n";
-							}
-						}
-
 			?>
+
+			<div id="conteneurExif">
+
+				<div id="caseExif">
+
+					<?php
+
+					foreach ($exif as $key => $section) 
+								{
+									foreach ($section as $name => $val) 
+									{
+										echo "$key.$name: $val<br />\n";
+									}
+								}
+
+					?>
+
+				</div>
+			</div>
 		</div>
 
-			<div id="submitReglages">
-					<a  href="Home.php?id=<?php echo $getid ?>" >
-						<input type = "submit" name="formmodif" value="Retour" id="boutonReglages"> </input> 
-					</a>
-				</div>
+		<div id="submitReglages">
+			<a  href="Home.php?id=<?php echo $getid ?>" >
+				<input type = "submit" name="formmodif" value="Retour" id="boutonReglages"> </input> 
+			</a>
+		</div>
 
 
 		

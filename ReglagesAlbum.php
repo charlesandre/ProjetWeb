@@ -36,7 +36,7 @@ if(isset($_GET['id']) AND $_GET['id']>=0)
 		
 <header>
 	<p> 
-		<a  href="Home.php?id=<?php echo $getid ?>" >
+		<a  href="Home.php?id=<?php echo $login ?>" >
 			<span id="logo"></span>
 		</a>
 		<div id="recherche"> 
@@ -46,7 +46,6 @@ if(isset($_GET['id']) AND $_GET['id']>=0)
 		</div>
 		<div id="boutons"> 
 			<a class="onglet" href="MyAccount.php?id=<?php echo $getid ?>"><?php echo $login ?></a> 
-		   	<a class="onglet" href="Notifications.html">Notifications</a> 
 		   	<a class="onglet" href = "Connexion.php"> Déconnexion </a>
 		</div> 
 	</p>
@@ -54,7 +53,7 @@ if(isset($_GET['id']) AND $_GET['id']>=0)
 	
 
 
-	<div id="reglages">
+	<div id="reglagesAlbum">
 			
 			<div id="texteReglages">Modifier mon album</div>
 
@@ -68,41 +67,43 @@ if(isset($_GET['id']) AND $_GET['id']>=0)
 				</form>
 
 					<!-- AJOUTER PHOTO -->
-				<div class="champReglagesAlbum">
-					<form  method="post" action ="" align ="center">
-						<label class="labelConnexion" for "login"> Ajouter une photo </label>
-							<?php
-								
-									$idalbum = $_POST['idalbum'];
-									$mesphotos = mysql_query("SELECT DISTINCT P.* FROM Photos P, PhotosAlbums A WHERE A.IDAlbum = '$getidalbum' AND A.IDPhoto != P.ID");
-									$nbrmesphotos = mysql_num_rows($mesphotos);
-									?> <select name ="choixnouvellephoto"> <?php
+				<form  method="post" action ="" align ="center">
+					<div class="champReglagesAlbum">
+						
+							<label class="labelConnexion" for "login"> Ajouter une photo </label>
+								<?php
 									
-									for($k=0;$k<$nbrmesphotos;$k++){
-										$maphoto = mysql_fetch_row($mesphotos);
-										?>
-										<option value = "<?php echo $maphoto[0] ?>"><?php echo $maphoto[1] ?> </option>
-										<?php
+										$idalbum = $_POST['idalbum'];
+										$mesphotos = mysql_query("SELECT DISTINCT P.* FROM Photos P, PhotosAlbums A WHERE A.IDAlbum = '$getidalbum' AND A.IDPhoto != P.ID");
+										$nbrmesphotos = mysql_num_rows($mesphotos);
+										?> <select class="selectReglages" name ="choixnouvellephoto"> <?php
+										
+										for($k=0;$k<$nbrmesphotos;$k++){
+											$maphoto = mysql_fetch_row($mesphotos);
+											?>
+											<option value = "<?php echo $maphoto[0] ?>"><?php echo $maphoto[1] ?> </option>
+											<?php
 
-								}
-							
+									}
+								
 
-								?> 
-									</select>
-								<input type = "submit" name = "ajoutnouvellephoto" value = "Ajouter cette photo">
-					</form>	
-				</div>
+									?> 
+										</select>
+									<input type = "submit" class="submitModifAlbum" name = "ajoutnouvellephoto" value = "Ajouter cette photo">
+						
+					</div>
+				</form>	
 
 				<!-- SUPPRIMER PHOTO -->
-				<div class="champReglagesAlbum">
-					<form  method="post" action ="" align ="center">
+				<form  method="post" action ="" align ="center">
+					<div class="champReglagesAlbum">
 						<label class="labelConnexion" for "email"> Supprimer une photo</label>
 							<?php
 								
 									$idalbum = $_POST['idalbum'];
 									$mesphotos = mysql_query("SELECT P.* FROM Photos P, PhotosAlbums A WHERE A.IDAlbum = '$getidalbum' AND A.IDPhoto = P.ID");
 									$nbrmesphotos = mysql_num_rows($mesphotos);
-									?> <select name ="choixnouvellephoto"> <?php
+									?> <select class="selectReglages" name ="choixnouvellephoto"> <?php
 									for($k=0;$k<$nbrmesphotos;$k++){
 										$maphoto = mysql_fetch_row($mesphotos);
 										?>
@@ -114,20 +115,20 @@ if(isset($_GET['id']) AND $_GET['id']>=0)
 
 								?> 
 									</select>
-								<input type = "submit" name = "suppphoto" value = "Supprimer cette photo">
-						</form>
-						
-				</div>
+								<input type = "submit" name = "suppphoto" class="submitModifAlbum" value = "Supprimer cette photo">
+					</div>
+				</form>
 					
 					<!-- SUPPRIMER ALBUM -->
-				<div class="champReglagesAlbum">
-					<form  method="post" action ="" align ="center">
-						<label class="labelConnexion" for "pass"> Supprimer l'album </label>
-						<input id ="pass" type="password" name="pass"  required="required" placeholder="Mot de passe" class="caseReglages"/>
-					</form>
-				</div>
+				<form  method="post" action ="" align ="center">
+					<div class="champReglagesAlbum">
+						
+							<label class="labelConnexion" for "pass"> Supprimer l'album </label>
+							<input id ="pass" type="password" name="pass"  required="required" placeholder="Mot de passe" class="caseReglages"/>
+					</div>
+				</form>
 
-t
+
 				<div id="submitReglages">
 					<a  href="VoirAlbum.php?id=<?php echo $getidalbum ?>" >
 						<input type = "submit" name="formmodif" value="Retour" id="boutonReglages"> </input> 
@@ -211,79 +212,6 @@ t
 
 	</div>	
  		
-<!--
-	<div id ="reglages">
-				<form method="post" action ="" align ="center">
-				<p id="texteReglages">Modifier mes informations</p>
-				<table>
-					<tr>
-						<td class="champReglages">
-							<label for "login"> Pseudo : </label>
-						</td>
-						<td>
-							<input id ="login" type="text" name="log" required="required" placeholder="<?php echo $login; ?>" class="caseConnexion"/>
-						</td>
-					</tr>
-					<tr>
-						<td class="champReglages">
-							<label for "email"> E-mail : </label>
-						</td>
-						<td>
-							<input id ="email" type="TEXT" name="email"  required="required" placeholder="<?php echo $email; ?>" class="caseConnexion" />
-						</td>
-					</tr>
-					<tr>
-						<td class="champReglages">
-							<label for "pass">Ancien mot de passe </label>
-						</td>
-						<td>
-							<input id ="pass" type="password" name="pass"  required="required" placeholder="Ancien mot de passe" class="caseConnexion"/>
-						</td>
-					</tr>
-
-					<tr>
-						<td class="champReglages">
-							<label for "pass">Nouveau mot de passe </label>
-						</td>
-						<td>
-							<input id ="pass" type="password" name="pass2"  required="required" placeholder="Nouveau mot de passe" class="caseConnexion"/>
-						</td>
-					</tr>
-					<tr>
-						<td class="champReglages">
-							<label for "pass2"> Confirmer le nouveau mot de passe </label>
-						</td>
-						<td>
-							<input id ="pass2" type="password" name="pass3"  required="required" placeholder="Nouveau mot de passe" class="caseConnexion"/>
-						</td>
-					</tr>
-					<tr>
-						<td id="tdReglages" colspan="2">
-							<input type = "submit" name="formmodif" value="Sauvegarder" id="boutonReglages"> </input> 
-						</td>
-					</tr>
-
-				</table>
-
-
-					
-
-			
-
-			<?php
-			//if(isset($erreur))
-			{
-				//echo "<p id='erreurReglages'>".$erreur. "</p>";
-			}
-			?>
-
-					
-			</form>
-
-
-	</div>
-
-	-->
 
 	</body>
 

@@ -33,23 +33,8 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 
 	<body>
 		
-		<header>
-	<p> 
-		<a  href="Home.php?id=<?php echo $getid ?>" >
-			<span id="logo"></span>
-		</a>
-		<div id="recherche"> 
-			<form method = "post" action = ""> 
-				<input type="text" name="caserecherche" id="caserecherche" placeholder="Rechercher"/> 
-			</form>
-		</div>
-		<div id="boutons"> 
-			<a class="onglet" href="MyAccount.php?id=<?php echo $getid ?>"><?php echo $login ?></a> 
-		   	<a class="onglet" href="Notifications.html">Notifications</a> 
-		   	<a class="onglet" href = "Connexion.php"> Déconnexion </a>
-		</div> 
-	</p>
-</header>
+				<?php include('header.php'); ?>
+
 		<div id="profil">
 
 			<div id="carteProfil">
@@ -105,6 +90,36 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 				<a class="boutonProfil">Mes albums</a>
 				
 			</div>
+
+			<?php 
+				if(isset($_POST['ajoutalbum'])){
+
+					?>
+
+					<div id="caseAjoutAlbum">
+						<div id="formAjoutAlbum">
+							<form method = "post" action = "">
+								<input type ="text" name = "nomnouveaualbum" placeholder = "Nom du nouvel album ...">
+								<input type = "submit" name ="nouveaualbum" value = "Creer cet album">
+							</form>
+						</div>
+					</div>
+					<?php
+					}
+
+				if (isset($_POST['nouveaualbum'])){
+
+					$nom = $_POST['nomnouveaualbum'];
+					$prop = $getid;
+
+					$requete = mysql_query("INSERT INTO Albums (Nom, IDProprio) VALUES ('$nom', '$prop')");
+
+
+				}
+
+
+
+	?>	
 
 
 			<div id="galeriePhotosProfil">
@@ -221,31 +236,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 			<input id = "boutonplus" type = "image" src = "images/boutonplus.png" name ="ajoutalbum" value = "Creer un album"> 
 		</form>
 	</div>
-
-	<?php 
-				if(isset($_POST['ajoutalbum'])){
-
-					?>
-					<form method = "post" action = "">
-						<input type ="text" name = "nomnouveaualbum" placeholder = "Nom du nouvel album ...">
-						<input type = "submit" name ="nouveaualbum" value = "Creer cet album">
-					</form>
-					<?php
-					}
-
-				if (isset($_POST['nouveaualbum'])){
-
-					$nom = $_POST['nomnouveaualbum'];
-					$prop = $getid;
-
-					$requete = mysql_query("INSERT INTO Albums (Nom, IDProprio) VALUES ('$nom', '$prop')");
-
-
-				}
-
-
-
-	?>		
+	
 
 
 		<?php include('footer.php'); ?>
