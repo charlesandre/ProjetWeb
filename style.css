@@ -2,10 +2,12 @@
 
 h1
 {
-    font-size: 80px;
-    top:0px;
+    font-family: 'Roboto';
+    font-size: 2em;
+    margin-left: 5%;
+    margin-top: 5%;
+    font-weight: 300;
     text-align: center;
-    color:white;
 }
 
 h2

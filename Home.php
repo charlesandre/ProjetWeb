@@ -100,22 +100,31 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 			if ($num_rows2 == 0) {
 				if(isset($_POST['caserecherche'])){
 					?>
-					<h2> Aucune photo ne correspond à votre recherche pour : <span class="motcle"><?php echo $motcle ?></span> </h2>
+					<h1> Aucune photo ne correspond à votre recherche pour : <span class="motcle"><?php echo $motcle ?></span> </h2>
 					<?php
 					}
 					else{
 						?>
-					<h2> Nous n'avons pas de photos a vous montrer, ajoutez des photos en cliquant sur le bouton plus en bas a droite ou commencez à suivre des gens ! </h2>
+					<h1> Nous n'avons pas de photos a vous montrer, ajoutez des photos en cliquant sur le bouton plus en bas a droite ou commencez à suivre des gens ! </h2>
 					<?php
 
 				}
 
 			}
 
+			else if ($num_rows2 == 1) {
+				if(isset($_POST['caserecherche'])){
+					?>
+					<h1> Il y a un résultat correspondant a votre recherche : <span class="motcle"><?php echo $motcle ?></span> </h2>
+					<?php
+					}
+
+			}
+
 			
 			else if(isset($_POST['caserecherche'])){
 			?>
-			<h2> Il y a <?php echo $num_rows2 ?> résultats correspondant a votre recherche : <span class="motcle"><?php echo $motcle ?></span></h2>
+			<h1> Il y a <?php echo $num_rows2 ?> résultats correspondant a votre recherche : <span class="motcle"><?php echo $motcle ?></span></h2>
 			<?php
 
 			}
