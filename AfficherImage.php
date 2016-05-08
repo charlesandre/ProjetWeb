@@ -213,10 +213,10 @@ if(isset($_GET['id']) AND $_GET['id']>=0)
 						?>
 
 							<form method="post" action ="">
-							<input type="hidden"  name="idphoto"  value="<?php echo $row2[0] ?>">
+							<input type="hidden"  name="idphoto"  value="<?php echo $maphoto[0] ?>">
 								<select name="visibilité">
 									<?php
-									$result3 = mysql_query("SELECT * FROM Photos WHERE ID = '$row2[0]'");
+									$result3 = mysql_query("SELECT * FROM Photos WHERE ID = '$maphoto[0]'");
 									$row3 = mysql_fetch_row($result3);
 									if($row3[6] == 'Public'){
 									?><option value="Public">Public</option>
@@ -230,8 +230,9 @@ if(isset($_GET['id']) AND $_GET['id']>=0)
 								</select>
 							<input type="submit" name="modificationvisi" id="modificationvisi" value="Modifier">
 						</form>
+						
 						<form method="post" action ="">
-							<input type="hidden"  name="idphoto"  value="<?php echo $row2[0] ?>">
+							<input type="hidden"  name="idphoto"  value="<?php echo $maphoto[0] ?>">
 							<input type="submit" name="supphoto" id="supphoto" value="Supprimer la Photo">
 						</form>
 
