@@ -23,6 +23,11 @@ if(isset($_GET['id']) AND $_GET['id']>=0)
 	$photosdelalbum = mysql_query("SELECT * FROM PhotosAlbums WHERE IDAlbum = '$getidalbum'");
 	$nombrephotodansalbum = mysql_num_rows($photosdelalbum);
 
+	$proprietaire = mysql_query("SELECT * FROM Users WHERE ID = '$getid'");
+	$proprietaire = mysql_fetch_row($proprietaire);
+	$login = $proprietaire[1];
+	$mdp = $proprietaire[3];
+
 ?>
 <html>
 	<head>

@@ -128,8 +128,10 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 								
 								if($adressephotolikee != "Photos/" && $nbrphotoslikees > $j){
 								?>
-
-									<img id="maPhoto" class="lesPhotos" src ="<?php echo $adressephotolikee ?>" /> 
+									<a  class="lienMaPhoto"  href="AffichageImage.php?id=<?php echo $adressephotolikee ?>" >
+										<img id="maPhoto" class="lesPhotos" src ="<?php echo $adressephotolikee ?>" />
+									</a>
+									<a  href="AffichageImage.php?id=<?php echo $row2[0] ?>" > 
 									<div id="afficherInfos" class="affichageInfos">
 										<img id="epingleBlanche" src ="images/epingleBlanche.png" /> 
 										<span id="infosLike"> <?php echo $nombreLikesPhoto ?> </span>

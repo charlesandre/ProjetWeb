@@ -54,7 +54,7 @@ if(isset($_GET['id']) AND $_GET['id']>=0)
 	
 
 
-	<div id="reglages">
+	<div id="reglagesAlbum">
 			
 			<div id="texteReglages">Modifier mon album</div>
 
@@ -63,46 +63,56 @@ if(isset($_GET['id']) AND $_GET['id']>=0)
 					<div class="champReglagesAlbum">
 						<label class="labelConnexion" for "avatar"> Changer le nom de l'album </label>
 						<input id ="nouveauNom" type="text" name="nouveaunomalbum"  placeholder="<?php echo $nomalbum ?>" class="caseReglages" />	
-						<input type = "submit" name = "modifnomalbum" value = "Valider">
+						
+
+					
+						<div class="validerRegAlbum">
+								<input type = "submit" name = "modifnomalbum" value = "Valider">
+						</div>
 					</div>
 				</form>
 
+
 					<!-- AJOUTER PHOTO -->
-				<div class="champReglagesAlbum">
-					<form  method="post" action ="" align ="center">
-						<label class="labelConnexion" for "login"> Ajouter une photo </label>
-							<?php
-								
-									$idalbum = $_POST['idalbum'];
-									$mesphotos = mysql_query("SELECT P.* FROM Photos P, PhotosAlbums A WHERE A.IDAlbum = '$getidalbum' AND A.IDPhoto != P.ID");
-									$nbrmesphotos = mysql_num_rows($mesphotos);
-									?> <select name ="choixnouvellephoto"> <?php
+				<form  method="post" action ="" align ="center">
+					<div class="champReglagesAlbum">
+						
+							<label class="labelConnexion" for "logchoixnouvellephotoin"> Ajouter une photo </label>
+								<?php
 									
-									for($k=0;$k<$nbrmesphotos;$k++){
-										$maphoto = mysql_fetch_row($mesphotos);
-										?>
-										<option value = "<?php echo $maphoto[0] ?>"><?php echo $maphoto[1] ?> </option>
-										<?php
+										$idalbum = $_POST['idalbum'];
+										$mesphotos = mysql_query("SELECT DISTINCT P.* FROM Photos P, PhotosAlbums A WHERE A.IDAlbum = '$getidalbum' AND A.IDPhoto != P.ID");
+										$nbrmesphotos = mysql_num_rows($mesphotos);
+										?> <select class="validerAjoutSupp" name ="choixnouvellephoto"> <?php
+										
+										for($k=0;$k<$nbrmesphotos;$k++){
+											$maphoto = mysql_fetch_row($mesphotos);
+											?>
+											<option value = "<?php echo $maphoto[0] ?>"><?php echo $maphoto[1] ?> </option>
+											<?php
 
-								}
-							
+									}
+								
 
-								?> 
-									</select>
-								<input type = "submit" name = "ajoutnouvellephoto" value = "Ajouter cette photo">
-					</form>	
-				</div>
+									?> 
+										</select>
+								<div class="validerRegAlbum">
+									<input class="submitModifAlbum" type = "submit" name = "ajoutnouvellephoto" value = "Ajouter">
+								</div>
+						
+					</div>
+				</form>	
 
 				<!-- SUPPRIMER PHOTO -->
-				<div class="champReglagesAlbum">
-					<form  method="post" action ="" align ="center">
-						<label class="labelConnexion" for "email"> Supprimer une photo</label>
+				<form  method="post" action ="" align ="center">
+					<div class="champReglagesAlbum">
+						<label class="labelConnexion" for "choixnouvellephoto"> Supprimer une photo</label>
 							<?php
 								
 									$idalbum = $_POST['idalbum'];
 									$mesphotos = mysql_query("SELECT P.* FROM Photos P, PhotosAlbums A WHERE A.IDAlbum = '$getidalbum' AND A.IDPhoto = P.ID");
 									$nbrmesphotos = mysql_num_rows($mesphotos);
-									?> <select name ="choixnouvellephoto"> <?php
+									?> <select class="validerAjoutSupp" name ="choixnouvellephoto"> <?php
 									for($k=0;$k<$nbrmesphotos;$k++){
 										$maphoto = mysql_fetch_row($mesphotos);
 										?>
@@ -114,22 +124,27 @@ if(isset($_GET['id']) AND $_GET['id']>=0)
 
 								?> 
 									</select>
-								<input type = "submit" name = "suppphoto" value = "Supprimer cette photo">
-						</form>
-						
-				</div>
+							<div class="validerRegAlbum">
+								<input class="submitModifAlbum" type = "submit" name = "suppphoto" value = "Supprimer">
+							</div>
+					</div>
+				</form>
 					
 					<!-- SUPPRIMER ALBUM -->
-				<div class="champReglagesAlbum">
-					<form  method="post" action ="" align ="center">
-						<label class="labelConnexion" for "pass"> Supprimer l'album </label>
-						<input id ="pass" type="password" name="pass"  required="required" placeholder="Mot de passe" class="caseReglages"/>
-					</form>
-				</div>
+				<form  method="post" action ="" align ="center">
+					<div class="champReglagesAlbum">
+						
+							<label class="labelConnexion" for "pass"> Supprimer l'album </label>
+							<input id ="pass" type="password" name="pass"  placeholder="Mot de passe" class="caseReglages"/>
+							<div class="validerRegAlbum">
+								<input type = "submit" name = "supprimeralbum" value = "Valider">
+							</div>
+					</div>
+				</form>
 
 
 				<div id="submitReglages">
-					<input type = "submit" name="formmodif" value="Retour" id="boutonReglages"> </input> 
+					<a href = "VoirAlbum.php?id=<? echo $idalbum ?>" id="retourAlbum"> Retour </a> 
 				</div>
 						
 						<?php
@@ -155,7 +170,7 @@ if(isset($_GET['id']) AND $_GET['id']>=0)
 
 
 
-				if (isset($_POST['pass'])){
+				if (isset($_POST['supprimeralbum'])){
 
 					$motdepasse = $_POST['pass'];
 					if($motdepasse == $mdp){

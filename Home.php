@@ -224,6 +224,12 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 						</form>
 				</div>
 			</div>
+
+			<div id="infosSup">
+				<form name "formInfos" id="formInfos" method="post" action ="">
+					<input type="image" src="images/infos.png" name="infos" id="imageInfos">
+				</form>
+			</div>
 				
 
 			<div id="caseCommentaire">
