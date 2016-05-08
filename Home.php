@@ -208,9 +208,9 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 							<?php
 							$follow = mysql_query("SELECT * FROM RelationFollow WHERE IDSuiveur = '$getid' AND IDSuivi = '$row2[5]' "); 
 							$Follownum = mysql_num_rows($follow);
-							$numberfollower = mysql_query("SELECT FROM RelationFollow WHERE IDSuivi = '$row2[5]'");
+							$numberfollower = mysql_query("SELECT * FROM RelationFollow WHERE IDSuivi = '$row2[5]'");
 							$nbrfollower = mysql_num_rows($numberfollower);
-							
+
 							if($Follownum == 0){
 							?><input type="image" src="images/follow.png" name="follow" id="imgFollow" value="Follow"><?php
 							}
@@ -218,9 +218,9 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 							?><input type="image" src="images/unfollow.png" name="unfollow" id="imgUnfollow" value="UnFollow"><?php
 							}
 							?>
-								<span id="nbFollow">
-							<?php echo $nbrfollower ?>
-						</span>
+							<span id="nbFollow">
+								<?php echo $nbrfollower ?>
+							</span>
 						</form>
 				</div>
 			</div>

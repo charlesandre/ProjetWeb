@@ -214,14 +214,7 @@ if(isset($_GET['id']) AND $_GET['id']>0)
 		<?php 
 				
 
-				if (isset($_POST['SuppAlbum'])){
-
-					$nomAlbum = $_POST['nomalbum'];
-
-					$supprimer = mysql_query("DELETE FROM Albums WHERE Nom = '$nomAlbum'");
-				}
-
-
+			
 
 
 
