@@ -858,8 +858,16 @@ td{
 
 #follow{
     text-align: right;
+    width: 50%;
     margin-top: 10%;
     margin-left: 3%; 
+    left:0;
+    display: flex;
+}
+
+#formFollow{
+    text-align: left;
+    width: 100%;
 }
 
 #imgFollow{
